@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+
+    <color name="colorPrimary">#ffff</color>
+
+    <color name="colorPrimaryDark">#ffff</color>
+
+    <color name="colorAccent">@android:color/darker_gray</color>
+
+    <color name="Amount_text">#ffff</color>
+
+    <color name="day_text">#FF4081</color>
+
+    <color name="On_Btcolor">#2196F3</color>
+
+    <color name="On_Textwcolor">#ffff</color>
+    #D32F2F
+    <color name="highprice_color">#F44336</color>
+
+    <color name="off_Btcolor">#ffff</color>
+
+    <color name="Off_Textcolor">@android:color/darker_gray</color>
+
+</resources>
