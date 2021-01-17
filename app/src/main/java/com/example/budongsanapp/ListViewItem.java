@@ -3,6 +3,7 @@ package com.example.budongsanapp;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Comparator;
 
 
 /**
@@ -575,49 +576,11 @@ public class ListViewItem implements Comparable<ListViewItem> {
     // 내림차순
     @Override
     public int compareTo(ListViewItem entry) { //금액 낮은순
+        return entry.getPrice().compareTo(this.getPrice());
 
-        if (new TWPreference().getInt("value", 0) % 2 == 0) {  //짝수
-            return entry.getPrice().compareTo(this.getPrice());
-        } else {  //홀수
-            int a = 0;
-            int b = 0;
-
-
-            if ("".equals(this.getChaik())) { //만약 받아온 데이터가 공백이 아니면 데이터를 형변환 하여 적재
-
-                a = 0;
-
-            } else {
-                a = Integer.parseInt(this.getChaik());
-
-            }
-            if ("".equals(entry.getChaik())) {
-
-                b = 0;
-            } else {
-
-
-                b = Integer.parseInt(entry.getChaik());
-
-            }
-
-
-            if (a < b)
-
-            {
-                return 1;
-
-            } else if (a == b)
-
-            {
-                return 0;
-            }
-
-        }
-
-//        if (new TWPreference().getInt("value",0)==0) {
+//        if (new TWPreference().getInt("value", 0) % 2 == 0) {  //짝수
 //            return entry.getPrice().compareTo(this.getPrice());
-//        } else if (new TWPreference().getInt("value",0)==1) {
+//        } else {  //홀수
 //            int a = 0;
 //            int b = 0;
 //
@@ -651,9 +614,14 @@ public class ListViewItem implements Comparable<ListViewItem> {
 //            {
 //                return 0;
 //            }
+//
+//        }
+//
+//
+//
+//        return -1;
 
-
-        return -1;
     }
+
 
 }

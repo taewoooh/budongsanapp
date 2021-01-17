@@ -139,7 +139,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
                 if (prefer % 2 == 0) {  //짝수
-                    Collections.sort(itemArrayList);
+                   // Collections.sort(itemArrayList);
                     DataView(); //데이터 화면에 뿌리기
                     list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
                 } else {  //홀수
@@ -147,7 +147,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
 
 
-                    Collections.sort(itemArrayList);
+                   // Collections.sort(itemArrayList);
                     DataView(); //데이터 화면에 뿌리기
                 }
 
@@ -475,7 +475,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public void onResponse(Call<List<ListViewItem>> call, Response<List<ListViewItem>> response) {
                 List<ListViewItem> contributors = response.body();
                 // 받아온 리스트를 순회하면서
-
+                int count =0;
                 Log.e("Test888", response.body().toString());
 
                 for (ListViewItem contributor : contributors) {
@@ -554,7 +554,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             jiyeokcode, bupjungdong, gunchukyear, hightprice,
                             hightyear, hightmonth, hightday, areac, ymd, chaik, pyungmyuendo, chongdongsu, chongsedaesu, juchadaesu, pyungeunjucha,
                             yongjeukryul, gunpaeyul, ganrisamuso, nanbang, gunseoulsa, jihachul, mart, hospital, park, cho, jung, go, arin, you));
-                    Collections.sort(itemArrayList);
+                   // Collections.sort(itemArrayList);
+
+
+
 
                     DataView(); //데이터 화면에 뿌리기
 
@@ -580,6 +583,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void DataView() {  // itemArraylist 에 담김 데이터를 화면에 뿌려준다
 
 
+        Collections.sort(itemArrayList);
         adapter = new RvAdapter(itemArrayList, MainActivity.this);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(llm);

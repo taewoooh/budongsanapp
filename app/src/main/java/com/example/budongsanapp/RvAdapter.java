@@ -73,7 +73,10 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
             holder.price.setTextColor(Color.parseColor("#000000")); // 기본색
             holder.highicon.setVisibility(View.INVISIBLE); // 신고가 아이콘
             holder.minusprice.setText("");
+            holder.name.setTextColor(Color.parseColor("#000000")); // 검정색
             holder.pyeungsu.setText("");
+
+
 
 
             int count = 0;
@@ -85,6 +88,8 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
 
 //            Log.e("taewoooh"+"\n\n" + " 거래 금액 - > " + a + "\n" + "최고가 - > " + b, "");
+
+
 
             if (a > 0) {
 
@@ -129,23 +134,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
                 , items.get(position).getHightmonth(), items.get(position).getHightday());
 
 
-        try {
 
-            if (Integer.parseInt(items.get(position).getPyungmyuendo()) > 0) {
-
-                Log.e("pyungmyuendo", " -->> " + items.get(position).getName() + " / " + items.get(position).getArea() + " / " + items.get(position).getPyungmyuendo() +
-                        " / " + items.get(position).getYongjeukryul() + " / " + items.get(position).getGunpaeyul());
-                //Log.e("pyungmyuendo2"," / "+items.get(position).getName()+" / "+items.get(position).getArea()+" / "+items.get(position).getPyungmyuendo());
-
-
-                holder.pyeungsu.setText(" / " + items.get(position).getPyungmyuendo() + "평");
-
-
-            }
-        } catch (Exception e) {
-
-
-        }
 
 
 //        }
@@ -174,6 +163,38 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
         holder.pyungeunjucha.setText(items.get(position).getPyungeunjucha()); // 펑균주차대수
         holder.pyungeunjucha.setText(items.get(position).getYongjeukryul()); // 용적률
         holder.pyungeunjucha.setText(items.get(position).getGunpaeyul()); // 건페율
+
+
+try {
+    //items.get(position).getMart().equals("분양권/입주권") &&
+    if ( items.get(position).getGunchukyear().equals("0")){
+
+
+        holder.name.setTextColor(Color.parseColor("#2196F3")); // 검정색
+
+    }
+}catch (Exception e){
+
+}
+
+        try {
+
+            if (Integer.parseInt(items.get(position).getPyungmyuendo()) > 0) {
+
+                Log.e("pyungmyuendo", " -->> " + items.get(position).getName() + " / " + items.get(position).getArea() + " / " + items.get(position).getPyungmyuendo() +
+                        " / " + items.get(position).getYongjeukryul() + " / " + items.get(position).getGunpaeyul());
+                //Log.e("pyungmyuendo2"," / "+items.get(position).getName()+" / "+items.get(position).getArea()+" / "+items.get(position).getPyungmyuendo());
+
+
+                holder.pyeungsu.setText(" / " + items.get(position).getPyungmyuendo() + "평");
+
+
+            }
+        } catch (Exception e) {
+
+
+        }
+
 
 
         if (ji.equals("")) {
@@ -285,6 +306,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
         TextView yongjeukryul;
         TextView gunpaeyul;
+        TextView name;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
@@ -308,6 +330,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
             pyungeunjucha = itemView.findViewById(R.id.pyungeunjucha);
             jihachul = itemView.findViewById(R.id.jihachul);
             pyeungsu = itemView.findViewById(R.id.pyeungsu);
+            name= itemView.findViewById(R.id.Name);
 
 
 
