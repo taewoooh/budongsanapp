@@ -126,7 +126,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
 
 
-        String price_s = new Util().Priceedit(items.get(position).getPrice()); // 금액에 억 붙히기
+        String price_s = new Util().Priceedit(String.valueOf(items.get(position).getPrice())); // 금액에 억 붙히기
         String price_o = new Util().Priceedit(items.get(position).getHightprice()); // 금액에 억 붙히기(최고가)
 
 
@@ -268,7 +268,6 @@ try {
             for (ListViewItem news : arrayList) {
                 if (news.getName().toLowerCase(Locale.getDefault()).contains(charText) //타이틀 or 주소 검색 가능
                         || news.getBupjungdong().toLowerCase(Locale.getDefault()).contains(charText) ||
-                        news.getPrice().toLowerCase(Locale.getDefault()).contains(charText) ||
                         news.getAreac().toLowerCase(Locale.getDefault()).contains(charText) ||
                         news.getArea().toLowerCase(Locale.getDefault()).contains(charText) ||
                         news.getMonth().toLowerCase(Locale.getDefault()).contains(charText)) {

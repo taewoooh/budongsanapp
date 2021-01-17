@@ -475,7 +475,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public void onResponse(Call<List<ListViewItem>> call, Response<List<ListViewItem>> response) {
                 List<ListViewItem> contributors = response.body();
                 // 받아온 리스트를 순회하면서
-                int count =0;
+
                 Log.e("Test888", response.body().toString());
 
                 for (ListViewItem contributor : contributors) {
@@ -554,11 +554,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             jiyeokcode, bupjungdong, gunchukyear, hightprice,
                             hightyear, hightmonth, hightday, areac, ymd, chaik, pyungmyuendo, chongdongsu, chongsedaesu, juchadaesu, pyungeunjucha,
                             yongjeukryul, gunpaeyul, ganrisamuso, nanbang, gunseoulsa, jihachul, mart, hospital, park, cho, jung, go, arin, you));
-                   // Collections.sort(itemArrayList);
+                    Collections.sort(itemArrayList);
 
 
-
-
+                    Log.e("오하람",""+name+" / "+price);
                     DataView(); //데이터 화면에 뿌리기
 
 
@@ -584,6 +583,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
         Collections.sort(itemArrayList);
+
+
+
+        Log.e("오태우"," / "+itemArrayList.get(0).getName()+" / "+itemArrayList.get(0).getMart());
+
+
         adapter = new RvAdapter(itemArrayList, MainActivity.this);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(llm);
