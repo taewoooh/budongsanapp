@@ -69,6 +69,7 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
+
     <RelativeLayout
         android:id="@+id/day_layout"
         android:layout_width="match_parent"
@@ -98,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="일별실거래"
+                    android:text="아파트(매매)"
                     android:textColor="@color/On_Textwcolor"
                     android:textSize="13dp"
                     android:textStyle="bold" />
@@ -123,7 +124,55 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="전체실거래"
+                    android:text="아파트(전세)"
+                    android:textColor="@color/Off_Textcolor"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/day_cardview3"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/day_cardview2"
+                android:visibility="visible"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+
+                <TextView
+                    android:id="@+id/cardview_button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="오피스텔"
+                    android:textColor="@color/Off_Textcolor"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/day_cardview4"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/day_cardview3"
+                android:visibility="visible"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+
+                <TextView
+                    android:id="@+id/cardview_button4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="상업/업무용"
                     android:textColor="@color/Off_Textcolor"
                     android:textSize="13dp"
                     android:textStyle="bold" />
@@ -335,6 +384,8 @@
                 android:src="@drawable/circlechart" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+
 
 
 </RelativeLayout>

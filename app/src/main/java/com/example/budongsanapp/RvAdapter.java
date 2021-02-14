@@ -43,6 +43,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
     int a;
     int b;
+    int c;
 
 
     public RvAdapter(ArrayList<ListViewItem> items, Context context) {
@@ -53,8 +54,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
 
     }
-
-
 
 
     @Override
@@ -72,14 +71,14 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
             holder.price.setTextColor(Color.parseColor("#000000")); // 기본색
             holder.highicon.setVisibility(View.INVISIBLE); // 신고가 아이콘
+            holder.crown.setVisibility(View.INVISIBLE);
             holder.minusprice.setText("");
             holder.name.setTextColor(Color.parseColor("#000000")); // 검정색
             holder.pyeungsu.setText("");
 
 
-
-
             int count = 0;
+
 //            a = Integer.parseInt(items.get(position).getPrice().replaceAll(",", "").replaceAll("\\p{Z}", ""));
 //            b = Integer.parseInt(items.get(position).getHightprice().replaceAll(",", "").replaceAll("\\p{Z}", ""));
 
@@ -88,7 +87,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
 
 //            Log.e("taewoooh"+"\n\n" + " 거래 금액 - > " + a + "\n" + "최고가 - > " + b, "");
-
 
 
             if (a > 0) {
@@ -101,7 +99,18 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
                 int d = a - b;
                 holder.minusprice.setText(new Util().Priceedit(String.valueOf(a)));
 
-                Log.e("taewoooh1988 - > ", "" + count);
+
+                if (Integer.parseInt(items.get(position).getMart()) == 3) {
+                    c = Integer.parseInt(items.get(position).getMart());
+                    Log.e("오하늘", "" + items.get(position).getName() + " / " + c);
+                    holder.crown.setVisibility(View.VISIBLE);
+
+                }else {
+
+
+                    holder.crown.setVisibility(View.INVISIBLE);
+                }
+
 
             } else {
                 holder.highicon.setVisibility(View.INVISIBLE);// 신고가 아이콘
@@ -112,18 +121,12 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
             }
 
 
-
-
-
         } catch (NumberFormatException e) {
-
 
 
         } catch (Exception e) {
 
         }
-
-
 
 
         String price_s = new Util().Priceedit(String.valueOf(items.get(position).getPrice())); // 금액에 억 붙히기
@@ -132,9 +135,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
         String highday = new Util().Daygagong(items.get(position).getHightyear()
                 , items.get(position).getHightmonth(), items.get(position).getHightday());
-
-
-
 
 
 //        }
@@ -165,17 +165,17 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
         holder.pyungeunjucha.setText(items.get(position).getGunpaeyul()); // 건페율
 
 
-try {
-    //items.get(position).getMart().equals("분양권/입주권") &&
-    if ( items.get(position).getGunchukyear().equals("0")){
+        try {
+            //items.get(position).getMart().equals("분양권/입주권") &&
+            if (items.get(position).getGunchukyear().equals("0")) {
 
 
-        holder.name.setTextColor(Color.parseColor("#2196F3")); // 검정색
+                holder.name.setTextColor(Color.parseColor("#2196F3")); // 검정색
 
-    }
-}catch (Exception e){
+            }
+        } catch (Exception e) {
 
-}
+        }
 
         try {
 
@@ -196,15 +196,14 @@ try {
         }
 
 
-
         if (ji.equals("")) {
             ji = "-";
             holder.jihachul.setText(ji);
         } else {
 
-            Log.e("jihachul"," / "+ji);
+            Log.e("jihachul", " / " + ji);
             ji = items.get(position).getJihachul().replace("\n", "");
-            Log.e("jihachul2"," / "+ji);
+            Log.e("jihachul2", " / " + ji);
 
             holder.jihachul.setText(ji);
 
@@ -229,7 +228,8 @@ try {
 
             holder.pyungeunjucha.setText(j);
 
-        } if (yong.equals("") || yong.equals("0")) {
+        }
+        if (yong.equals("") || yong.equals("0")) {
             yong = "-";
             holder.yongjeukryul.setText(yong);
 
@@ -237,7 +237,8 @@ try {
 
             holder.yongjeukryul.setText(yong);
 
-        }if (gun.equals("")|| gun.equals("0")) {
+        }
+        if (gun.equals("") || gun.equals("0")) {
             gun = "-";
             holder.gunpaeyul.setText(gun);
 
@@ -246,9 +247,6 @@ try {
             holder.gunpaeyul.setText(gun);
 
         }
-
-
-
 
 
     }
@@ -302,6 +300,7 @@ try {
 
 
         ImageView highicon;
+        ImageView crown;
 
         TextView yongjeukryul;
         TextView gunpaeyul;
@@ -329,8 +328,8 @@ try {
             pyungeunjucha = itemView.findViewById(R.id.pyungeunjucha);
             jihachul = itemView.findViewById(R.id.jihachul);
             pyeungsu = itemView.findViewById(R.id.pyeungsu);
-            name= itemView.findViewById(R.id.Name);
-
+            crown = itemView.findViewById(R.id.crown);
+            name = itemView.findViewById(R.id.Name);
 
 
         }

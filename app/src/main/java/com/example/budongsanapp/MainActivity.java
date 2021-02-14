@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.icu.util.Calendar;
@@ -19,19 +18,19 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,8 +45,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.app.Activity;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,ExampleBottomSheetDialog.BottomSheetListener {
 
 
     private final String BASE_URL = "https://taewoooh88.cafe24.com/";
@@ -81,8 +82,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     int prefer = 0;
     CardView cv;
     RelativeLayout main_layout;
+
+    BottomSheetDialog bottomSheetDialog;
     int i_price = 0;
     int i_highprice = 0;
+
+    RelativeLayout bottomsheet;
+
 
 
     RvAdapter adapter;
@@ -94,6 +100,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         findview();
 
@@ -132,24 +140,43 @@ public class MainActivity extends Activity implements View.OnClickListener {
         list_setup_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                // Collections.sort(itemArrayList);
-                prefer++;
-                twPreference.putInt("value", prefer);
-
-
-                if (prefer % 2 == 0) {  //짝수
-                   // Collections.sort(itemArrayList);
-                    DataView(); //데이터 화면에 뿌리기
-                    list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
-                } else {  //홀수
-
-                    list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
+//                cd = new CustomDialog1(MainActivity.this);
+//                cd.show();
+                ExampleBottomSheetDialog bottomSheet = new ExampleBottomSheetDialog();
+                bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
 
 
-                   // Collections.sort(itemArrayList);
-                    DataView(); //데이터 화면에 뿌리기
-                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                prefer++;
+//                twPreference.putInt("value", prefer);
+//
+//
+//                if (prefer % 2 == 0) {  //짝수
+//                   // Collections.sort(itemArrayList);
+//                    DataView(); //데이터 화면에 뿌리기
+//                    list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
+//                } else {  //홀수
+//
+//                    list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
+//                    DataView(); //데이터 화면에 뿌리기
+//                }
 
 
             }
@@ -242,6 +269,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
+    @Override
+    public void onButtonClicked(String text) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
 
     public class ilbyeolUi_AsyncTask extends AsyncTask<String, Void, String> { // DB에서 일별 테이블 이름 가져오기
 
@@ -288,8 +325,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
-                Log.d(TAG, "dhxodn5");
+
                 bufferedReader.close();
+
+                Log.d(TAG, "dhxodn5"+sb.toString().trim());
                 return sb.toString().trim();
 
             } catch (Exception e) {
@@ -302,34 +341,53 @@ public class MainActivity extends Activity implements View.OnClickListener {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            String i;
 
-            String day = s.replaceAll("[^0-9]", ""); //json 특수문자 제거 온니 숫자만
-            while (day.length() != 0) {
-                i = day.substring(0, 8);
-                day = day.substring(8, day.length());
-                Log.d(TAG, "dhxodn6\n" + i + "\n" + day);
-                daylist.add(i);
+            try {
+                String i;
+
+                Log.d(TAG, "dhxodn6" + s);
 
 
-                Collections.sort(daylist);
-                Collections.reverse(daylist);
+
+
+
+                String day = s.replaceAll("[^0-9]", ""); //json 특수문자 제거 온니 숫자만
+                while (day.length() != 0) {
+                    i = day.substring(0, 8);
+                    day = day.substring(8, day.length());
+
+                    daylist.add(i);
+
+
+                    Collections.sort(daylist);
+                    Collections.reverse(daylist);
+
+
+                }
+                daynum = daylist.get(0);
+
+
+                Log.e("ohtaewoo", "ilbyeolui end");
+
+
+                Tongsin("DAY" + daylist.get(0));
+
+
+                Log.d(TAG, "dhxodn6.5\n" + s + "\n" + daylist.toString() + "\n" + new Util().Jungbok(daylist).toString()); //배열 중복제거
+
+
+            }catch (Exception e){
+
+
+                Toast.makeText(getApplicationContext(),"데이터를 가져올수 없습니다. 다시 시도해주세요.",Toast.LENGTH_SHORT).show();
+            }
+
 
 
             }
-            daynum = daylist.get(0);
 
 
-            Log.e("ohtaewoo", "ilbyeolui end");
 
-
-            Tongsin("DAY" + daylist.get(0));
-
-
-            Log.d(TAG, "dhxodn6.5\n" + s + "\n" + daylist.toString() + "\n" + new Util().Jungbok(daylist).toString()); //배열 중복제거
-
-
-        }
 
 
     }
@@ -341,17 +399,24 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.day_cardview:
 
-                twPreference.putInt("value1", 0);
+                try {
+                    twPreference.putInt("value1", 0);
 
-                day_cardview.setCardBackgroundColor(getColor(R.color.On_Btcolor));
-                cardview_button.setTextColor(getColor(R.color.On_Textwcolor));
+                    day_cardview.setCardBackgroundColor(getColor(R.color.On_Btcolor));
+                    cardview_button.setTextColor(getColor(R.color.On_Textwcolor));
 
-                day_cardview2.setCardBackgroundColor(getColor(R.color.off_Btcolor));
-                cardview_button2.setTextColor(getColor(R.color.Off_Textcolor));
+                    day_cardview2.setCardBackgroundColor(getColor(R.color.off_Btcolor));
+                    cardview_button2.setTextColor(getColor(R.color.Off_Textcolor));
 
 
-                AlerDialog();
-                search_edit.setText(null);
+                    AlerDialog();
+                    search_edit.setText(null);
+                }catch ( Exception e){
+                    Toast.makeText(getApplicationContext(),"데이터를 가져올수 없습니다. 다시 시도해주세요.",Toast.LENGTH_SHORT).show();
+
+
+                }
+
 
                 break;
 
@@ -409,6 +474,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
 
 
                         count = 0;
@@ -482,7 +548,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
                     String name = contributor.name;
-                    String price = contributor.price;
+                    int price = contributor.price;
                     String area = contributor.area;
                     String year = contributor.year;
                     String month = contributor.month;
@@ -532,11 +598,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     Log.e("DB데이터2", "/////" + pyungmyuendo);
 
                     try { // 신고가 카운트 하기
-                        i_price = Integer.parseInt(price.replaceAll(",", "").replaceAll("\\p{Z}", ""));
+                        //i_price = Integer.parseInt(price.replaceAll(",", "").replaceAll("\\p{Z}", ""));
                         i_highprice = Integer.parseInt(hightprice.replaceAll(",", "").replaceAll("\\p{Z}", ""));
 
 
-                        if (i_price > i_highprice) {
+                        if (price > i_highprice) {
                             count++;
                             //Log.d("dhxodn1988", "" + i_price + "  /  " + i_highprice+ "  /  " +count);
                         }

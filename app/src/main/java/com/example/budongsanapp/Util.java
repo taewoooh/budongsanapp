@@ -193,7 +193,31 @@ public class Util {
                 }, 0);
     }
 
+    public String pyungdangga(String price, String pyungsu) {
 
+
+        double p = Double.parseDouble(price);
+        double py = Double.parseDouble(pyungsu);
+
+        double i = py / p;
+
+       String a=String.format("%.0f", i);
+
+
+
+
+
+
+
+
+
+        //String s = String.format("%.1f", a);
+
+
+        return a;
+    }
+
+    ;
 
 
 }

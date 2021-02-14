@@ -22,7 +22,7 @@ public class ListViewItem implements Comparable<ListViewItem> {
     String name;
     @SerializedName("price")
     @Expose
-    String price;
+    int price;
     @SerializedName("area")
     @Expose
     String area;
@@ -162,7 +162,7 @@ public class ListViewItem implements Comparable<ListViewItem> {
     String you;
 
 
-    public ListViewItem(String name, String price,
+    public ListViewItem(String name, int price,
                         String area, String year,
                         String month, String day,
                         String high, String doromyung,
@@ -218,7 +218,7 @@ public class ListViewItem implements Comparable<ListViewItem> {
         this.you = you;
     }
 
-    public ListViewItem(String name, String price, String area, String year, String month, String day, String high, String doromyung, String jibun, String geunmulcode, String jiyeokcode, String bupjungdong, String gunchukyear, String areac, String ymd) {
+    public ListViewItem(String name, int price, String area, String year, String month, String day, String high, String doromyung, String jibun, String geunmulcode, String jiyeokcode, String bupjungdong, String gunchukyear, String areac, String ymd) {
 
         this.name = name;
         this.price = price;
@@ -401,7 +401,7 @@ public class ListViewItem implements Comparable<ListViewItem> {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -421,7 +421,7 @@ public class ListViewItem implements Comparable<ListViewItem> {
         return areac;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -576,48 +576,66 @@ public class ListViewItem implements Comparable<ListViewItem> {
     @Override
     public int compareTo(ListViewItem entry) { //금액 낮은순
 
-        if (new TWPreference().getInt("value", 0) % 2 == 0) {  //짝수
-            return entry.getPrice().compareTo(this.getPrice());
-        } else {  //홀수
-            int a = 0;
-            int b = 0;
+        if (this.getPrice() > entry.getPrice()) {
 
+//			return -1; //이렇게 하면 내림 차순
 
-            if ("".equals(this.getChaik())) { //만약 받아온 데이터가 공백이 아니면 데이터를 형변환 하여 적재
+            return -1; //이렇게 하면 오름 차순
 
-                a = 0;
+        } else if (this.getPrice() < entry.getPrice()) {
 
-            } else {
-                a = Integer.parseInt(this.getChaik());
-
-            }
-            if ("".equals(entry.getChaik())) {
-
-                b = 0;
-            } else {
-
-
-                b = Integer.parseInt(entry.getChaik());
-
-            }
-
-
-            if (a < b)
-
-            {
-                return 1;
-
-            } else if (a == b)
-
-            {
-                return 0;
-            }
+            return 1;
 
         }
 
-//        if (new TWPreference().getInt("value",0)==0) {
-//            return entry.getPrice().compareTo(this.getPrice());
-//        } else if (new TWPreference().getInt("value",0)==1) {
+        return 0;
+
+
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        if (new TWPreference().getInt("value", 0) % 2 == 0) {  //짝수
+//            return entry.getPrice();
+//        } else {  //홀수
 //            int a = 0;
 //            int b = 0;
 //
@@ -651,9 +669,42 @@ public class ListViewItem implements Comparable<ListViewItem> {
 //            {
 //                return 0;
 //            }
-
-
-        return -1;
-    }
-
-}
+//
+//        }
+//
+////        if (new TWPreference().getInt("value",0)==0) {
+////            return entry.getPrice().compareTo(this.getPrice());
+////        } else if (new TWPreference().getInt("value",0)==1) {
+////            int a = 0;
+////            int b = 0;
+////
+////
+////            if ("".equals(this.getChaik())) { //만약 받아온 데이터가 공백이 아니면 데이터를 형변환 하여 적재
+////
+////                a = 0;
+////
+////            } else {
+////                a = Integer.parseInt(this.getChaik());
+////
+////            }
+////            if ("".equals(entry.getChaik())) {
+////
+////                b = 0;
+////            } else {
+////
+////
+////                b = Integer.parseInt(entry.getChaik());
+////
+////            }
+////
+////
+////            if (a < b)
+////
+////            {
+////                return 1;
+////
+////            } else if (a == b)
+////
+////            {
+////                return 0;
+////            }
