@@ -1,11 +1,4 @@
-package com.example.budongsanapp;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.budongsanapp.Buyapartment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -18,14 +11,23 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.budongsanapp.R;
+import com.example.budongsanapp.TWPreference;
+import com.example.budongsanapp.Util;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -43,12 +45,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import android.app.Activity;
 
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,ExampleBottomSheetDialog.BottomSheetListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private final String BASE_URL = "https://taewoooh88.cafe24.com/";
@@ -140,55 +138,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         list_setup_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                cd = new CustomDialog1(MainActivity.this);
-//                cd.show();
-                ExampleBottomSheetDialog bottomSheet = new ExampleBottomSheetDialog();
-                bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//                prefer++;
-//                twPreference.putInt("value", prefer);
-//
-//
-//                if (prefer % 2 == 0) {  //짝수
-//                   // Collections.sort(itemArrayList);
-//                    DataView(); //데이터 화면에 뿌리기
-//                    list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
-//                } else {  //홀수
-//
-//                    list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
-//                    DataView(); //데이터 화면에 뿌리기
-//                }
 
 
             }
         });
-//        ilbyeoldata_imageview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                Log.e("테스트88","");
-//                AlerDialog();
-//            }
-//        });
+
 
         search_edit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -269,10 +226,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    public void onButtonClicked(String text) {
-
-    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
@@ -408,7 +361,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     day_cardview2.setCardBackgroundColor(getColor(R.color.off_Btcolor));
                     cardview_button2.setTextColor(getColor(R.color.Off_Textcolor));
 
-
                     AlerDialog();
                     search_edit.setText(null);
                 }catch ( Exception e){
@@ -475,7 +427,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-
+                        rv.getRecycledViewPool().clear();
+                        adapter.notifyDataSetChanged();
 
                         count = 0;
 

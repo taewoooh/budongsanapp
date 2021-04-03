@@ -1,20 +1,19 @@
-package com.example.budongsanapp;
+package com.example.budongsanapp.Buyapartment;
 
 
 import android.content.Context;
 import android.graphics.Color;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
+import com.example.budongsanapp.R;
+import com.example.budongsanapp.Util;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -66,6 +65,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
+        int safePosition = holder.getAdapterPosition();
 
         try {
 
@@ -79,11 +79,11 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
             int count = 0;
 
-//            a = Integer.parseInt(items.get(position).getPrice().replaceAll(",", "").replaceAll("\\p{Z}", ""));
-//            b = Integer.parseInt(items.get(position).getHightprice().replaceAll(",", "").replaceAll("\\p{Z}", ""));
+//            a = Integer.parseInt(items.get().getPrice().replaceAll(",", "").replaceAll("\\p{Z}", ""));
+//            b = Integer.parseInt(items.get().getHightprice().replaceAll(",", "").replaceAll("\\p{Z}", ""));
 
 
-            a = Integer.parseInt(items.get(position).getChaik());
+            a = Integer.parseInt(items.get(safePosition).getChaik());
 
 
 //            Log.e("taewoooh"+"\n\n" + " 거래 금액 - > " + a + "\n" + "최고가 - > " + b, "");
@@ -100,9 +100,9 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
                 holder.minusprice.setText(new Util().Priceedit(String.valueOf(a)));
 
 
-                if (Integer.parseInt(items.get(position).getMart()) == 3) {
-                    c = Integer.parseInt(items.get(position).getMart());
-                    Log.e("오하늘", "" + items.get(position).getName() + " / " + c);
+                if (Integer.parseInt(items.get(safePosition).getMart()) == 3) {
+                    c = Integer.parseInt(items.get(safePosition).getMart());
+                    Log.e("오하늘", "" + items.get(safePosition).getName() + " / " + c);
                     holder.crown.setVisibility(View.VISIBLE);
 
                 }else {
@@ -129,45 +129,45 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
         }
 
 
-        String price_s = new Util().Priceedit(String.valueOf(items.get(position).getPrice())); // 금액에 억 붙히기
-        String price_o = new Util().Priceedit(items.get(position).getHightprice()); // 금액에 억 붙히기(최고가)
+        String price_s = new Util().Priceedit(String.valueOf(items.get(safePosition).getPrice())); // 금액에 억 붙히기
+        String price_o = new Util().Priceedit(items.get(safePosition).getHightprice()); // 금액에 억 붙히기(최고가)
 
 
-        String highday = new Util().Daygagong(items.get(position).getHightyear()
-                , items.get(position).getHightmonth(), items.get(position).getHightday());
+        String highday = new Util().Daygagong(items.get(safePosition).getHightyear()
+                , items.get(safePosition).getHightmonth(), items.get(safePosition).getHightday());
 
 
 //        }
 
-        String c = items.get(position).getChongsedaesu();
-        String j = items.get(position).getPyungeunjucha();
-        String ji = items.get(position).getJihachul();
-        String yong = items.get(position).getYongjeukryul();
-        String gun = items.get(position).getGunpaeyul();
+        String c = items.get(safePosition).getChongsedaesu();
+        String j = items.get(safePosition).getPyungeunjucha();
+        String ji = items.get(safePosition).getJihachul();
+        String yong = items.get(safePosition).getYongjeukryul();
+        String gun = items.get(safePosition).getGunpaeyul();
 
 
-        holder.Name.setText(items.get(position).getName()); //단지이름
-        holder.Area.setText(items.get(position).getArea()); //면적
-        holder.Bupjungdong.setText(items.get(position).getBupjungdong()); // 주소
-        holder.ymd.setText(items.get(position).getYmd()); //계약일
-        holder.high.setText(String.valueOf(items.get(position).getHigh())); // 층수
-        //holder.Areac.setText(items.get(position).getAreac()); // 평형
-        holder.CREATE_YYYY.setText(items.get(position).getGunchukyear()); // 평형
+        holder.Name.setText(items.get(safePosition).getName()); //단지이름
+        holder.Area.setText(items.get(safePosition).getArea()); //면적
+        holder.Bupjungdong.setText(items.get(safePosition).getBupjungdong()); // 주소
+        holder.ymd.setText(items.get(safePosition).getYmd()); //계약일
+        holder.high.setText(String.valueOf(items.get(safePosition).getHigh())); // 층수
+        //holder.Areac.setText(items.get(safePosition).getAreac()); // 평형
+        holder.CREATE_YYYY.setText(items.get(safePosition).getGunchukyear()); // 평형
         holder.hight_day.setText(highday); // 계약 날짜
         holder.price.setText(price_s); ///거래 금액
         holder.previ_pricenumber.setText(price_o); // 최고가
         //
 
 
-        holder.chongsedaesu.setText(items.get(position).getChongsedaesu()); // 총세대수
-        holder.pyungeunjucha.setText(items.get(position).getPyungeunjucha()); // 펑균주차대수
-        holder.pyungeunjucha.setText(items.get(position).getYongjeukryul()); // 용적률
-        holder.pyungeunjucha.setText(items.get(position).getGunpaeyul()); // 건페율
+        holder.chongsedaesu.setText(items.get(safePosition).getChongsedaesu()); // 총세대수
+        holder.pyungeunjucha.setText(items.get(safePosition).getPyungeunjucha()); // 펑균주차대수
+        holder.pyungeunjucha.setText(items.get(safePosition).getYongjeukryul()); // 용적률
+        holder.pyungeunjucha.setText(items.get(safePosition).getGunpaeyul()); // 건페율
 
 
         try {
-            //items.get(position).getMart().equals("분양권/입주권") &&
-            if (items.get(position).getGunchukyear().equals("0")) {
+            //items.get(safePosition).getMart().equals("분양권/입주권") &&
+            if (items.get(safePosition).getGunchukyear().equals("0")) {
 
 
                 holder.name.setTextColor(Color.parseColor("#2196F3")); // 검정색
@@ -179,14 +179,14 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
         try {
 
-            if (Integer.parseInt(items.get(position).getPyungmyuendo()) > 0) {
+            if (Integer.parseInt(items.get(safePosition).getPyungmyuendo()) > 0) {
 
-                Log.e("pyungmyuendo", " -->> " + items.get(position).getName() + " / " + items.get(position).getArea() + " / " + items.get(position).getPyungmyuendo() +
-                        " / " + items.get(position).getYongjeukryul() + " / " + items.get(position).getGunpaeyul());
-                //Log.e("pyungmyuendo2"," / "+items.get(position).getName()+" / "+items.get(position).getArea()+" / "+items.get(position).getPyungmyuendo());
+                Log.e("pyungmyuendo", " -->> " + items.get(safePosition).getName() + " / " + items.get(safePosition).getArea() + " / " + items.get(safePosition).getPyungmyuendo() +
+                        " / " + items.get(safePosition).getYongjeukryul() + " / " + items.get(safePosition).getGunpaeyul());
+                //Log.e("pyungmyuendo2"," / "+items.get(safePosition).getName()+" / "+items.get(safePosition).getArea()+" / "+items.get(safePosition).getPyungmyuendo());
 
 
-                holder.pyeungsu.setText(" / " + items.get(position).getPyungmyuendo() + "평");
+                holder.pyeungsu.setText(" / " + items.get(safePosition).getPyungmyuendo() + "평");
 
 
             }
@@ -202,7 +202,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
         } else {
 
             Log.e("jihachul", " / " + ji);
-            ji = items.get(position).getJihachul().replace("\n", "");
+            ji = items.get(safePosition).getJihachul().replace("\n", "");
             Log.e("jihachul2", " / " + ji);
 
             holder.jihachul.setText(ji);

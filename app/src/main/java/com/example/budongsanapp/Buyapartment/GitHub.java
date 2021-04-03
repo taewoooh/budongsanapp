@@ -1,4 +1,4 @@
-package com.example.budongsanapp;
+package com.example.budongsanapp.Buyapartment;
 
 import java.util.List;
 
