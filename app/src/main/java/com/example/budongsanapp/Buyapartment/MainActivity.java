@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-
         findview();
 
 
@@ -115,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         hour = cal.get(cal.HOUR_OF_DAY); //현재 시간 구하기
 
-        Statusbar();
+       // Statusbar();
 
         day_cardview.setOnClickListener(this);
         day_cardview2.setOnClickListener(this);
@@ -140,6 +139,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View view) {
 
 
+
+
+
+                
 
 
 
@@ -225,6 +228,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
 
 
     @Override

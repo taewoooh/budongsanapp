@@ -6,6 +6,8 @@
     <!-- Customize your theme here. -->
 
     <item name="android:navigationBarColor">@android:color/white</item>
+    <item name="android:windowLightNavigationBar">true</item>
+    <item name="android:windowLightStatusBar">true</item>
     <item name="colorPrimary">@color/colorPrimary</item>
 
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
