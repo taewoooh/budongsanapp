@@ -1,8 +1,13 @@
 package com.example.budongsanapp.Buyapartment;
 
+import android.util.Log;
+
+import com.example.budongsanapp.R;
+import com.example.budongsanapp.TWPreference;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Collections;
 
 
 /**
@@ -79,7 +84,7 @@ public class ListViewItem implements Comparable<ListViewItem> {
 
     @SerializedName("chaik")
     @Expose
-    String chaik;
+    int chaik;
 
 ///////////////////////////////////////
 
@@ -171,7 +176,7 @@ public class ListViewItem implements Comparable<ListViewItem> {
                         String bupjungdong,
                         String gunchukyear,
                         String hightprice, String hightyear, String hightmonth, String hightday,
-                        String areac, String ymd, String chaik, String pyungmyuendo, String chongdongsu,
+                        String areac, String ymd, int chaik, String pyungmyuendo, String chongdongsu,
                         String chongsedaesu, String juchadaesu, String pyungeunjucha, String yongjeukryul, String gunpaeyul, String ganrisamuso,
                         String nanbang, String gunseoulsa, String jihachul, String mart, String hospital, String park,
                         String cho, String jung, String go, String arin, String you) {
@@ -445,11 +450,11 @@ public class ListViewItem implements Comparable<ListViewItem> {
         return month;
     }
 
-    public String getChaik() {
+    public int getChaik() {
         return chaik;
     }
 
-    public void setChaik(String chaik) {
+    public void setChaik(int chaik) {
         this.chaik = chaik;
     }
 
@@ -555,156 +560,25 @@ public class ListViewItem implements Comparable<ListViewItem> {
     }
 
 
-    //내림차순
-//    @Override
-//    public int compareTo(ListViewItem entry) {
-//
-//
-//
-//
-//
-//
-//        return entry.getPrice().compareTo(this.getPrice());
-//
-//
-//    }
-//
-//
-
 
     // 내림차순
     @Override
     public int compareTo(ListViewItem entry) { //금액 낮은순
+//        return entry.getChaik() - this.getChaik();
+//        return entry.getPrice() - this.getPrice();
 
-        if (this.getPrice() > entry.getPrice()) {
 
-//			return -1; //이렇게 하면 내림 차순
 
-            return -1; //이렇게 하면 오름 차순
+        int prefer =new TWPreference().getInt("value", 0);
 
-        } else if (this.getPrice() < entry.getPrice()) {
 
-            return 1;
+        if (prefer % 2 == 0) {  //짝수
 
+            return entry.getPrice() - this.getPrice();
+        } else {  //홀수
+            return entry.getChaik() - this.getChaik();
+            //return entry.getChaik() - this.getChaik();
         }
-
-        return 0;
-
-
-
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        if (new TWPreference().getInt("value", 0) % 2 == 0) {  //짝수
-//            return entry.getPrice();
-//        } else {  //홀수
-//            int a = 0;
-//            int b = 0;
-//
-//
-//            if ("".equals(this.getChaik())) { //만약 받아온 데이터가 공백이 아니면 데이터를 형변환 하여 적재
-//
-//                a = 0;
-//
-//            } else {
-//                a = Integer.parseInt(this.getChaik());
-//
-//            }
-//            if ("".equals(entry.getChaik())) {
-//
-//                b = 0;
-//            } else {
-//
-//
-//                b = Integer.parseInt(entry.getChaik());
-//
-//            }
-//
-//
-//            if (a < b)
-//
-//            {
-//                return 1;
-//
-//            } else if (a == b)
-//
-//            {
-//                return 0;
-//            }
-//
-//        }
-//
-////        if (new TWPreference().getInt("value",0)==0) {
-////            return entry.getPrice().compareTo(this.getPrice());
-////        } else if (new TWPreference().getInt("value",0)==1) {
-////            int a = 0;
-////            int b = 0;
-////
-////
-////            if ("".equals(this.getChaik())) { //만약 받아온 데이터가 공백이 아니면 데이터를 형변환 하여 적재
-////
-////                a = 0;
-////
-////            } else {
-////                a = Integer.parseInt(this.getChaik());
-////
-////            }
-////            if ("".equals(entry.getChaik())) {
-////
-////                b = 0;
-////            } else {
-////
-////
-////                b = Integer.parseInt(entry.getChaik());
-////
-////            }
-////
-////
-////            if (a < b)
-////
-////            {
-////                return 1;
-////
-////            } else if (a == b)
-////
-////            {
-////                return 0;
-////            }

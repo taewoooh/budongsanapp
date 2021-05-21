@@ -83,7 +83,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 //            b = Integer.parseInt(items.get().getHightprice().replaceAll(",", "").replaceAll("\\p{Z}", ""));
 
 
-            a = Integer.parseInt(items.get(safePosition).getChaik());
+            a = items.get(safePosition).getChaik();
 
 
 //            Log.e("taewoooh"+"\n\n" + " 거래 금액 - > " + a + "\n" + "최고가 - > " + b, "");

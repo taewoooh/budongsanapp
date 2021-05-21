@@ -144,7 +144,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         list_setup_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Collections.sort(itemArrayList);
+                prefer++;
+                twPreference.putInt("value", prefer);
 
+
+                if (prefer % 2 == 0) {  //짝수
+                    Collections.sort(itemArrayList);
+                    DataView(); //데이터 화면에 뿌리기
+                    list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
+                } else {  //홀수
+
+                    list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
+
+
+                    Collections.sort(itemArrayList);
+                    DataView(); //데이터 화면에 뿌리기
+                }
 
             }
         });
@@ -669,7 +685,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String hightyear = contributor.hightyear;
                     String hightmonth = contributor.hightmonth;
                     String hightday = contributor.hightday;
-                    String chaik = contributor.chaik;
+                    int chaik = contributor.chaik;
 
                     String pyungmyuendo = contributor.pyungmyuendo;
                     String chongdongsu = contributor.chongdongsu;
@@ -739,6 +755,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             // 실패시
             public void onFailure(Call<List<ListViewItem>> call, Throwable t) {
+
                 Toast.makeText(MainActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
                         .show();
             }
