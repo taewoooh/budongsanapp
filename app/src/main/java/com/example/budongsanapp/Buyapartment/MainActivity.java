@@ -11,6 +11,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -45,6 +48,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.budongsanapp.R.anim.slid_down;
+import static com.example.budongsanapp.R.anim.slid_up;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Retrofit retrofit;
     private RecyclerView rv;
     private LinearLayoutManager llm;
-    private static String TAG = "phptest_MainActivity";
+    private static String TAG = "8888888888888";
     int hour;
     String areac;
     String ymd;
@@ -78,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView cycleimageview;
     String tablecode = "";
     int prefer = 0;
+    CardView b1;
     CardView cv;
     RelativeLayout main_layout;
 
@@ -86,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int i_highprice = 0;
 
     RelativeLayout bottomsheet;
-
 
 
     RvAdapter adapter;
@@ -114,11 +120,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         hour = cal.get(cal.HOUR_OF_DAY); //현재 시간 구하기
 
-       // Statusbar();
+        // Statusbar();
 
         day_cardview.setOnClickListener(this);
         day_cardview2.setOnClickListener(this);
         delete_textimageview.setOnClickListener(this);
+       b1.setOnClickListener(this);
 
 
         itemArrayList = new ArrayList<>();
@@ -137,13 +144,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         list_setup_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-
-
-                
-
 
 
             }
@@ -227,9 +227,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        });
 
 
+        rv.setOnScrollListener(new RecyclerView.OnScrollListener() { //핀터레스트 카드뷰 기능
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 80 ) {
+//                    Animation bottomUp = AnimationUtils.loadAnimation(getApplicationContext(),
+//                            slid_up);
+//                    b1.startAnimation(bottomUp);
+                    b1.setVisibility(View.VISIBLE);
+
+                   // Toast.makeText(getApplicationContext(),"감추기",Toast.LENGTH_SHORT).show();
+
+                } else if (dy == 0 ||!rv.canScrollVertically(-1) ) {
+                   // Toast.makeText(getApplicationContext(),"보이기",Toast.LENGTH_SHORT).show();
+//                    Animation bottomdown = AnimationUtils.loadAnimation(getApplicationContext(),
+//                            slid_up);
+//                    b1.startAnimation(bottomdown);
+                    b1.setVisibility(View.GONE);
+
+
+                }
+
+
+            }
+
+
+        });
+
+
     }
-
-
 
 
     @Override
@@ -286,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 bufferedReader.close();
 
-                Log.d(TAG, "dhxodn5"+sb.toString().trim());
+                Log.d(TAG, "dhxodn5" + sb.toString().trim());
                 return sb.toString().trim();
 
             } catch (Exception e) {
@@ -306,17 +333,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d(TAG, "dhxodn6" + s);
 
 
-
-
-
                 String day = s.replaceAll("[^0-9]", ""); //json 특수문자 제거 온니 숫자만
+
                 while (day.length() != 0) {
                     i = day.substring(0, 8);
                     day = day.substring(8, day.length());
 
                     daylist.add(i);
-
-
+                    //Log.e("ohtaewoo", "ilbyeolui end  /  "+i);
+                    Log.e("ilbyeol 1", "" + day);
                     Collections.sort(daylist);
                     Collections.reverse(daylist);
 
@@ -325,30 +350,124 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 daynum = daylist.get(0);
 
 
-                Log.e("ohtaewoo", "ilbyeolui end");
-
-
                 Tongsin("DAY" + daylist.get(0));
 
 
                 Log.d(TAG, "dhxodn6.5\n" + s + "\n" + daylist.toString() + "\n" + new Util().Jungbok(daylist).toString()); //배열 중복제거
 
 
-            }catch (Exception e){
+            } catch (Exception e) {
 
 
-                Toast.makeText(getApplicationContext(),"데이터를 가져올수 없습니다. 다시 시도해주세요.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "데이터를 가져올수 없습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
             }
 
 
-
-            }
-
-
-
+        }
 
 
     }
+
+    public class ilbyeolUi_AsyncTask2 extends AsyncTask<String, Void, String> { // DB에서 일별 테이블 이름 가져오기
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+
+            Log.d(TAG, "dhxodn2");
+        }
+
+        @Override
+
+        protected String doInBackground(String... strings) {
+
+            String serverURL = strings[0];
+
+            try {
+
+                Log.d(TAG, "dhxodn3");
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.connect();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+                Log.d(TAG, "dhxodn4");
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+
+                Log.d(TAG, "dhxodn5" + sb.toString().trim());
+                return sb.toString().trim();
+
+            } catch (Exception e) {
+                return null;
+            }
+        }
+
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            try {
+                String i;
+
+                Log.d(TAG, "dhxodn6" + s);
+
+
+                String day = s.replaceAll("[^0-9]", ""); //json 특수문자 제거 온니 숫자만
+                Log.e("ohtaewoo", "ilbyeolui end  /  " + day);
+                // daylist.clear();
+                while (day.length() != 0) {
+                    i = day.substring(0, 8);
+                    day = day.substring(8, day.length());
+
+                    daylist.add(i);
+                    //Log.e("ohtaewoo", "ilbyeolui end  /  "+i);
+
+                    Collections.sort(daylist);
+                    Collections.reverse(daylist);
+
+
+                }
+                daynum = daylist.get(0);
+
+                Log.e("ohtaewoo", "ilbyeolui end  /  " + daylist.get(0));
+
+
+            } catch (Exception e) {
+
+
+                Toast.makeText(getApplicationContext(), "데이터를 가져올수 없습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+
+
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -366,10 +485,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     day_cardview2.setCardBackgroundColor(getColor(R.color.off_Btcolor));
                     cardview_button2.setTextColor(getColor(R.color.Off_Textcolor));
 
-                    AlerDialog();
+                    Log.e("daylistsize  --->",""+daylist.size());
+
+
+
+
+
+                        AlerDialog();
+
+
+
+
+
+
+
                     search_edit.setText(null);
-                }catch ( Exception e){
-                    Toast.makeText(getApplicationContext(),"데이터를 가져올수 없습니다. 다시 시도해주세요.",Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "데이터를 가져올수 없습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -395,6 +527,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 search_edit.setText(null);
 
+
+                break;
+
+            case R.id.b1:
+
+
+                llm.scrollToPositionWithOffset(0, 0);
+
+                //rv.smoothScrollToPosition(0);
 
                 break;
 
@@ -482,6 +623,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //ilbyeoldata_imageview = (ImageView) findViewById(R.id.ilbyeoldata); //
         // main_layout = (RelativeLayout) findViewById(R.id.main_layout); //
         cycleimageview = (ImageView) findViewById(R.id.cycleimageview);
+         b1=(CardView) findViewById(R.id.b1);
 
 
     }
@@ -500,7 +642,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 List<ListViewItem> contributors = response.body();
                 // 받아온 리스트를 순회하면서
 
+
+                // use response data and do some fancy stuff :)
+
                 Log.e("Test888", response.body().toString());
+
 
                 for (ListViewItem contributor : contributors) {
 
@@ -581,7 +727,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Collections.sort(itemArrayList);
 
 
-                    Log.e("오하람",""+name+" / "+price);
+                    Log.e("오하람", "" + name + " / " + price);
                     DataView(); //데이터 화면에 뿌리기
 
 
@@ -609,8 +755,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Collections.sort(itemArrayList);
 
 
-
-        Log.e("오태우"," / "+itemArrayList.get(0).getName()+" / "+itemArrayList.get(0).getMart());
+        Log.e("오태우", " / " + itemArrayList.get(0).getName() + " / " + itemArrayList.get(0).getMart());
 
 
         adapter = new RvAdapter(itemArrayList, MainActivity.this);

@@ -146,6 +146,8 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
         String gun = items.get(safePosition).getGunpaeyul();
 
 
+
+
         holder.Name.setText(items.get(safePosition).getName()); //단지이름
         holder.Area.setText(items.get(safePosition).getArea()); //면적
         holder.Bupjungdong.setText(items.get(safePosition).getBupjungdong()); // 주소
@@ -156,7 +158,12 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
         holder.hight_day.setText(highday); // 계약 날짜
         holder.price.setText(price_s); ///거래 금액
         holder.previ_pricenumber.setText(price_o); // 최고가
-        //
+
+
+
+            holder.high2.setText(items.get(safePosition).getYou()+"층");
+
+     
 
 
         holder.chongsedaesu.setText(items.get(safePosition).getChongsedaesu()); // 총세대수
@@ -292,6 +299,9 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
         TextView minusprice;
         TextView previ_pricenumber;
         TextView hight_day;
+        TextView high2;
+
+
 
         TextView chongsedaesu;
         TextView pyungeunjucha;
@@ -311,6 +321,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
 
             // title = itemView.findViewById(R.id.item_tv_title);
+            high2=itemView.findViewById(R.id.high2);
             yongjeukryul = itemView.findViewById(R.id.yongjeukryul);
             gunpaeyul = itemView.findViewById(R.id.gunpaeyul);
             previ_pricenumber = itemView.findViewById(R.id.Previ_pricenumber);
