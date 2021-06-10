@@ -565,7 +565,7 @@ public class ListViewItem implements Comparable<ListViewItem> {
     @Override
     public int compareTo(ListViewItem entry) { //금액 낮은순
 //        return entry.getChaik() - this.getChaik();
-//        return entry.getPrice() - this.getPrice();
+       //return entry.getPrice() - this.getPrice();
 
 
 

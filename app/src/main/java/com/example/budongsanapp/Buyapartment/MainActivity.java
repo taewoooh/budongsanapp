@@ -2,6 +2,7 @@ package com.example.budongsanapp.Buyapartment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.AsyncTask;
@@ -27,6 +28,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.budongsanapp.ChartActivity;
 import com.example.budongsanapp.R;
 import com.example.budongsanapp.TWPreference;
 import com.example.budongsanapp.Util;
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         day_cardview.setOnClickListener(this);
         day_cardview2.setOnClickListener(this);
         delete_textimageview.setOnClickListener(this);
-       b1.setOnClickListener(this);
+        b1.setOnClickListener(this);
 
 
         itemArrayList = new ArrayList<>();
@@ -247,16 +249,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (dy > 80 ) {
+                if (dy > 80) {
 //                    Animation bottomUp = AnimationUtils.loadAnimation(getApplicationContext(),
 //                            slid_up);
 //                    b1.startAnimation(bottomUp);
                     b1.setVisibility(View.VISIBLE);
 
-                   // Toast.makeText(getApplicationContext(),"감추기",Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getApplicationContext(),"감추기",Toast.LENGTH_SHORT).show();
 
-                } else if (dy == 0 ||!rv.canScrollVertically(-1) ) {
-                   // Toast.makeText(getApplicationContext(),"보이기",Toast.LENGTH_SHORT).show();
+                } else if (dy == 0 || !rv.canScrollVertically(-1)) {
+                    // Toast.makeText(getApplicationContext(),"보이기",Toast.LENGTH_SHORT).show();
 //                    Animation bottomdown = AnimationUtils.loadAnimation(getApplicationContext(),
 //                            slid_up);
 //                    b1.startAnimation(bottomdown);
@@ -273,6 +275,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+//    @Override
+//    protected void onStop() {
+//        Toast.makeText(getApplicationContext(),"onStop() Call.",Toast.LENGTH_LONG).show();
+//        super.onStop();
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        Toast.makeText(getApplicationContext(),"onDestroy() Call.",Toast.LENGTH_LONG).show();
+//
+//        super.onDestroy();
+//    }
+
+//    @Override
+//    protected void onPause() {
+//        Toast.makeText(getApplicationContext(),"onPause() Call.",Toast.LENGTH_LONG).show();
+//        daylist.clear();
+//        super.onPause();
+//    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    protected void onResume() {
+       // Toast.makeText(getApplicationContext(),"onResume() Call.",Toast.LENGTH_LONG).show();
+
+        day_cardview.setCardBackgroundColor(getColor(R.color.On_Btcolor));
+        cardview_button.setTextColor(getColor(R.color.On_Textwcolor));
+
+        day_cardview2.setCardBackgroundColor(getColor(R.color.off_Btcolor));
+        cardview_button2.setTextColor(getColor(R.color.Off_Textcolor));
+        super.onResume();
+    }
+
+//    @Override
+//    protected void onStart() {
+//        Toast.makeText(getApplicationContext(),"onStart() Call.",Toast.LENGTH_LONG).show();
+////
+//        super.onStart();
+//    }
+
+
 
 
     @Override
@@ -447,6 +491,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             super.onPostExecute(s);
 
             try {
+
+
                 String i;
 
                 Log.d(TAG, "dhxodn6" + s);
@@ -501,18 +547,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     day_cardview2.setCardBackgroundColor(getColor(R.color.off_Btcolor));
                     cardview_button2.setTextColor(getColor(R.color.Off_Textcolor));
 
-                    Log.e("daylistsize  --->",""+daylist.size());
+                    Log.e("daylistsize  --->", "" + daylist.size());
 
 
+//
+//
+//                    try {
+//                        new ilbyeolUi_AsyncTask2().execute(ilbyeol_url);
+//                    } catch (Exception e) {
+//
+//
+//                    }
+//
 
 
-
-                        AlerDialog();
-
-
-
-
-
+                    AlerDialog();
 
 
                     search_edit.setText(null);
@@ -535,12 +584,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 twPreference.putInt("value1", 1);
 
                 //Tongsin();
-                itemArrayList.clear();
+               // itemArrayList.clear();
 
-
+                Intent intent = new Intent(this, ChartActivity.class);
+                startActivity(intent);
                 break;
             case R.id.delete_textImageview:
-
                 search_edit.setText(null);
 
 
@@ -639,7 +688,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //ilbyeoldata_imageview = (ImageView) findViewById(R.id.ilbyeoldata); //
         // main_layout = (RelativeLayout) findViewById(R.id.main_layout); //
         cycleimageview = (ImageView) findViewById(R.id.cycleimageview);
-         b1=(CardView) findViewById(R.id.b1);
+        b1 = (CardView) findViewById(R.id.b1);
 
 
     }
