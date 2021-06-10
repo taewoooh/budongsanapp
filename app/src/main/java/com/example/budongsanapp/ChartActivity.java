@@ -8,7 +8,7 @@ public class ChartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);lll
         setContentView(R.layout.activity_chart);
     }
 }
