@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -29,6 +31,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,7 +49,7 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
 
 
     private final String BASE_URL = "https://taewoooh88.cafe24.com/";
-    String ilbyeol_url = "https://taewoooh88.cafe24.com/showtables.php"; // 날짜별 일일 실거래가 추출
+
     TWPreference twPreference;
     private RecyclerView rv;
     private LinearLayoutManager llm;
@@ -91,12 +94,106 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_chart);
         findview();
 
+        twPreference = new TWPreference(this);
+        twPreference.putInt("value", prefer);
+        twPreference.putInt("value1", 0);
+
+
         Tongsin("bupjungdong_nonstop");
         llm = new LinearLayoutManager(this);
+
+        delete_textimageview.setOnClickListener(this);
         day_cardview.setOnClickListener(this);
         day_cardview2.setOnClickListener(this);
+        b1.setOnClickListener(this);
 
         itemArrayList = new ArrayList<>();
+        search_edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                String text = search_edit.getText().toString()
+                        .toLowerCase(Locale.getDefault());
+                adapter.filter(text);
+
+
+                if (s.length() > 0) {
+
+                    delete_textimageview.setVisibility(View.VISIBLE);
+
+
+                } else if (s.length() == 0) {
+                    delete_textimageview.setVisibility(View.INVISIBLE);
+
+                }
+
+            }
+        });
+        rv.setOnScrollListener(new RecyclerView.OnScrollListener() { //핀터레스트 카드뷰 기능
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 80) {
+//                    Animation bottomUp = AnimationUtils.loadAnimation(getApplicationContext(),
+//                            slid_up);
+//                    b1.startAnimation(bottomUp);
+                    b1.setVisibility(View.VISIBLE);
+
+                    // Toast.makeText(getApplicationContext(),"감추기",Toast.LENGTH_SHORT).show();
+
+                } else if (dy == 0 || !rv.canScrollVertically(-1)) {
+                    // Toast.makeText(getApplicationContext(),"보이기",Toast.LENGTH_SHORT).show();
+//                    Animation bottomdown = AnimationUtils.loadAnimation(getApplicationContext(),
+//                            slid_up);
+//                    b1.startAnimation(bottomdown);
+                    b1.setVisibility(View.GONE);
+
+
+                }
+
+
+            }
+
+
+        });
+
+        list_setup_imageview.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View view) {
+                // Collections.sort(itemArrayList);
+                prefer++;
+                twPreference.putInt("value", prefer);
+
+
+                if (prefer % 2 == 0) {  //짝수
+                    Collections.sort(itemArrayList);
+                    DataView(); //데이터 화면에 뿌리기
+                    list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
+                } else {  //홀수
+
+                    list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
+
+
+                    Collections.sort(itemArrayList);
+                    DataView(); //데이터 화면에 뿌리기
+                }
+
+            }
+        });
+
     }
 
 
@@ -210,34 +307,7 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
         rv.setItemAnimator(new DefaultItemAnimator());
         rv.setAdapter(adapter);
 
-
-        day_textview.setText(daynum);
-
-
-        if (Integer.parseInt(new Util().Getday()) == Integer.parseInt(daynum)) {
-
-
-            Log.e("cycleimageview", "On" + new Util().Getday() + " / " + daynum);
-
-
-            cycleimageview.setVisibility(View.VISIBLE);
-        } else if (Integer.parseInt(new Util().Getday()) != Integer.parseInt(daynum)) {
-            Log.e("cycleimageview", "off " + new Util().Getday() + " / " + daynum);
-
-            cycleimageview.setVisibility(View.INVISIBLE);
-
-
-        }
-
-        datavalue_textview.setText(String.valueOf(itemArrayList.size()));
-
-
-        double v = (double) count / (double) itemArrayList.size() * 100;
-
-        singogun.setText(String.valueOf(count));
-        jisu.setText(String.valueOf(String.format("%.0f", v)));
-
-
+        
     }
 
     public void findview() {
@@ -287,6 +357,20 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
 
+            case R.id.delete_textImageview :
+
+                search_edit.setText(null);
+
+
+                break;
+            case R.id.b1:
+
+
+                llm.scrollToPositionWithOffset(0, 0);
+
+                //rv.smoothScrollToPosition(0);
+
+                break;
 
         }
 

@@ -72,20 +72,20 @@ public class ListViewItem2 implements Comparable<ListViewItem2> {
     // 내림차순
     @Override
     public int compareTo(ListViewItem2 entry) { //금액 낮은순
-   return entry.getTotalgunsu() - this.getTotalgunsu();
+   //return entry.getTotalgunsu() - this.getTotalgunsu();
         //return entry.getPrice() - this.getPrice();
 
 
-//        int prefer = new TWPreference().getInt("value", 0);
-//
-//
-//        if (prefer % 2 == 0) {  //짝수
-//
-//            return entry.getPrice() - this.getPrice();
-//        } else {  //홀수
-//            return entry.getChaik() - this.getChaik();
-//            //return entry.getChaik() - this.getChaik();
-//        }
+        int prefer = new TWPreference().getInt("value", 0);
+
+
+        if (prefer % 2 == 0) {  //짝수
+
+            return entry.getTotalgunsu() - this.getTotalgunsu();
+        } else {  //홀수
+            return entry.getInflation() - this.getInflation();
+            //return entry.getChaik() - this.getChaik();
+        }
 
     }
 }

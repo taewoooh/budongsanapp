@@ -42,6 +42,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
     Context context;
 
 
+
     public RvAdapter2(ArrayList<com.example.budongsanapp.Chartapartment.ListViewItem2> items, Context context) {
         this.context = context;
         this.items = items;
@@ -63,6 +64,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
         int safePosition = holder.getAdapterPosition();
+        int count = safePosition+1;
 
 
 
@@ -70,7 +72,8 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
         holder.bupjungdong.setText(items.get(safePosition).getBupjungdong()); //단지이름
         holder.totalgunsu.setText(String.valueOf(items.get(safePosition).getTotalgunsu())); //총건수
         holder.singogunsu.setText(String.valueOf(items.get(safePosition).getSingogunsu())); //신고건수
-        holder.inflation.setText(String.valueOf(items.get(safePosition).getInflation())); //신고가율
+        holder.inflation.setText(String.valueOf(items.get(safePosition).getInflation()+"%")); //신고가율
+        holder.number.setText(String.valueOf(count)+"위"); //신고가율
 
 
     }
@@ -104,6 +107,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
         TextView totalgunsu;
         TextView singogunsu;
         TextView inflation;
+        TextView number;
 
 
         public CustomViewHolder(View itemView) {
@@ -115,7 +119,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
             totalgunsu = itemView.findViewById(R.id.totalgunsu);
             singogunsu = itemView.findViewById(R.id.singogunsu);
             inflation = itemView.findViewById(R.id.inflation);
-
+            number=itemView.findViewById(R.id.number);
 
         }
 

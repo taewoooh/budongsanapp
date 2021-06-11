@@ -23,44 +23,35 @@
                 android:layout_width="match_parent"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_height="70dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="17dp">
 
-                <RelativeLayout
-                    android:id="@+id/re1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    android:layout_weight="1">
 
+                <RelativeLayout
+                    android:id="@+id/re2"
+                    android:layout_width="140dp"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="2">
 
                     <TextView
                         android:id="@+id/number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/highicon"
-                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="10dp"
                         android:text="1"
                         android:layout_marginTop="3dp"
                         android:textSize="20dp"
                         android:textStyle="bold" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/re2"
-                    android:layout_width="140dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1">
-
-
                     <TextView
                         android:id="@+id/bupjungdong"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:ellipsize="end"
+                        android:layout_centerVertical="true"
+
                         android:singleLine="true"
                         android:text="경기도 가평군 청평면 청평리"
                         android:textColor="@android:color/black"
@@ -77,60 +68,92 @@
                 </RelativeLayout>
 
 <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="170dp"
+    android:layout_height="match_parent"
+    android:layout_marginRight="18dp"
     android:layout_gravity="center_vertical|center_horizontal">
 
                 <RelativeLayout
                     android:id="@+id/r1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                    android:layout_marginRight="15dp">
+                    android:layout_gravity="center_horizontal|center_vertical"
+
+                   android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/totalgunsu"
-                        android:layout_width="wrap_content"
+                        android:layout_width="35dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical|center_horizontal"
                         android:text="10"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
+                        android:textSize="30dp" />
+
+                    <TextView
+                      android:layout_below="@+id/totalgunsu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="(거래건수)"
+                        android:textSize="10dp" />
                 </RelativeLayout>
     <RelativeLayout
         android:id="@+id/r2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginRight="15dp">
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_weight="1">
         <TextView
             android:id="@+id/singogunsu"
-            android:layout_width="wrap_content"
+            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="10"
-            android:textColor="@android:color/black"
-            android:textSize="20dp" />
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="30"
+            android:textSize="30dp" />
 
-
+        <TextView
+            android:layout_below="@+id/singogunsu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:text="(신고건수)"
+            android:textSize="10dp" />
 
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/r3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginRight="15dp">
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_weight="1">
         <TextView
             android:id="@+id/inflation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="10"
-            android:textColor="@android:color/black"
-            android:textSize="20dp" />
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="35"
+            android:textSize="30dp" />
+        <TextView
+            android:layout_below="@+id/inflation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:text="(신고가율)"
+            android:textSize="10dp" />
 
     </RelativeLayout>
+
+
+
 </LinearLayout>
 
             </LinearLayout>
@@ -139,15 +162,8 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="7dp"
-            android:layout_marginBottom="5dp"
-            android:text="단위 : 만원"
-            android:textSize="10dp" />
+
+
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

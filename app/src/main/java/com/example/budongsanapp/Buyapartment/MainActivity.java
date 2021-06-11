@@ -584,7 +584,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.delete_textImageview:
-                search_edit.setText(null);
+
 
 
                 break;

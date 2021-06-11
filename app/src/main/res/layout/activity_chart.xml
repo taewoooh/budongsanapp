@@ -192,149 +192,96 @@
             android:id="@+id/datavalue_layout"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_below="@+id/day_layout1"
-            android:layout_marginBottom="5dp">
+            android:layout_below="@+id/day_layout1">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
+
+                android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true">
 
-                <TextView
-                    android:id="@+id/jiyeok"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/ooooo"
-                    android:text="서울특별시,경기도"
-                    android:textSize="10dp"
-                    android:visibility="gone" />
 
 
-                <TextView
-                    android:id="@+id/ooooo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/day_textview"
-                    android:text="  /  "
-                    android:textSize="10dp"
-                    android:visibility="gone" />
 
 
                 <TextView
                     android:id="@+id/day_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/ooo"
+                    android:text="202106"
+
                     android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/o"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/day_textview"
+
+                    android:text="  >  "
+                    android:textSize="10dp" />
+
+
+
+                <TextView
+                    android:id="@+id/si"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                   android:layout_toRightOf="@+id/o"
+                    android:text="서울특별시,경기도 "
+
+                    android:textSize="10dp" />
+
+
+                <TextView
+                    android:id="@+id/oo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                   android:layout_toRightOf="@+id/si"
+                    android:text="  >  "
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/bup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/oo"
+                    android:text="법정동"
+                    android:textSize="10dp" />
+
+
+
 
                 <TextView
                     android:id="@+id/ooo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/ooo2"
-                    android:text="  /  "
-                    android:textSize="10dp" />
-
-                <ImageView
-                    android:id="@+id/cycleimageview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="7dp"
-                    android:layout_toLeftOf="@+id/day_textview"
-                    android:src="@drawable/circle"
-                    android:visibility="invisible" />
-
-                <TextView
-                    android:id="@+id/ooo2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/datavalue_textview"
-                    android:text="등록건수 : "
+                    android:text=" > "
+                    android:layout_toRightOf="@id/bup"
                     android:textSize="10dp" />
 
                 <TextView
-                    android:id="@+id/datavalue_textview"
+                    android:id="@+id/contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/oooooo"
+                    android:text="거래건수"
+                    android:layout_toRightOf="@id/ooo"
                     android:textSize="10dp" />
 
                 <TextView
-                    android:id="@+id/oooooo"
+                    android:id="@+id/oooo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/ooooooo"
-                    android:text="  /  "
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:id="@+id/ooooooo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/singogun"
-                    android:text="신고가 : "
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:id="@+id/singogun"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/gun"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:id="@+id/gun"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/qwe"
-                    android:text="건 "
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:id="@+id/qwe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/sangseung"
-                    android:text="( "
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:id="@+id/sangseung"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/jisu"
-                    android:text="신고가율 : "
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:id="@+id/jisu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/qwe1"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:id="@+id/qwe1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/qwe2"
-                    android:text="%"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:id="@+id/qwe2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
-                    android:text=" )"
+                    android:text="(기준)"
+                    android:layout_toRightOf="@id/contents"
                     android:textSize="10dp" />
+
+
 
             </RelativeLayout>
+
 
         </RelativeLayout>
 
