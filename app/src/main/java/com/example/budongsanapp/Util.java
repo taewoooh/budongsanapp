@@ -28,7 +28,7 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class Util {
-    Context context;cdd
+    Context context;
     ProgressBar progress;
 
     public Util(Context context) {
