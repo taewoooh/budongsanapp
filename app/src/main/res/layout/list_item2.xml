@@ -67,94 +67,94 @@
 
                 </RelativeLayout>
 
-<LinearLayout
-    android:layout_width="170dp"
-    android:layout_height="match_parent"
-    android:layout_marginRight="18dp"
-    android:layout_gravity="center_vertical|center_horizontal">
+                <LinearLayout
+                    android:layout_width="170dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="18dp"
+                    android:layout_gravity="center_vertical|center_horizontal">
 
-                <RelativeLayout
-                    android:id="@+id/r1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-
-                   android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/totalgunsu"
-                        android:layout_width="35dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="10"
-                        android:textSize="30dp" />
-
-                    <TextView
-                      android:layout_below="@+id/totalgunsu"
+                    <RelativeLayout
+                        android:id="@+id/r1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:layout_centerHorizontal="true"
-                        android:text="(거래건수)"
-                        android:textSize="10dp" />
-                </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/r2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:layout_weight="1">
-        <TextView
-            android:id="@+id/singogunsu"
-            android:layout_width="35dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="30"
-            android:textSize="30dp" />
+                        android:layout_gravity="center_horizontal|center_vertical"
 
-        <TextView
-            android:layout_below="@+id/singogunsu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-android:layout_marginTop="25dp"
-            android:layout_centerHorizontal="true"
-            android:text="(신고건수)"
-            android:textSize="10dp" />
+                        android:layout_weight="1">
 
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/r3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:layout_weight="1">
-        <TextView
-            android:id="@+id/inflation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="35"
-            android:textSize="30dp" />
-        <TextView
-            android:layout_below="@+id/inflation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_centerHorizontal="true"
-            android:text="(신고가율)"
-            android:textSize="10dp" />
+                        <TextView
+                            android:id="@+id/totalgunsu"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="10"
+                            android:textSize="30dp" />
 
-    </RelativeLayout>
+                        <TextView
+                            android:layout_below="@+id/totalgunsu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:text="(거래건수)"
+                            android:textSize="10dp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/r2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/singogunsu"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="30"
+                            android:textSize="30dp" />
+
+                        <TextView
+                            android:layout_below="@+id/singogunsu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:text="(신고건수)"
+                            android:textSize="10dp" />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/r3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/inflation"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="35"
+                            android:textSize="30dp" />
+                        <TextView
+                            android:layout_below="@+id/inflation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:text="(신고가율)"
+                            android:textSize="10dp" />
+
+                    </RelativeLayout>
 
 
 
-</LinearLayout>
+                </LinearLayout>
 
             </LinearLayout>
 

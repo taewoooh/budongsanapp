@@ -1,4 +1,4 @@
-package com.example.budongsanapp.Chartapartment;
+package com.example.budongsanapp.Chartapartment.Bupjungdong;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,13 +20,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.budongsanapp.Chartapartment.GitHub2;
-import com.example.budongsanapp.Chartapartment.ListViewItem2;
-import com.example.budongsanapp.Chartapartment.ChartActivity;
-import com.example.budongsanapp.Chartapartment.RvAdapter2;
+
 import com.example.budongsanapp.R;
 import com.example.budongsanapp.TWPreference;
-import com.example.budongsanapp.Util;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
@@ -39,7 +36,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ChartActivity extends AppCompatActivity implements View.OnClickListener {
+public class BupjungdongChartActivity extends AppCompatActivity implements View.OnClickListener {
 
     CardView day_cardview;
     CardView day_cardview2;
@@ -55,6 +52,8 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
     private LinearLayoutManager llm;
     private static String TAG = "8888888888888";
     int hour;
+
+    TextView contents;
     String areac;
     String ymd;
     TextView day_textview;
@@ -65,6 +64,7 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
     ArrayList<String> daylist;
     String daynum;
     ImageView cycle;
+    TextView bup;
 
     TextView singogun;
     TextView jisu;
@@ -76,6 +76,10 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
     int prefer = 0;
     CardView b1;
     CardView cv;
+    TextView totalgunsu;
+    TextView singogagunsu;
+    TextView inflation;
+
     RelativeLayout main_layout;
 
     BottomSheetDialog bottomSheetDialog;
@@ -93,6 +97,9 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
         findview();
+        ContentsStory();
+
+
 
         twPreference = new TWPreference(this);
         twPreference.putInt("value", prefer);
@@ -197,6 +204,12 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
+    public void ContentsStory(){
+        bup.setText("법정동");
+
+
+    }
+
 //    @Override
 //    protected void onStop() {
 //        Toast.makeText(getApplicationContext(),"onStop() Call.",Toast.LENGTH_LONG).show();
@@ -237,17 +250,17 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
 
         init();
         GitHub2 gitHub = retrofit.create(GitHub2.class);
-        Call<List<com.example.budongsanapp.Chartapartment.ListViewItem2>> call = gitHub.contributors(tablecode);
-        call.enqueue(new Callback<List<com.example.budongsanapp.Chartapartment.ListViewItem2>>() {
+        Call<List<ListViewItem2>> call = gitHub.contributors(tablecode);
+        call.enqueue(new Callback<List<ListViewItem2>>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             // 성공시
-            public void onResponse(Call<List<com.example.budongsanapp.Chartapartment.ListViewItem2>> call, Response<List<com.example.budongsanapp.Chartapartment.ListViewItem2>> response) {
-                List<com.example.budongsanapp.Chartapartment.ListViewItem2> contributors = response.body();
+            public void onResponse(Call<List<ListViewItem2>> call, Response<List<ListViewItem2>> response) {
+                List<ListViewItem2> contributors = response.body();
                 // 받아온 리스트를 순회하면서
                 //Log.e("Test8888", response.body().toString());
 
-                for (com.example.budongsanapp.Chartapartment.ListViewItem2 contributor : contributors) {
+                for (ListViewItem2 contributor : contributors) {
 
 
                     String bupjungdong = contributor.bupjungdong;
@@ -258,7 +271,7 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
 
                     Log.e("TW", "" + bupjungdong + " / " + totalgunsu + " / " + singogunsu+ " / " +inflation);
 
-                    itemArrayList.add(new com.example.budongsanapp.Chartapartment.ListViewItem2(bupjungdong, totalgunsu, singogunsu, inflation));
+                    itemArrayList.add(new ListViewItem2(bupjungdong, totalgunsu, singogunsu, inflation));
                     Collections.sort(itemArrayList);
                     try {
                         DataView();
@@ -278,7 +291,8 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
             // 실패시
             public void onFailure(Call<List<ListViewItem2>> call, Throwable t) {
 
-                Toast.makeText(ChartActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
+                Log.d("deberg","------->"+t.toString());
+                Toast.makeText(BupjungdongChartActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
                         .show();
             }
         });
@@ -288,6 +302,8 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
 
     public void init() {
         // GSON 컨버터를 사용하는 REST 어댑터 생성
+
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -301,7 +317,7 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
         Collections.sort(itemArrayList);
 
 
-        adapter = new RvAdapter2(itemArrayList, ChartActivity.this);
+        adapter = new RvAdapter2(itemArrayList, BupjungdongChartActivity.this);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(llm);
         rv.setItemAnimator(new DefaultItemAnimator());
@@ -328,6 +344,12 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
         // main_layout = (RelativeLayout) findViewById(R.id.main_layout); //
         cycleimageview = (ImageView) findViewById(R.id.cycleimageview);
         b1 = (CardView) findViewById(R.id.b1);
+        contents=(TextView)findViewById(R.id.contents);
+        bup=(TextView) findViewById(R.id.bup);
+        singogagunsu=(TextView) findViewById(R.id.singogunsu);
+        inflation=(TextView) findViewById(R.id.inflation);
+        totalgunsu=(TextView) findViewById(R.id.totalgunsu);
+
 
 
     }

@@ -1,20 +1,16 @@
-package com.example.budongsanapp.Chartapartment;
+package com.example.budongsanapp.Chartapartment.Bupjungdong;
 
 
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.budongsanapp.Buyapartment.ListViewItem;
 import com.example.budongsanapp.R;
-import com.example.budongsanapp.Util;
+import com.example.budongsanapp.TWPreference;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -36,17 +32,19 @@ import java.util.Locale;
 
 public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder> {
 
-    private ArrayList<com.example.budongsanapp.Chartapartment.ListViewItem2> items = null;
-    private ArrayList<com.example.budongsanapp.Chartapartment.ListViewItem2> arrayList;
+    private ArrayList<ListViewItem2> items = null;
+    private ArrayList<ListViewItem2> arrayList;
 
     Context context;
 
+    TWPreference twPreference;
 
 
-    public RvAdapter2(ArrayList<com.example.budongsanapp.Chartapartment.ListViewItem2> items, Context context) {
+
+    public RvAdapter2(ArrayList<ListViewItem2> items, Context context) {
         this.context = context;
         this.items = items;
-        arrayList = new ArrayList<com.example.budongsanapp.Chartapartment.ListViewItem2>();
+        arrayList = new ArrayList<ListViewItem2>();
         arrayList.addAll(items);
 
 
@@ -74,6 +72,10 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
         holder.singogunsu.setText(String.valueOf(items.get(safePosition).getSingogunsu())); //신고건수
         holder.inflation.setText(String.valueOf(items.get(safePosition).getInflation()+"%")); //신고가율
         holder.number.setText(String.valueOf(count)+"위"); //신고가율
+
+
+
+
 
 
     }
@@ -120,6 +122,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
             singogunsu = itemView.findViewById(R.id.singogunsu);
             inflation = itemView.findViewById(R.id.inflation);
             number=itemView.findViewById(R.id.number);
+            twPreference = new TWPreference(context);
 
         }
 

@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.budongsanapp.Chartapartment.ChartActivity;
+import com.example.budongsanapp.Chartapartment.Bupjungdong.BupjungdongChartActivity;
 import com.example.budongsanapp.R;
 import com.example.budongsanapp.TWPreference;
 import com.example.budongsanapp.Util;
@@ -580,7 +580,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //Tongsin();
                // itemArrayList.clear();
 
-                Intent intent = new Intent(this, ChartActivity.class);
+                Intent intent = new Intent(this, BupjungdongChartActivity.class);
                 startActivity(intent);
                 break;
             case R.id.delete_textImageview:

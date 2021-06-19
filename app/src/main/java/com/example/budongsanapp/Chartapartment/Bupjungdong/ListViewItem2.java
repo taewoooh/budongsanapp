@@ -1,4 +1,4 @@
-package com.example.budongsanapp.Chartapartment;
+package com.example.budongsanapp.Chartapartment.Bupjungdong;
 
 import com.example.budongsanapp.TWPreference;
 import com.google.gson.annotations.Expose;
@@ -10,6 +10,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class ListViewItem2 implements Comparable<ListViewItem2> {
+
 
 
     @SerializedName("bupjungdong")
@@ -24,6 +25,7 @@ public class ListViewItem2 implements Comparable<ListViewItem2> {
     @SerializedName("inflation")
     @Expose
     int inflation;
+
 
 
     public String getBupjungdong() {
@@ -59,7 +61,8 @@ public class ListViewItem2 implements Comparable<ListViewItem2> {
     }
 
 
-    public ListViewItem2(String bupjungdong, int totalgunsu,
+
+    public ListViewItem2( String bupjungdong, int totalgunsu,
                          int singogunsu, int inflation) {
         this.bupjungdong = bupjungdong;
         this.totalgunsu = totalgunsu;

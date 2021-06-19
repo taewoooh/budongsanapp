@@ -1,6 +1,4 @@
-package com.example.budongsanapp.Chartapartment;
-
-import com.example.budongsanapp.Buyapartment.ListViewItem;
+package com.example.budongsanapp.Chartapartment.Bupjungdong;
 
 import java.util.List;
 
@@ -14,7 +12,8 @@ interface GitHub2 {
 
 
     // GET/POST/DELETE/PUT 메소드들을 인터페이스에 구현하여 사용할 수 있다.
-    @GET("/mysqlexport3.php")
+    @GET("/mysqlexport.php")
     // JSON Array를 리턴하므로 List<>가 되었다
+   // Call<List<ListViewItem2>> contributors(@Query("table1") String naljja);
     Call<List<ListViewItem2>> contributors(@Query("table1") String naljja);
 }
