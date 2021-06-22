@@ -51,6 +51,18 @@ public class Util {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public String Getday2() { //현재 날짜구하기
+
+
+        Date currentTime = Calendar.getInstance().getTime();
+        String date_text = new SimpleDateFormat("yyyyMM", Locale.getDefault()).format(currentTime);
+
+
+        return date_text;
+
+    }
+
     public String AreaChange(String area) { //평형 바꾸기
         double value;
         value = Double.valueOf(area) / 2.45;

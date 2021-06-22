@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.budongsanapp.R;
 import com.example.budongsanapp.TWPreference;
+import com.example.budongsanapp.Util;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
@@ -65,6 +66,9 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
     String daynum;
     ImageView cycle;
     TextView bup;
+    TextView rowday;
+    TextView highday;
+
 
     TextView singogun;
     TextView jisu;
@@ -79,6 +83,8 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
     TextView totalgunsu;
     TextView singogagunsu;
     TextView inflation;
+    TextView today;
+
 
     RelativeLayout main_layout;
 
@@ -92,6 +98,7 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
     RvAdapter2 adapter;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,6 +196,10 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
                     Collections.sort(itemArrayList);
                     DataView(); //데이터 화면에 뿌리기
                     list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
+                    contents.setText("거래건수");
+
+
+
                 } else {  //홀수
 
                     list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
@@ -196,6 +207,7 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
 
                     Collections.sort(itemArrayList);
                     DataView(); //데이터 화면에 뿌리기
+                    contents.setText("신고가율순");
                 }
 
             }
@@ -204,8 +216,10 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void ContentsStory(){
         bup.setText("법정동");
+        today.setText(new Util().Getday2()); // 이번달 표시
 
 
     }
@@ -269,6 +283,8 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
                     int inflation = contributor.inflation;
 
 
+
+
                     Log.e("TW", "" + bupjungdong + " / " + totalgunsu + " / " + singogunsu+ " / " +inflation);
 
                     itemArrayList.add(new ListViewItem2(bupjungdong, totalgunsu, singogunsu, inflation));
@@ -300,6 +316,7 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
 
     }
 
+
     public void init() {
         // GSON 컨버터를 사용하는 REST 어댑터 생성
 
@@ -323,6 +340,21 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
         rv.setItemAnimator(new DefaultItemAnimator());
         rv.setAdapter(adapter);
 
+        if (Integer.parseInt(new Util().Getday2()) == Integer.parseInt((String) today.getText())) {
+
+
+            Log.e("cycleimageview2", "On ->  " + new Util().Getday2() + " / " + Integer.parseInt((String) today.getText()));
+
+
+            cycleimageview.setVisibility(View.VISIBLE);
+        } else if (Integer.parseInt(new Util().Getday2()) != Integer.parseInt((String) today.getText())) {
+            Log.e("cycleimageview2", "off -> " + new Util().Getday2() + " / " + Integer.parseInt((String) today.getText()));
+
+            cycleimageview.setVisibility(View.INVISIBLE);
+
+
+
+        }
         
     }
 
@@ -349,6 +381,9 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
         singogagunsu=(TextView) findViewById(R.id.singogunsu);
         inflation=(TextView) findViewById(R.id.inflation);
         totalgunsu=(TextView) findViewById(R.id.totalgunsu);
+        today =(TextView) findViewById(R.id.today);
+
+
 
 
 

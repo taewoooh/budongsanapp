@@ -113,9 +113,9 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/On_Btcolor"
                 android:layout_toRightOf="@+id/day_cardview"
                 android:visibility="visible"
+                app:cardBackgroundColor="@color/On_Btcolor"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="true">
@@ -126,11 +126,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:visibility="visible"
-                    android:textColor="@color/On_Textwcolor"
                     android:text="차트"
+                    android:textColor="@color/On_Textwcolor"
                     android:textSize="13dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="visible" />
 
 
             </androidx.cardview.widget.CardView>
@@ -187,101 +187,129 @@
 
         </RelativeLayout>
 
-
         <RelativeLayout
             android:id="@+id/datavalue_layout"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_below="@+id/day_layout1">
+            android:layout_below="@+id/day_layout1"
+            android:layout_marginBottom="5dp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true">
 
 
 
 
 
-                <TextView
-                    android:id="@+id/day_textview"
+
+
+                <ImageView
+                    android:id="@+id/cycleimageview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="202106"
-
-                    android:textSize="10dp" />
-
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="7dp"
+                    android:layout_toLeftOf="@+id/today"
+                    android:src="@drawable/circle"
+                    android:visibility="invisible" />
                 <TextView
-                    android:id="@+id/o"
+                    android:id="@+id/today"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/day_textview"
-
-                    android:text="  >  "
+                    android:layout_toLeftOf="@+id/ooo"
                     android:textSize="10dp" />
-
-
-
-                <TextView
-                    android:id="@+id/si"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                   android:layout_toRightOf="@+id/o"
-                    android:text="서울특별시,경기도 "
-
-                    android:textSize="10dp" />
-
-
-                <TextView
-                    android:id="@+id/oo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                   android:layout_toRightOf="@+id/si"
-                    android:text="  >  "
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:id="@+id/bup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/oo"
-
-                    android:textSize="10dp" />
-
-
 
 
                 <TextView
                     android:id="@+id/ooo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/si"
+                    android:text="  >  "
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/si"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/ooo2"
+                    android:text="서울특별시,경기도"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/ooo2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/bup"
                     android:text=" > "
-                    android:layout_toRightOf="@id/bup"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/bup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/oooooo"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/oooooo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/contents"
+                    android:text="  >  "
                     android:textSize="10dp" />
 
                 <TextView
                     android:id="@+id/contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/qwe"
                     android:text="거래건수"
-                    android:layout_toRightOf="@id/ooo"
+                    android:textSize="10dp" />
+
+
+
+
+                <TextView
+                    android:id="@+id/qwe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/sangseung"
+                    android:text="( "
                     android:textSize="10dp" />
 
                 <TextView
-                    android:id="@+id/oooo"
+                    android:id="@+id/sangseung"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:text="(기준)"
-                    android:layout_toRightOf="@id/contents"
+                    android:layout_toLeftOf="@+id/qwe1"
+                    android:text="기준"
                     android:textSize="10dp" />
 
 
 
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/qwe1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/qwe2"
+                    android:textSize="10dp" />
 
+                <TextView
+                    android:id="@+id/qwe2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text=" )"
+                    android:textSize="10dp" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -349,8 +377,6 @@
         android:background="@drawable/up"
         android:visibility="gone"
         app:cardCornerRadius="2000dp">
-
-
 
 
         <ImageView

@@ -13,6 +13,7 @@ public class ListViewItem2 implements Comparable<ListViewItem2> {
 
 
 
+
     @SerializedName("bupjungdong")
     @Expose
     String bupjungdong;
@@ -62,8 +63,9 @@ public class ListViewItem2 implements Comparable<ListViewItem2> {
 
 
 
-    public ListViewItem2( String bupjungdong, int totalgunsu,
+    public ListViewItem2(String bupjungdong, int totalgunsu,
                          int singogunsu, int inflation) {
+
         this.bupjungdong = bupjungdong;
         this.totalgunsu = totalgunsu;
         this.singogunsu = singogunsu;
@@ -75,7 +77,7 @@ public class ListViewItem2 implements Comparable<ListViewItem2> {
     // 내림차순
     @Override
     public int compareTo(ListViewItem2 entry) { //금액 낮은순
-   //return entry.getTotalgunsu() - this.getTotalgunsu();
+        //return entry.getTotalgunsu() - this.getTotalgunsu();
         //return entry.getPrice() - this.getPrice();
 
 
