@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,7 +36,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class BupjungdongChartActivity extends AppCompatActivity implements View.OnClickListener {
+public class ChartActivity_bup extends AppCompatActivity implements View.OnClickListener {
 
     CardView day_cardview;
     CardView day_cardview2;
@@ -102,9 +101,10 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chart);
+        setContentView(R.layout.activity_chart_bup);
         findview();
         ContentsStory();
+
 
 
 
@@ -218,9 +218,8 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void ContentsStory(){
-        bup.setText("법정동");
         today.setText(new Util().Getday2()); // 이번달 표시
-
+        bup.setText("법정동");
 
     }
 
@@ -308,7 +307,7 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
             public void onFailure(Call<List<ListViewItem2>> call, Throwable t) {
 
                 Log.d("deberg","------->"+t.toString());
-                Toast.makeText(BupjungdongChartActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
+                Toast.makeText(ChartActivity_bup.this, "정보받아오기 실패", Toast.LENGTH_LONG)
                         .show();
             }
         });
@@ -334,7 +333,7 @@ public class BupjungdongChartActivity extends AppCompatActivity implements View.
         Collections.sort(itemArrayList);
 
 
-        adapter = new RvAdapter2(itemArrayList, BupjungdongChartActivity.this);
+        adapter = new RvAdapter2(itemArrayList, ChartActivity_bup.this);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(llm);
         rv.setItemAnimator(new DefaultItemAnimator());

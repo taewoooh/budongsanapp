@@ -1,4 +1,4 @@
-package com.example.budongsanapp.Chartapartment.Bupjungdong;
+package com.example.budongsanapp.Chartapartment.Apartname;
 
 
 import android.content.Context;
@@ -30,10 +30,10 @@ import java.util.Locale;
  * Created by yongyi on 2017-11-27.
  */
 
-public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder> {
+public class RvAdapter3 extends RecyclerView.Adapter<RvAdapter3.CustomViewHolder> {
 
-    private ArrayList<ListViewItem2> items = null;
-    private ArrayList<ListViewItem2> arrayList;
+    private ArrayList<ListViewItem3> items = null;
+    private ArrayList<ListViewItem3> arrayList;
 
     Context context;
 
@@ -41,10 +41,10 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
 
 
 
-    public RvAdapter2(ArrayList<ListViewItem2> items, Context context) {
+    public RvAdapter3(ArrayList<ListViewItem3> items, Context context) {
         this.context = context;
         this.items = items;
-        arrayList = new ArrayList<ListViewItem2>();
+        arrayList = new ArrayList<ListViewItem3>();
         arrayList.addAll(items);
 
 
@@ -53,7 +53,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chart_bup_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chart_name_list_item, parent, false);
         CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;
     }
@@ -65,9 +65,15 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
         int count = safePosition+1;
 
 
+try {
+    holder.name.setText(items.get(safePosition).getName()); //단지이름
+}catch (Exception e){
 
 
-        holder.bupjungdong.setText(items.get(safePosition).getBupjungdong()); //단지이름
+
+}
+
+        holder.bupjungdong.setText(items.get(safePosition).getBupjungdong()); //주소
         holder.totalgunsu.setText(String.valueOf(items.get(safePosition).getTotalgunsu())); //총건수
         holder.singogunsu.setText(String.valueOf(items.get(safePosition).getSingogunsu())); //신고건수
         holder.inflation.setText(String.valueOf(items.get(safePosition).getInflation()+"%")); //신고가율
@@ -92,7 +98,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
         if (charText.length() == 0) {
             items.addAll(arrayList);
         } else {
-            for (ListViewItem2 news : arrayList) {
+            for (ListViewItem3 news : arrayList) {
                 if (news.getBupjungdong().toLowerCase(Locale.getDefault()).contains(charText)) {
                     items.add(news);
                 }
@@ -110,6 +116,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
         TextView singogunsu;
         TextView inflation;
         TextView number;
+        TextView name;
 
 
         public CustomViewHolder(View itemView) {
@@ -120,6 +127,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
             bupjungdong=itemView.findViewById(R.id.bupjungdong);
             totalgunsu = itemView.findViewById(R.id.totalgunsu);
             singogunsu = itemView.findViewById(R.id.singogunsu);
+            name = itemView.findViewById(R.id.name);
             inflation = itemView.findViewById(R.id.inflation);
             number=itemView.findViewById(R.id.number);
             twPreference = new TWPreference(context);

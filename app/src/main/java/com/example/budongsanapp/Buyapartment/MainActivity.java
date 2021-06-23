@@ -25,7 +25,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.budongsanapp.Chartapartment.Bupjungdong.BupjungdongChartActivity;
+import com.example.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
+import com.example.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
 import com.example.budongsanapp.R;
 import com.example.budongsanapp.TWPreference;
 import com.example.budongsanapp.Util;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Retrofit retrofit;
     private RecyclerView rv;
     private LinearLayoutManager llm;
-    private static String TAG = "8888888888888";
+    private static String TAG = "8888888888d888";
     int hour;
     String areac;
     String ymd;
@@ -580,7 +581,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //Tongsin();
                // itemArrayList.clear();
 
-                Intent intent = new Intent(this, BupjungdongChartActivity.class);
+               // Intent intent = new Intent(this, ChartActivity_bup.class);
+               Intent intent = new Intent(this, ChartActivity_apartname.class);
                 startActivity(intent);
                 break;
             case R.id.delete_textImageview:

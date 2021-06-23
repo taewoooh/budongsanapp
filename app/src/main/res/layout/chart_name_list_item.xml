@@ -1,0 +1,180 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="1dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:id="@+id/Rel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="17dp">
+
+
+                <RelativeLayout
+                    android:id="@+id/re2"
+                    android:layout_width="140dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="2">
+
+                    <TextView
+                        android:id="@+id/number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/highicon"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
+                        android:text="1"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+
+                        android:singleLine="true"
+                        android:text="래미안 블레스티지"
+                        android:textColor="@android:color/black"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/bupjungdong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="테스트"
+                        android:layout_marginTop="4dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="11dp" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="170dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginRight="18dp">
+
+                    <RelativeLayout
+                        android:id="@+id/r1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/totalgunsu"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="10"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/totalgunsu"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="25dp"
+                            android:text="(거래건수)"
+                            android:textSize="10dp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/r2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/singogunsu"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="100"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/singogunsu"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="25dp"
+                            android:text="(신고건수)"
+                            android:textSize="10dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/r3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/inflation"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="100"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/inflation"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="25dp"
+                            android:text="(신고가율)"
+                            android:textSize="10dp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

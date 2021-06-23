@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Chartapartment.Bupjungdong.BupjungdongChartActivity"></activity>
+        <activity android:name=".Chartapartment.Bupjungdong.ChartActivity_bup"></activity>
+        <activity android:name=".Chartapartment.Apartname.ChartActivity_apartname"></activity>
         <activity
+
             android:name=".Buyapartment.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden">
