@@ -325,15 +325,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onRefresh() {
+        String text = search_edit.getText().toString();
 
-        daylist.clear();
-        itemArrayList.clear();
-        try {
-            new ilbyeolUi_AsyncTask().execute(ilbyeol_url);
-        } catch (Exception e) {
+        if (text.equals("")) {
+            daylist.clear();
+            itemArrayList.clear();
 
+
+            try {
+                new ilbyeolUi_AsyncTask().execute(ilbyeol_url);
+
+
+            } catch (Exception e) {
+
+                swipeRefreshLayout.setRefreshing(false);
+            }
+
+        }else if (!text.equals("")){
+
+           search_edit.setText(null);
             swipeRefreshLayout.setRefreshing(false);
         }
+
+
+
 
 
     }
@@ -606,7 +621,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.delete_textImageview:
 
-
+                search_edit.setText(null);
 
                 break;
 
@@ -873,6 +888,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         jisu.setText(String.valueOf(String.format("%.0f", v)));
 
         swipeRefreshLayout.setRefreshing(false);
+
     }
 
 }
