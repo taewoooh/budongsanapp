@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_toolbar"
         android:layout_width="match_parent"
@@ -124,64 +125,64 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:visibility="visible"
                     android:text="차트"
                     android:textColor="@color/Off_Textcolor"
                     android:textSize="13dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="visible" />
 
 
             </androidx.cardview.widget.CardView>
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/day_cardview3"-->
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/day_cardview3"-->
 
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_toRightOf="@+id/day_cardview2"-->
-<!--                android:visibility="visible"-->
-<!--                app:cardCornerRadius="10dp"-->
-<!--                app:cardElevation="2dp"-->
-<!--                app:cardUseCompatPadding="true">-->
-
-
-<!--                <TextView-->
-<!--                    android:id="@+id/cardview_button3"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:text="오피스텔"-->
-<!--                    android:textColor="@color/Off_Textcolor"-->
-<!--                    android:textSize="13dp"-->
-<!--                    android:textStyle="bold" />-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_toRightOf="@+id/day_cardview2"-->
+            <!--                android:visibility="visible"-->
+            <!--                app:cardCornerRadius="10dp"-->
+            <!--                app:cardElevation="2dp"-->
+            <!--                app:cardUseCompatPadding="true">-->
 
 
-<!--            </androidx.cardview.widget.CardView>-->
-
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/day_cardview4"-->
-
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_toRightOf="@+id/day_cardview3"-->
-<!--                android:visibility="visible"-->
-<!--                app:cardCornerRadius="10dp"-->
-<!--                app:cardElevation="2dp"-->
-<!--                app:cardUseCompatPadding="true">-->
+            <!--                <TextView-->
+            <!--                    android:id="@+id/cardview_button3"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:padding="10dp"-->
+            <!--                    android:text="오피스텔"-->
+            <!--                    android:textColor="@color/Off_Textcolor"-->
+            <!--                    android:textSize="13dp"-->
+            <!--                    android:textStyle="bold" />-->
 
 
-<!--                <TextView-->
-<!--                    android:id="@+id/cardview_button4"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:text="상업/업무용"-->
-<!--                    android:textColor="@color/Off_Textcolor"-->
-<!--                    android:textSize="13dp"-->
-<!--                    android:textStyle="bold" />-->
+            <!--            </androidx.cardview.widget.CardView>-->
+
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/day_cardview4"-->
+
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_toRightOf="@+id/day_cardview3"-->
+            <!--                android:visibility="visible"-->
+            <!--                app:cardCornerRadius="10dp"-->
+            <!--                app:cardElevation="2dp"-->
+            <!--                app:cardUseCompatPadding="true">-->
 
 
-<!--            </androidx.cardview.widget.CardView>-->
+            <!--                <TextView-->
+            <!--                    android:id="@+id/cardview_button4"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:padding="10dp"-->
+            <!--                    android:text="상업/업무용"-->
+            <!--                    android:textColor="@color/Off_Textcolor"-->
+            <!--                    android:textSize="13dp"-->
+            <!--                    android:textStyle="bold" />-->
+
+
+            <!--            </androidx.cardview.widget.CardView>-->
 
         </RelativeLayout>
 
@@ -338,12 +339,19 @@
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_rv"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/day_layout"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/day_layout">
 
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv"
@@ -400,8 +408,6 @@
         android:background="@drawable/up"
         android:visibility="gone"
         app:cardCornerRadius="2000dp">
-
-
 
 
         <ImageView

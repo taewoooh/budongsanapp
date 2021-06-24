@@ -24,9 +24,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
-import com.example.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
 import com.example.budongsanapp.R;
 import com.example.budongsanapp.TWPreference;
 import com.example.budongsanapp.Util;
@@ -49,7 +49,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
 
     private final String BASE_URL = "https://taewoooh88.cafe24.com/";
@@ -68,7 +68,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CardView day_cardview;
     ImageView delete_textimageview;
     ArrayList<String> daylist;
+    ArrayList<String> daylist2;
     String daynum;
+    String daynum2;
     ImageView cycle;
     TextView cardview_button;
     CardView day_cardview2;
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int i_highprice = 0;
 
     RelativeLayout bottomsheet;
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
     RvAdapter adapter;
@@ -112,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         daylist = new ArrayList();
+        daylist2 = new ArrayList();
 
         Calendar cal = Calendar.getInstance();
 
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         day_cardview2.setOnClickListener(this);
         delete_textimageview.setOnClickListener(this);
         b1.setOnClickListener(this);
-
+        swipeRefreshLayout.setOnRefreshListener(this);
 
         itemArrayList = new ArrayList<>();
         llm = new LinearLayoutManager(this);
@@ -319,6 +323,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    @Override
+    public void onRefresh() {
+
+        daylist.clear();
+        itemArrayList.clear();
+        try {
+            new ilbyeolUi_AsyncTask().execute(ilbyeol_url);
+        } catch (Exception e) {
+
+            swipeRefreshLayout.setRefreshing(false);
+        }
+
+
+    }
+
 
     public class ilbyeolUi_AsyncTask extends AsyncTask<String, Void, String> { // DB에서 일별 테이블 이름 가져오기
 
@@ -413,7 +432,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             } catch (Exception e) {
 
-
+                swipeRefreshLayout.setRefreshing(false);
                 Toast.makeText(getApplicationContext(), "데이터를 가져올수 없습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
             }
 
@@ -500,15 +519,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     i = day.substring(0, 8);
                     day = day.substring(8, day.length());
 
-                    daylist.add(i);
+                    daylist2.add(i);
                     //Log.e("ohtaewoo", "ilbyeolui end  /  "+i);
 
-                    Collections.sort(daylist);
-                    Collections.reverse(daylist);
+                    Collections.sort(daylist2);
+                    Collections.reverse(daylist2);
 
 
                 }
-                daynum = daylist.get(0);
+                daynum = daylist2.get(0);
 
                 Log.e("ohtaewoo", "ilbyeolui end  /  " + daylist.get(0));
 
@@ -685,7 +704,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // main_layout = (RelativeLayout) findViewById(R.id.main_layout); //
         cycleimageview = (ImageView) findViewById(R.id.cycleimageview);
         b1 = (CardView) findViewById(R.id.b1);
-
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
 
     }
 
@@ -800,7 +819,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             // 실패시
             public void onFailure(Call<List<ListViewItem>> call, Throwable t) {
-
+                swipeRefreshLayout.setRefreshing(false);
                 Toast.makeText(MainActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
                         .show();
             }
@@ -853,7 +872,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         singogun.setText(String.valueOf(count));
         jisu.setText(String.valueOf(String.format("%.0f", v)));
 
-
+        swipeRefreshLayout.setRefreshing(false);
     }
 
 }
