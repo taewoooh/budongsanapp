@@ -857,12 +857,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 double seoul_v = (double) seoul_singocount / (double) seoul_count * 100;
                 double gyeungi_v = (double) gyeungi_singocount / (double) gyeungi_count * 100;
+                double total2_v = (double) total_sc / (double) total_c * 100;
 
 
 
                 Log.e("taewoooh88", "서울특별시"+ " / " + seoul_count+" / "+seoul_singocount+" / "+String.format("%.0f", seoul_v));
                 Log.e("taewoooh88", "경기도"+ " / " + gyeungi_count + " / " + gyeungi_singocount+" / "+String.format("%.0f", gyeungi_v));
-                Log.e("taewoooh88", "서울경기,경기도"+ " / " + total_c + " / " + total_sc);
+                Log.e("taewoooh88", "서울경기,경기도"+ " / " + total_c + " / " + total_sc+ " / "+total2_v);
 
             }
 
