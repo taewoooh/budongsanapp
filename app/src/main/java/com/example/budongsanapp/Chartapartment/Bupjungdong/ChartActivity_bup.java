@@ -358,12 +358,12 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
         cardview_button = (TextView) findViewById(R.id.cardview_button);
         cardview_button2 = (TextView) findViewById(R.id.cardview_button);
         rv = (RecyclerView) findViewById(R.id.main_rv);//
-        day_textview = (TextView) findViewById(R.id.day_textview);
+       // day_textview = (TextView) findViewById(R.id.day_textview);
 
         search_edit = (EditText) findViewById(R.id.search_edit);
         delete_textimageview = (ImageView) findViewById(R.id.delete_textImageview);
-        singogun = (TextView) findViewById(R.id.singogun);
-        jisu = (TextView) findViewById(R.id.jisu);
+       // singogun = (TextView) findViewById(R.id.singogun);
+       // jisu = (TextView) findViewById(R.id.jisu);
         // cv = (CardView) findViewById(R.id.cv);//
         list_setup_imageview = (ImageView) findViewById(R.id.list_setup);
         //ilbyeoldata_imageview = (ImageView) findViewById(R.id.ilbyeoldata); //

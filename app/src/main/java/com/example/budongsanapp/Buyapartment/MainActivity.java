@@ -66,6 +66,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView totalgunsu_textview;
     int seoul_count = 0;
 
+    TextView seoul_c;
+    TextView seoul_singoga;
+    TextView seoul_singogayul;
+
+    TextView gyeungi_c;
+    TextView gyeungi_singoga;
+    TextView gyeungi_singogayul;
+
     int gyeungi_count = 0;
     int gyeungi_singocount = 0;
     EditText search_edit;
@@ -707,15 +715,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void findview() {
         rv = (RecyclerView) findViewById(R.id.main_rv);//
         day_textview = (TextView) findViewById(R.id.day_textview);
-        totalgunsu_textview = (TextView) findViewById(R.id.totalgunsu_textview);
+        //totalgunsu_textview = (TextView) findViewById(R.id.totalgunsu_textview);
         search_edit = (EditText) findViewById(R.id.search_edit);
         day_cardview = (CardView) findViewById(R.id.day_cardview);
         delete_textimageview = (ImageView) findViewById(R.id.delete_textImageview);
         cardview_button = (TextView) findViewById(R.id.cardview_button);
         day_cardview2 = (CardView) findViewById(R.id.day_cardview2);
         cardview_button2 = (TextView) findViewById(R.id.cardview_button2);
-        singogun = (TextView) findViewById(R.id.singogun);
-        jisu = (TextView) findViewById(R.id.jisu);
+        //singogun = (TextView) findViewById(R.id.singogun);
+        //jisu = (TextView) findViewById(R.id.jisu);
         // cv = (CardView) findViewById(R.id.cv);//
         list_setup_imageview = (ImageView) findViewById(R.id.list_setup);
         //ilbyeoldata_imageview = (ImageView) findViewById(R.id.ilbyeoldata); //
@@ -723,6 +731,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cycleimageview = (ImageView) findViewById(R.id.cycleimageview);
         b1 = (CardView) findViewById(R.id.b1);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
+        seoul_c = (TextView) findViewById(R.id.seoul_c);
+        seoul_singoga = (TextView) findViewById(R.id.seoul_singoga);
+        seoul_singogayul = (TextView) findViewById(R.id.seoul_singogayul);
+
+        gyeungi_c = (TextView) findViewById(R.id.  gyeungi_c);
+        gyeungi_singoga = (TextView) findViewById(R.id.  gyeungi_singoga);
+        gyeungi_singogayul = (TextView) findViewById(R.id.  gyeungi_singogayul);
+
+
+
+
 
     }
 
@@ -865,6 +884,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.e("taewoooh88", "경기도"+ " / " + gyeungi_count + " / " + gyeungi_singocount+" / "+String.format("%.0f", gyeungi_v));
                 Log.e("taewoooh88", "서울경기,경기도"+ " / " + total_c + " / " + total_sc+ " / "+total2_v);
 
+
+                seoul_c.setText(String.valueOf(seoul_count));
+                seoul_singoga.setText(String.valueOf(seoul_singocount));
+                seoul_singogayul.setText(String.format("%.0f", seoul_v));
+
+
+                gyeungi_c.setText(String.valueOf(gyeungi_count));
+                gyeungi_singoga.setText(String.valueOf(gyeungi_singocount));
+                gyeungi_singogayul.setText(String.format("%.0f", gyeungi_v));
+
             }
 
             @Override
@@ -916,12 +945,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-        double total_v = (double) total_singocount / (double) itemArrayList.size() * 100;
 
 
-        totalgunsu_textview.setText(String.valueOf(itemArrayList.size()));
-        singogun.setText(String.valueOf(total_singocount));
-        jisu.setText(String.valueOf(String.format("%.0f", total_v)));
+//        double total_v = (double) total_singocount / (double) itemArrayList.size() * 100;
+//        totalgunsu_textview.setText(String.valueOf(itemArrayList.size()));
+//        singogun.setText(String.valueOf(total_singocount));
+//        jisu.setText(String.valueOf(String.format("%.0f", total_v)));
 
 
 
