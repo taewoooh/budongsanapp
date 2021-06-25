@@ -251,12 +251,12 @@
                     android:id="@+id/ooo2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/datavalue_textview"
+                    android:layout_toLeftOf="@+id/totalgunsu_textview"
                     android:text="등록건수 : "
                     android:textSize="10dp" />
 
                 <TextView
-                    android:id="@+id/datavalue_textview"
+                    android:id="@+id/totalgunsu_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/oooooo"

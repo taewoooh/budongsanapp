@@ -63,7 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String areac;
     String ymd;
     TextView day_textview;
-    TextView datavalue_textview;
+    TextView totalgunsu_textview;
+    int seoul_count = 0;
+
+    int gyeungi_count = 0;
+    int gyeungi_singocount = 0;
     EditText search_edit;
     CardView day_cardview;
     ImageView delete_textimageview;
@@ -78,7 +82,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView singogun;
     TextView jisu;
     ImageView ilbyeoldata_imageview;
-    int count = 0;
+    int total_singocount = 0;
+    int seoul_singocount = 0;
+
+    int _singocount = 0;
+
     ImageView list_setup_imageview;
     ImageView cycleimageview;
     String tablecode = "";
@@ -298,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onResume() {
-       // Toast.makeText(getApplicationContext(),"onResume() Call.",Toast.LENGTH_LONG).show();
+        // Toast.makeText(getApplicationContext(),"onResume() Call.",Toast.LENGTH_LONG).show();
 
         day_cardview.setCardBackgroundColor(getColor(R.color.On_Btcolor));
         cardview_button.setTextColor(getColor(R.color.On_Textwcolor));
@@ -314,8 +322,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 ////
 //        super.onStart();
 //    }
-
-
 
 
     @Override
@@ -341,14 +347,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 swipeRefreshLayout.setRefreshing(false);
             }
 
-        }else if (!text.equals("")){
+        } else if (!text.equals("")) {
 
-           search_edit.setText(null);
+            search_edit.setText(null);
             swipeRefreshLayout.setRefreshing(false);
         }
-
-
-
 
 
     }
@@ -613,10 +616,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 twPreference.putInt("value1", 1);
 
                 //Tongsin();
-               // itemArrayList.clear();
+                // itemArrayList.clear();
 
-               // Intent intent = new Intent(this, ChartActivity_bup.class);
-               Intent intent = new Intent(this, ChartActivity_apartname.class);
+                // Intent intent = new Intent(this, ChartActivity_bup.class);
+                Intent intent = new Intent(this, ChartActivity_apartname.class);
                 startActivity(intent);
                 break;
             case R.id.delete_textImageview:
@@ -671,7 +674,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         rv.getRecycledViewPool().clear();
                         adapter.notifyDataSetChanged();
 
-                        count = 0;
+                        total_singocount = 0;
 
 //                        Toast.makeText(getApplicationContext(),
 //                                oItems[which], Toast.LENGTH_LONG).show();
@@ -704,7 +707,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void findview() {
         rv = (RecyclerView) findViewById(R.id.main_rv);//
         day_textview = (TextView) findViewById(R.id.day_textview);
-        datavalue_textview = (TextView) findViewById(R.id.datavalue_textview);
+        totalgunsu_textview = (TextView) findViewById(R.id.totalgunsu_textview);
         search_edit = (EditText) findViewById(R.id.search_edit);
         day_cardview = (CardView) findViewById(R.id.day_cardview);
         delete_textimageview = (ImageView) findViewById(R.id.delete_textImageview);
@@ -734,6 +737,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             // 성공시
             public void onResponse(Call<List<ListViewItem>> call, Response<List<ListViewItem>> response) {
+                total_singocount = 0;
+                seoul_singocount = 0;
+                seoul_count = 0;
+                gyeungi_count = 0;
+                gyeungi_singocount = 0;
                 List<ListViewItem> contributors = response.body();
                 // 받아온 리스트를 순회하면서
 
@@ -787,24 +795,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String you = contributor.you;
 
 
-                    Log.e("vm", "" + name + " / " + area + " / " + pyungmyuendo);
-
-
-                    Log.e("DB데이터", "" + chaik + " / " + pyungmyuendo + " / " + chongdongsu + " / " + chongsedaesu + " / " + juchadaesu + " / " + pyungeunjucha
-                            + " / " + yongjeukryul + " / " + gunpaeyul + " / " + ganrisamuso + " / " + nanbang + " / " + gunseoulsa + " / " + jihachul + " / " + mart + " / " + hospital + " / " + park
-                            + " / " + cho + " / " + jung + " / " + arin + " / " + you);
-
-                    Log.e("DB데이터2", "/////" + pyungmyuendo);
-
                     try { // 신고가 카운트 하기
                         //i_price = Integer.parseInt(price.replaceAll(",", "").replaceAll("\\p{Z}", ""));
                         i_highprice = Integer.parseInt(hightprice.replaceAll(",", "").replaceAll("\\p{Z}", ""));
 
 
                         if (price > i_highprice) {
-                            count++;
-                            //Log.d("dhxodn1988", "" + i_price + "  /  " + i_highprice+ "  /  " +count);
+                            total_singocount++;
+
                         }
+
+
+                        if (bupjungdong.contains("서울특별시")) {
+                            seoul_count++;
+
+                            if (bupjungdong.contains("서울특별시") && price > i_highprice) {
+                                seoul_singocount++;
+
+
+                            }
+
+
+                        }
+
+
+
+                        if (bupjungdong.contains("경기도")) {
+                            gyeungi_count++;
+
+
+                            if (bupjungdong.contains("경기도") && price > i_highprice) {
+                                gyeungi_singocount++;
+
+
+                            }
+
+
+                        }
+
+
+
+
                     } catch (Exception e) {
                     }
 
@@ -828,6 +859,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
 
+                Log.e("tt", "서울특별시" + " / " + seoul_count+" / "+seoul_singocount);
+                Log.e("tt", "경기도" + " / " + gyeungi_count+" / "+gyeungi_singocount);
 
             }
 
@@ -879,13 +912,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
-        datavalue_textview.setText(String.valueOf(itemArrayList.size()));
+
+        double total_v = (double) total_singocount / (double) itemArrayList.size() * 100;
+        double seoul_v = (double) total_singocount / (double) itemArrayList.size() * 100;
+        double gyeungi_v = (double) total_singocount / (double) itemArrayList.size() * 100;
+
+        totalgunsu_textview.setText(String.valueOf(itemArrayList.size()));
+        singogun.setText(String.valueOf(total_singocount));
+        jisu.setText(String.valueOf(String.format("%.0f", total_v)));
 
 
-        double v = (double) count / (double) itemArrayList.size() * 100;
-
-        singogun.setText(String.valueOf(count));
-        jisu.setText(String.valueOf(String.format("%.0f", v)));
 
         swipeRefreshLayout.setRefreshing(false);
 

@@ -106,8 +106,6 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
         ContentsStory();
 
 
-
-
         twPreference = new TWPreference(this);
         twPreference.putInt("value", prefer);
         twPreference.putInt("value1", 0);
@@ -199,7 +197,6 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
                     contents.setText("거래건수");
 
 
-
                 } else {  //홀수
 
                     list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
@@ -217,7 +214,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void ContentsStory(){
+    public void ContentsStory() {
         today.setText(new Util().Getday2()); // 이번달 표시
         bup.setText("법정동");
 
@@ -282,16 +279,14 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
                     int inflation = contributor.inflation;
 
 
-
-
-                    Log.e("TW", "" + bupjungdong + " / " + totalgunsu + " / " + singogunsu+ " / " +inflation);
+                    Log.e("TW", "" + bupjungdong + " / " + totalgunsu + " / " + singogunsu + " / " + inflation);
 
                     itemArrayList.add(new ListViewItem2(bupjungdong, totalgunsu, singogunsu, inflation));
                     Collections.sort(itemArrayList);
                     try {
                         DataView();
                     } catch (Exception e) {
-                       //데이터 화면에 뿌리기
+                        //데이터 화면에 뿌리기
 
 
                     }
@@ -306,7 +301,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
             // 실패시
             public void onFailure(Call<List<ListViewItem2>> call, Throwable t) {
 
-                Log.d("deberg","------->"+t.toString());
+                Log.d("deberg", "------->" + t.toString());
                 Toast.makeText(ChartActivity_bup.this, "정보받아오기 실패", Toast.LENGTH_LONG)
                         .show();
             }
@@ -327,7 +322,8 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void DataView() {  // itemArraylist 에 담김 데이터를 화면에 뿌려준다
+    public void
+    DataView() {  // itemArraylist 에 담김 데이터를 화면에 뿌려준다
 
 
         Collections.sort(itemArrayList);
@@ -352,9 +348,8 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
             cycleimageview.setVisibility(View.INVISIBLE);
 
 
-
         }
-        
+
     }
 
     public void findview() {
@@ -364,7 +359,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
         cardview_button2 = (TextView) findViewById(R.id.cardview_button);
         rv = (RecyclerView) findViewById(R.id.main_rv);//
         day_textview = (TextView) findViewById(R.id.day_textview);
-        datavalue_textview = (TextView) findViewById(R.id.datavalue_textview);
+
         search_edit = (EditText) findViewById(R.id.search_edit);
         delete_textimageview = (ImageView) findViewById(R.id.delete_textImageview);
         singogun = (TextView) findViewById(R.id.singogun);
@@ -375,15 +370,12 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
         // main_layout = (RelativeLayout) findViewById(R.id.main_layout); //
         cycleimageview = (ImageView) findViewById(R.id.cycleimageview);
         b1 = (CardView) findViewById(R.id.b1);
-        contents=(TextView)findViewById(R.id.contents);
-        bup=(TextView) findViewById(R.id.bup);
-        singogagunsu=(TextView) findViewById(R.id.singogunsu);
-        inflation=(TextView) findViewById(R.id.inflation);
-        totalgunsu=(TextView) findViewById(R.id.totalgunsu);
-        today =(TextView) findViewById(R.id.today);
-
-
-
+        contents = (TextView) findViewById(R.id.contents);
+        bup = (TextView) findViewById(R.id.bup);
+        singogagunsu = (TextView) findViewById(R.id.singogunsu);
+        inflation = (TextView) findViewById(R.id.inflation);
+        totalgunsu = (TextView) findViewById(R.id.totalgunsu);
+        today = (TextView) findViewById(R.id.today);
 
 
     }
@@ -413,7 +405,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
                 break;
 
-            case R.id.delete_textImageview :
+            case R.id.delete_textImageview:
 
                 search_edit.setText(null);
 

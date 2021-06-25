@@ -366,7 +366,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
         cardview_button2 = (TextView) findViewById(R.id.cardview_button);
         rv = (RecyclerView) findViewById(R.id.main_rv);//
         day_textview = (TextView) findViewById(R.id.day_textview);
-        datavalue_textview = (TextView) findViewById(R.id.datavalue_textview);
+
         search_edit = (EditText) findViewById(R.id.search_edit);
         delete_textimageview = (ImageView) findViewById(R.id.delete_textImageview);
         singogun = (TextView) findViewById(R.id.singogun);
