@@ -793,7 +793,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String go = contributor.go;
                     String arin = contributor.arin;
                     String you = contributor.you;
-
+                    Log.e("t2", "가나다라" + " / " + name + " / " + bupjungdong + " / " + area + " / " + seoul_count);
 
                     try { // 신고가 카운트 하기
                         //i_price = Integer.parseInt(price.replaceAll(",", "").replaceAll("\\p{Z}", ""));
@@ -804,37 +804,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             total_singocount++;
 
                         }
-
-
-                        if (bupjungdong.contains("서울특별시")) {
-                            seoul_count++;
-
-                            if (bupjungdong.contains("서울특별시") && price > i_highprice) {
-                                seoul_singocount++;
-
-
-                            }
+                        if (bupjungdong.contains("서울특별시") && price > i_highprice) {
+                            seoul_singocount++;
 
 
                         }
-
-
-
-                        if (bupjungdong.contains("경기도")) {
-                            gyeungi_count++;
-
-
-                            if (bupjungdong.contains("경기도") && price > i_highprice) {
-                                gyeungi_singocount++;
-
-
-                            }
+                        if (bupjungdong.contains("경기도") && price > i_highprice) {
+                            gyeungi_singocount++;
 
 
                         }
-
-
-
 
                     } catch (Exception e) {
                     }
@@ -856,11 +835,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.e("오하람", "" + name + " / " + price);
                     DataView(); //데이터 화면에 뿌리기
 
+                    if (bupjungdong.matches(".*서울특별시.*")) {
+                        seoul_count++;
+
+
+
+
+
+                    } else {
+                        gyeungi_count++;
+
+
+
+                    }
+
 
                 }
 
-                Log.e("tt", "서울특별시" + " / " + seoul_count+" / "+seoul_singocount);
-                Log.e("tt", "경기도" + " / " + gyeungi_count+" / "+gyeungi_singocount);
+                int total_c=seoul_count+gyeungi_count;
+                int total_sc=seoul_singocount+gyeungi_singocount;
+
+                double seoul_v = (double) seoul_singocount / (double) seoul_count * 100;
+                double gyeungi_v = (double) gyeungi_singocount / (double) gyeungi_count * 100;
+
+
+
+                Log.e("taewoooh88", "서울특별시"+ " / " + seoul_count+" / "+seoul_singocount+" / "+String.format("%.0f", seoul_v));
+                Log.e("taewoooh88", "경기도"+ " / " + gyeungi_count + " / " + gyeungi_singocount+" / "+String.format("%.0f", gyeungi_v));
+                Log.e("taewoooh88", "서울경기,경기도"+ " / " + total_c + " / " + total_sc);
 
             }
 
@@ -914,8 +916,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         double total_v = (double) total_singocount / (double) itemArrayList.size() * 100;
-        double seoul_v = (double) total_singocount / (double) itemArrayList.size() * 100;
-        double gyeungi_v = (double) total_singocount / (double) itemArrayList.size() * 100;
+
 
         totalgunsu_textview.setText(String.valueOf(itemArrayList.size()));
         singogun.setText(String.valueOf(total_singocount));

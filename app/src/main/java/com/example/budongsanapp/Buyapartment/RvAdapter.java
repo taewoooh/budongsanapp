@@ -66,7 +66,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
         int safePosition = holder.getAdapterPosition();
-
+        int count = safePosition+1;
         try {
 
             holder.price.setTextColor(Color.parseColor("#000000")); // 기본색
@@ -76,8 +76,8 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
             holder.name.setTextColor(Color.parseColor("#000000")); // 검정색
             holder.pyeungsu.setText("");
 
+            holder.number.setText(String.valueOf(count)+"위"); //신고가율
 
-            int count = 0;
 
 //            a = Integer.parseInt(items.get().getPrice().replaceAll(",", "").replaceAll("\\p{Z}", ""));
 //            b = Integer.parseInt(items.get().getHightprice().replaceAll(",", "").replaceAll("\\p{Z}", ""));
@@ -307,6 +307,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
         TextView pyungeunjucha;
         TextView jihachul;
         TextView pyeungsu;
+        TextView number;
 
 
         ImageView highicon;
@@ -340,6 +341,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
             jihachul = itemView.findViewById(R.id.jihachul);
             pyeungsu = itemView.findViewById(R.id.pyeungsu);
             crown = itemView.findViewById(R.id.crown);
+            number=itemView.findViewById(R.id.number);
             name = itemView.findViewById(R.id.Name);
 
 
