@@ -1,6 +1,7 @@
 package com.example.budongsanapp.Buyapartment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -28,10 +29,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
 import com.example.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
 import com.example.budongsanapp.CustomDialogClickListener;
-import com.example.budongsanapp.Dialog.SortDialog;
 import com.example.budongsanapp.R;
 import com.example.budongsanapp.TWPreference;
 import com.example.budongsanapp.Util;
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView day_textview;
     TextView totalgunsu_textview;
     int seoul_count = 0;
-
+    View view;
     TextView seoul_c;
     TextView seoul_singoga;
     TextView seoul_singogayul;
@@ -121,11 +120,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static ArrayList<ListViewItem> itemArrayList;
     AlertDialog.Builder oDialog;
 
+    Context context;
+
+
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         findview();
@@ -168,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
                 // Collections.sort(itemArrayList);
-cd.show();
+                cd.show();
 
             }
         });
@@ -283,8 +289,8 @@ cd.show();
             @Override
             public void onPriceClicked() {
 
-                Toast.makeText(getApplicationContext(),"테스트",Toast.LENGTH_SHORT).show();
-                twPreference.putInt("value",0);
+                Toast.makeText(getApplicationContext(), "테스트", Toast.LENGTH_SHORT).show();
+                twPreference.putInt("value", 0);
 
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
@@ -292,20 +298,20 @@ cd.show();
 
             @Override
             public void onChaikClicked() {
-                twPreference.putInt("value",1);
+                twPreference.putInt("value", 1);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
             }
 
             @Override
             public void onTermChaikClicked() {
-                twPreference.putInt("value",2);
+                twPreference.putInt("value", 2);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
             }
         });
         cd.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        cd.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
+        cd.getWindow().setGravity(Gravity.TOP | Gravity.RIGHT);
     }
 
 //    @Override
@@ -354,17 +360,19 @@ cd.show();
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onRefresh() {
         String text = search_edit.getText().toString();
-
+        twPreference.putInt("value", 0);
         if (text.equals("")) {
             daylist.clear();
             itemArrayList.clear();
 
 
             try {
-                twPreference.putInt("value",0);
+
+
                 new ilbyeolUi_AsyncTask().execute(ilbyeol_url);
 
 
@@ -376,8 +384,14 @@ cd.show();
         } else if (!text.equals("")) {
 
             search_edit.setText(null);
+            twPreference.putInt("value", 0);
+
+            Collections.sort(itemArrayList);
+            DataView();
+
             swipeRefreshLayout.setRefreshing(false);
         }
+cd.j_price.performClick();
 
 
     }
@@ -644,7 +658,7 @@ cd.show();
                 //Tongsin();
                 // itemArrayList.clear();
 
-                 Intent intent = new Intent(this, ChartActivity_bup.class);
+                Intent intent = new Intent(this, ChartActivity_bup.class);
                 //Intent intent = new Intent(this, ChartActivity_apartname.class);
                 startActivity(intent);
                 break;
@@ -753,12 +767,15 @@ cd.show();
         seoul_singoga = (TextView) findViewById(R.id.seoul_singoga);
         seoul_singogayul = (TextView) findViewById(R.id.seoul_singogayul);
 
-        gyeungi_c = (TextView) findViewById(R.id.  gyeungi_c);
-        gyeungi_singoga = (TextView) findViewById(R.id.  gyeungi_singoga);
-        gyeungi_singogayul = (TextView) findViewById(R.id.  gyeungi_singogayul);
+        gyeungi_c = (TextView) findViewById(R.id.gyeungi_c);
+        gyeungi_singoga = (TextView) findViewById(R.id.gyeungi_singoga);
+        gyeungi_singogayul = (TextView) findViewById(R.id.gyeungi_singogayul);
+        view = getLayoutInflater().inflate(R.layout.sortdialog, null, false);
 
 
+    }
 
+    public void Sortdialogcheck(int v) {
 
 
     }
@@ -829,7 +846,7 @@ cd.show();
                     String jung = contributor.jung;
                     int dangiday = contributor.dangiday;
                     int daychaik = contributor.daychaik;
-                    String highhigh= contributor.highhigh;
+                    String highhigh = contributor.highhigh;
                     Log.e("t2", "가나다라" + " / " + name + " / " + bupjungdong + " / " + area + " / " + seoul_count);
 
                     try { // 신고가 카운트 하기
@@ -876,12 +893,8 @@ cd.show();
                         seoul_count++;
 
 
-
-
-
                     } else {
                         gyeungi_count++;
-
 
 
                     }
@@ -889,18 +902,17 @@ cd.show();
 
                 }
 
-                int total_c=seoul_count+gyeungi_count;
-                int total_sc=seoul_singocount+gyeungi_singocount;
+                int total_c = seoul_count + gyeungi_count;
+                int total_sc = seoul_singocount + gyeungi_singocount;
 
                 double seoul_v = (double) seoul_singocount / (double) seoul_count * 100;
                 double gyeungi_v = (double) gyeungi_singocount / (double) gyeungi_count * 100;
                 double total2_v = (double) total_sc / (double) total_c * 100;
 
 
-
-                Log.e("taewoooh88", "서울특별시"+ " / " + seoul_count+" / "+seoul_singocount+" / "+String.format("%.0f", seoul_v));
-                Log.e("taewoooh88", "경기도"+ " / " + gyeungi_count + " / " + gyeungi_singocount+" / "+String.format("%.0f", gyeungi_v));
-                Log.e("taewoooh88", "서울경기,경기도"+ " / " + total_c + " / " + total_sc+ " / "+total2_v);
+                Log.e("taewoooh88", "서울특별시" + " / " + seoul_count + " / " + seoul_singocount + " / " + String.format("%.0f", seoul_v));
+                Log.e("taewoooh88", "경기도" + " / " + gyeungi_count + " / " + gyeungi_singocount + " / " + String.format("%.0f", gyeungi_v));
+                Log.e("taewoooh88", "서울경기,경기도" + " / " + total_c + " / " + total_sc + " / " + total2_v);
 
 
                 seoul_c.setText(String.valueOf(seoul_count));
@@ -934,7 +946,7 @@ cd.show();
         Collections.sort(itemArrayList);
 
 
-        Log.e("오태우", " / " + twPreference.getInt("value",0));
+        Log.e("오태우", " / " + twPreference.getInt("value", 0));
 
 
         adapter = new RvAdapter(itemArrayList, MainActivity.this);
@@ -963,13 +975,10 @@ cd.show();
         }
 
 
-
-
 //        double total_v = (double) total_singocount / (double) itemArrayList.size() * 100;
 //        totalgunsu_textview.setText(String.valueOf(itemArrayList.size()));
 //        singogun.setText(String.valueOf(total_singocount));
 //        jisu.setText(String.valueOf(String.format("%.0f", total_v)));
-
 
 
         swipeRefreshLayout.setRefreshing(false);

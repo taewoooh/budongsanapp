@@ -1,4 +1,4 @@
-package com.example.budongsanapp.Dialog;
+package com.example.budongsanapp.Buyapartment;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -42,12 +42,23 @@ public class SortDialog extends Dialog implements View.OnClickListener {
 
 
     }
+    public SortDialog(@NonNull Context context) {
+        super(context);
+        this.context = context;
+
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);   //다이얼로그의 타이틀바를 없애주는 옵션입니다.
+        //getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));  //다이얼로그의 배경을 투명으로 만듭니다.
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.sortdialog);     //다이얼로그에서 사용할 레이아웃입니다.
+
 
         j_price = (TextView) findViewById(R.id.j_price);
         j_chaik = (TextView) findViewById(R.id.j_chaik);
