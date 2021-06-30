@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/j_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="정렬기준"
+        android:textSize="18dp"
+        android:textStyle="bold"></TextView>
+
+    <TextView
+        android:id="@+id/j_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/j_title"
+        android:padding="15dp"
+        android:text="거래금액순"
+
+        android:textColor="#2196F3"
+        android:textSize="15dp"></TextView>
+
+    <ImageView
+        android:id="@+id/j_price_v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/check"
+        android:layout_toRightOf="@+id/j_price"
+        android:padding="15dp"
+        android:layout_below="@+id/j_title">
+
+
+        ></ImageView>
+
+
+
+    <TextView
+        android:id="@+id/j_chaik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/j_price"
+        android:padding="15dp"
+        android:text="시세차익순"
+
+        android:textSize="15dp"></TextView>
+
+
+    <ImageView
+        android:id="@+id/j_chaik_v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/check"
+        android:visibility="invisible"
+        android:layout_toRightOf="@+id/j_price"
+        android:padding="15dp"
+        android:layout_below="@+id/j_price">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/j_termchaik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/j_chaik"
+        android:padding="15dp"
+        android:text="신고가갱신기간 + 차익순"
+
+        android:textSize="15dp"></TextView>
+
+
+    <ImageView
+        android:id="@+id/j_termchaik_v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/check"
+        android:visibility="invisible"
+        android:layout_toRightOf="@+id/j_termchaik"
+        android:padding="15dp"
+        android:layout_below="@+id/j_chaik">
+
+    </ImageView>
+
+
+</RelativeLayout>

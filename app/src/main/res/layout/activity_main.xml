@@ -454,13 +454,10 @@
             <RelativeLayout
                 android:id="@+id/totalgunsulayout2"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true">
-
-
-
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp">
 
 
                 <ImageView
@@ -659,6 +656,9 @@
     </androidx.cardview.widget.CardView>
 
 
+
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/b1"
         android:layout_width="45dp"
@@ -681,5 +681,4 @@
 
 
     </androidx.cardview.widget.CardView>
-
 </RelativeLayout>

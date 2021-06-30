@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -27,6 +29,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
+import com.example.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
+import com.example.budongsanapp.CustomDialogClickListener;
+import com.example.budongsanapp.Dialog.SortDialog;
 import com.example.budongsanapp.R;
 import com.example.budongsanapp.TWPreference;
 import com.example.budongsanapp.Util;
@@ -58,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Retrofit retrofit;
     private RecyclerView rv;
     private LinearLayoutManager llm;
+    SortDialog cd;
     private static String TAG = "8888888888d888";
     int hour;
     String areac;
@@ -98,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView list_setup_imageview;
     ImageView cycleimageview;
     String tablecode = "";
-    int prefer = 0;
+
     CardView b1;
     CardView cv;
     RelativeLayout main_layout;
@@ -126,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         twPreference = new TWPreference(this);
-        twPreference.putInt("value", prefer);
+        twPreference.putInt("value", 0);
         twPreference.putInt("value1", 0);
 
 
@@ -162,22 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
                 // Collections.sort(itemArrayList);
-                prefer++;
-                twPreference.putInt("value", prefer);
-
-
-                if (prefer % 2 == 0) {  //짝수
-                    Collections.sort(itemArrayList);
-                    DataView(); //데이터 화면에 뿌리기
-                    list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
-                } else {  //홀수
-
-                    list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
-
-
-                    Collections.sort(itemArrayList);
-                    DataView(); //데이터 화면에 뿌리기
-                }
+cd.show();
 
             }
         });
@@ -288,7 +279,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         });
 
+        cd = new SortDialog(MainActivity.this, new CustomDialogClickListener() {
+            @Override
+            public void onPriceClicked() {
 
+                Toast.makeText(getApplicationContext(),"테스트",Toast.LENGTH_SHORT).show();
+                twPreference.putInt("value",0);
+
+                Collections.sort(itemArrayList);
+                DataView(); //데이터 화면에 뿌리기
+            }
+
+            @Override
+            public void onChaikClicked() {
+                twPreference.putInt("value",1);
+                Collections.sort(itemArrayList);
+                DataView(); //데이터 화면에 뿌리기
+            }
+
+            @Override
+            public void onTermChaikClicked() {
+                twPreference.putInt("value",2);
+                Collections.sort(itemArrayList);
+                DataView(); //데이터 화면에 뿌리기
+            }
+        });
+        cd.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        cd.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
     }
 
 //    @Override
@@ -347,6 +364,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             try {
+                twPreference.putInt("value",0);
                 new ilbyeolUi_AsyncTask().execute(ilbyeol_url);
 
 
@@ -626,8 +644,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //Tongsin();
                 // itemArrayList.clear();
 
-                // Intent intent = new Intent(this, ChartActivity_bup.class);
-                Intent intent = new Intent(this, ChartActivity_apartname.class);
+                 Intent intent = new Intent(this, ChartActivity_bup.class);
+                //Intent intent = new Intent(this, ChartActivity_apartname.class);
                 startActivity(intent);
                 break;
             case R.id.delete_textImageview:
@@ -809,9 +827,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String park = contributor.park;
                     String cho = contributor.cho;
                     String jung = contributor.jung;
-                    String go = contributor.go;
-                    String arin = contributor.arin;
-                    String you = contributor.you;
+                    int dangiday = contributor.dangiday;
+                    int daychaik = contributor.daychaik;
+                    String highhigh= contributor.highhigh;
                     Log.e("t2", "가나다라" + " / " + name + " / " + bupjungdong + " / " + area + " / " + seoul_count);
 
                     try { // 신고가 카운트 하기
@@ -847,7 +865,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             high, doromyung, jibun, geunmulcode,
                             jiyeokcode, bupjungdong, gunchukyear, hightprice,
                             hightyear, hightmonth, hightday, areac, ymd, chaik, pyungmyuendo, chongdongsu, chongsedaesu, juchadaesu, pyungeunjucha,
-                            yongjeukryul, gunpaeyul, ganrisamuso, nanbang, gunseoulsa, jihachul, mart, hospital, park, cho, jung, go, arin, you));
+                            yongjeukryul, gunpaeyul, ganrisamuso, nanbang, gunseoulsa, jihachul, mart, hospital, park, cho, jung, dangiday, daychaik, highhigh));
                     Collections.sort(itemArrayList);
 
 
@@ -916,7 +934,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Collections.sort(itemArrayList);
 
 
-        Log.e("오태우", " / " + itemArrayList.get(0).getName() + " / " + itemArrayList.get(0).getMart());
+        Log.e("오태우", " / " + twPreference.getInt("value",0));
 
 
         adapter = new RvAdapter(itemArrayList, MainActivity.this);

@@ -161,7 +161,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
 
 
-            holder.high2.setText(items.get(safePosition).getYou()+"층");
+            holder.high2.setText(items.get(safePosition).getHighhigh()+"층");
 
      
 

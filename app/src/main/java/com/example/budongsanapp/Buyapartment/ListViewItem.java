@@ -154,17 +154,17 @@ public class ListViewItem implements Comparable<ListViewItem> {
     @Expose
     String jung;
 
-    @SerializedName("go")
+    @SerializedName("dangiday")
     @Expose
-    String go;
+    int dangiday;
 
-    @SerializedName("arin")
+    @SerializedName("daychaik")
     @Expose
-    String arin;
+    int daychaik;
 
-    @SerializedName("you")
+    @SerializedName("highhigh")
     @Expose
-    String you;
+    String highhigh;
 
 
     public ListViewItem(String name, int price,
@@ -179,7 +179,7 @@ public class ListViewItem implements Comparable<ListViewItem> {
                         String areac, String ymd, int chaik, String pyungmyuendo, String chongdongsu,
                         String chongsedaesu, String juchadaesu, String pyungeunjucha, String yongjeukryul, String gunpaeyul, String ganrisamuso,
                         String nanbang, String gunseoulsa, String jihachul, String mart, String hospital, String park,
-                        String cho, String jung, String go, String arin, String you) {
+                        String cho, String jung, int dangiday, int daychaik, String highhigh) {
         this.name = name;
         this.price = price;
         this.area = area;
@@ -218,9 +218,9 @@ public class ListViewItem implements Comparable<ListViewItem> {
         this.park = park;
         this.cho = cho;
         this.jung = jung;
-        this.go = go;
-        this.arin = arin;
-        this.you = you;
+        this.dangiday = dangiday;
+        this.daychaik = daychaik;
+        this.highhigh = highhigh;
     }
 
     public ListViewItem(String name, int price, String area, String year, String month, String day, String high, String doromyung, String jibun, String geunmulcode, String jiyeokcode, String bupjungdong, String gunchukyear, String areac, String ymd) {
@@ -310,16 +310,16 @@ public class ListViewItem implements Comparable<ListViewItem> {
         return jung;
     }
 
-    public String getGo() {
-        return go;
+    public int getDangiday() {
+        return dangiday;
     }
 
-    public String getArin() {
-        return arin;
+    public int getDaychaik() {
+        return daychaik;
     }
 
-    public String getYou() {
-        return you;
+    public String getHighhigh() {
+        return highhigh;
     }
 
     public void setPyungmyuendo(String pyungmyuendo) {
@@ -386,16 +386,16 @@ public class ListViewItem implements Comparable<ListViewItem> {
         this.jung = jung;
     }
 
-    public void setGo(String go) {
-        this.go = go;
+    public void setDangiday(int dangiday) {
+        this.dangiday = dangiday;
     }
 
-    public void setArin(String arin) {
-        this.arin = arin;
+    public void setDaychaik(int daychaik) {
+        this.daychaik = daychaik;
     }
 
-    public void setYou(String you) {
-        this.you = you;
+    public void setHighhigh(String highhigh) {
+        this.highhigh = highhigh;
     }
 
     public String getName() {
@@ -560,24 +560,25 @@ public class ListViewItem implements Comparable<ListViewItem> {
     }
 
 
-
     // 내림차순
     @Override
     public int compareTo(ListViewItem entry) { //금액 낮은순
 //        return entry.getChaik() - this.getChaik();
-       //return entry.getPrice() - this.getPrice();
+        //return entry.getPrice() - this.getPrice();
 
 
+        int prefer = new TWPreference().getInt("value", 0);
 
-        int prefer =new TWPreference().getInt("value", 0);
 
-
-        if (prefer % 2 == 0) {  //짝수
+        if (prefer == 0) {  //짝수
 
             return entry.getPrice() - this.getPrice();
-        } else {  //홀수
+        } else if (prefer == 1) {  //홀수
+
             return entry.getChaik() - this.getChaik();
-            //return entry.getChaik() - this.getChaik();
+        } else  {
+            return entry.getDaychaik() - this.getDaychaik();
+
         }
 
     }

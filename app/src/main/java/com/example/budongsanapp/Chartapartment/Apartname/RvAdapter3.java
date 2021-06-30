@@ -99,7 +99,8 @@ try {
             items.addAll(arrayList);
         } else {
             for (ListViewItem3 news : arrayList) {
-                if (news.getBupjungdong().toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (news.getBupjungdong().toLowerCase(Locale.getDefault()).contains(charText) ||
+                        news.getName().toLowerCase(Locale.getDefault()).contains(charText)) {
                     items.add(news);
                 }
             }

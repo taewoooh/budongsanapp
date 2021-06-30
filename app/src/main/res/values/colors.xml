@@ -20,6 +20,9 @@
 
     <color name="off_Btcolor">#ffff</color>
 
+    <color name="On_Tcolor">#2196F3</color>
+    <color name="Off_Tcolor">@android:color/darker_gray</color>
+
     <color name="Off_Textcolor">@android:color/darker_gray</color>
 
 </resources>
