@@ -83,5 +83,54 @@
 
     </ImageView>
 
+    <TextView
+        android:id="@+id/j_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/j_termchaik_v"
+        android:padding="15dp"
+        android:text="전용면적순"
+
+        android:textSize="15dp"></TextView>
+
+
+    <ImageView
+        android:id="@+id/j_area_v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/check"
+        android:visibility="invisible"
+        android:layout_toRightOf="@+id/j_area"
+        android:padding="15dp"
+        android:layout_below="@+id/j_termchaik_v">
+
+    </ImageView>
+
+
+    <TextView
+        android:id="@+id/j_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/j_area_v"
+        android:padding="15dp"
+        android:text="계약일순"
+
+        android:textSize="15dp"></TextView>
+
+
+    <ImageView
+        android:id="@+id/j_date_v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/check"
+        android:visibility="invisible"
+        android:layout_toRightOf="@+id/j_date"
+        android:padding="15dp"
+        android:layout_below="@+id/j_area_v">
+
+    </ImageView>
+
+
+
 
 </RelativeLayout>

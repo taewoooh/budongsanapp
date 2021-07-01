@@ -1,4 +1,5 @@
 package com.example.budongsanapp.Buyapartment;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,10 +29,14 @@ public class SortDialog extends Dialog implements View.OnClickListener {
     TextView j_price;
     TextView j_chaik;
     TextView j_termchaik;
+    TextView j_area;
+    TextView j_date;
 
     ImageView j_price_v;
     ImageView j_chaik_v;
     ImageView j_termchaik_v;
+    ImageView j_area_v;
+    ImageView j_date_v;
 
     public SortDialog(@NonNull Context context, CustomDialogClickListener customDialogClickListener) {
         super(context);
@@ -42,6 +47,7 @@ public class SortDialog extends Dialog implements View.OnClickListener {
 
 
     }
+
     public SortDialog(@NonNull Context context) {
         super(context);
         this.context = context;
@@ -63,15 +69,21 @@ public class SortDialog extends Dialog implements View.OnClickListener {
         j_price = (TextView) findViewById(R.id.j_price);
         j_chaik = (TextView) findViewById(R.id.j_chaik);
         j_termchaik = (TextView) findViewById(R.id.j_termchaik);
+        j_area = (TextView) findViewById(R.id.j_area);
+        j_date = (TextView) findViewById(R.id.j_date);
 
         j_price.setOnClickListener(this::onClick);
         j_chaik.setOnClickListener(this::onClick);
         j_termchaik.setOnClickListener(this::onClick);
+        j_area.setOnClickListener(this::onClick);
+        j_date.setOnClickListener(this::onClick);
 
 
         j_price_v = (ImageView) findViewById(R.id.j_price_v);
         j_chaik_v = (ImageView) findViewById(R.id.j_chaik_v);
         j_termchaik_v = (ImageView) findViewById(R.id.j_termchaik_v);
+        j_area_v = (ImageView) findViewById(R.id.j_area_v);
+        j_date_v = (ImageView) findViewById(R.id.j_date_v);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -80,8 +92,6 @@ public class SortDialog extends Dialog implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.j_price:
-
-                this.customDialogClickListener.onPriceClicked();
 
 
 
@@ -94,6 +104,13 @@ public class SortDialog extends Dialog implements View.OnClickListener {
 
                 j_termchaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_termchaik_v.setVisibility(View.INVISIBLE);
+
+                j_area.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_area_v.setVisibility(View.INVISIBLE);
+
+                j_date.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_date_v.setVisibility(View.INVISIBLE);
+
                 dismiss();
 
 
@@ -110,12 +127,15 @@ public class SortDialog extends Dialog implements View.OnClickListener {
                 j_price_v.setVisibility(View.INVISIBLE);
 
 
-
-
                 j_termchaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_termchaik_v.setVisibility(View.INVISIBLE);
 
 
+                j_area.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_area_v.setVisibility(View.INVISIBLE);
+
+                j_date.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_date_v.setVisibility(View.INVISIBLE);
 
                 dismiss();
                 break;
@@ -132,12 +152,62 @@ public class SortDialog extends Dialog implements View.OnClickListener {
                 j_price.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_price_v.setVisibility(View.INVISIBLE);
 
+                j_area.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_area_v.setVisibility(View.INVISIBLE);
+
+                j_date.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_date_v.setVisibility(View.INVISIBLE);
+
+                dismiss();
+                break;
+
+            case R.id.j_area:
+
+                this.customDialogClickListener.onAreaClicked();
+
+                j_area.setTextColor(getContext().getColor(R.color.On_Tcolor));
+                j_area_v.setVisibility(View.VISIBLE);
+
+                j_termchaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_termchaik_v.setVisibility(View.INVISIBLE);
+
+                j_chaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_chaik_v.setVisibility(View.INVISIBLE);
+
+                j_price.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_price_v.setVisibility(View.INVISIBLE);
+
+                j_date.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_date_v.setVisibility(View.INVISIBLE);
+
+                dismiss();
+                break;
+
+            case R.id.j_date:
+
+                this.customDialogClickListener.onDateClicked();
+
+
+                j_date.setTextColor(getContext().getColor(R.color.On_Tcolor));
+                j_date_v.setVisibility(View.VISIBLE);
+
+                j_area.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_area_v.setVisibility(View.INVISIBLE);
+
+                j_termchaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_termchaik_v.setVisibility(View.INVISIBLE);
+
+                j_chaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_chaik_v.setVisibility(View.INVISIBLE);
+
+                j_price.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_price_v.setVisibility(View.INVISIBLE);
+
                 dismiss();
                 break;
 
         }
     }
-
 
 
 }

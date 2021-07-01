@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
 import com.example.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
 import com.example.budongsanapp.CustomDialogClickListener;
 import com.example.budongsanapp.R;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView rv;
     private LinearLayoutManager llm;
     SortDialog cd;
+    SortDialog cd2;
     private static String TAG = "8888888888d888";
     int hour;
     String areac;
@@ -132,6 +134,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        cd = new SortDialog(MainActivity.this, new CustomDialogClickListener() {
+            @Override
+            public void onPriceClicked() {
+
+
+                twPreference.putInt("value", 0);
+
+                Collections.sort(itemArrayList);
+                DataView(); //데이터 화면에 뿌리기
+            }
+
+            @Override
+            public void onChaikClicked() {
+                twPreference.putInt("value", 1);
+                Collections.sort(itemArrayList);
+                DataView(); //데이터 화면에 뿌리기
+            }
+
+            @Override
+            public void onTermChaikClicked() {
+                twPreference.putInt("value", 2);
+                Collections.sort(itemArrayList);
+                DataView(); //데이터 화면에 뿌리기
+            }
+
+            @Override
+            public void onAreaClicked() {
+                twPreference.putInt("value", 3);
+                Collections.sort(itemArrayList);
+                DataView(); //데이터 화면에 뿌리기
+            }
+
+            @Override
+            public void onDateClicked() {
+                twPreference.putInt("value", 4);
+                Collections.sort(itemArrayList);
+                DataView(); //데이터 화면에 뿌리기
+            }
+        });
 
 
         findview();
@@ -285,31 +326,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         });
 
-        cd = new SortDialog(MainActivity.this, new CustomDialogClickListener() {
-            @Override
-            public void onPriceClicked() {
 
-                Toast.makeText(getApplicationContext(), "테스트", Toast.LENGTH_SHORT).show();
-                twPreference.putInt("value", 0);
-
-                Collections.sort(itemArrayList);
-                DataView(); //데이터 화면에 뿌리기
-            }
-
-            @Override
-            public void onChaikClicked() {
-                twPreference.putInt("value", 1);
-                Collections.sort(itemArrayList);
-                DataView(); //데이터 화면에 뿌리기
-            }
-
-            @Override
-            public void onTermChaikClicked() {
-                twPreference.putInt("value", 2);
-                Collections.sort(itemArrayList);
-                DataView(); //데이터 화면에 뿌리기
-            }
-        });
         cd.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         cd.getWindow().setGravity(Gravity.TOP | Gravity.RIGHT);
     }
@@ -363,6 +380,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onRefresh() {
+        cd2 = new SortDialog(MainActivity.this);
         String text = search_edit.getText().toString();
         twPreference.putInt("value", 0);
         if (text.equals("")) {
@@ -391,7 +409,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             swipeRefreshLayout.setRefreshing(false);
         }
+
+        cd.show();
 cd.j_price.performClick();
+
+
 
 
     }
@@ -658,8 +680,8 @@ cd.j_price.performClick();
                 //Tongsin();
                 // itemArrayList.clear();
 
-                Intent intent = new Intent(this, ChartActivity_bup.class);
-                //Intent intent = new Intent(this, ChartActivity_apartname.class);
+               // Intent intent = new Intent(this, ChartActivity_bup.class);
+                Intent intent = new Intent(this, ChartActivity_apartname.class);
                 startActivity(intent);
                 break;
             case R.id.delete_textImageview:
@@ -775,10 +797,7 @@ cd.j_price.performClick();
 
     }
 
-    public void Sortdialogcheck(int v) {
 
-
-    }
 
     public void Tongsin(String tablecode) { // 서버 데이터를 가지고 온다 파라미터는 불러올 테이블 이름
 
