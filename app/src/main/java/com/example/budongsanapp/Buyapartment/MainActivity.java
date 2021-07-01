@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     BottomSheetDialog bottomSheetDialog;
     int i_price = 0;
     int i_highprice = 0;
-
+    int key=0;
     RelativeLayout bottomsheet;
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -138,13 +138,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onPriceClicked() {
 
-                search_edit.setText(null);
+                if(key != 1) {
+    search_edit.setText(null);
+
+}
                 twPreference.putInt("value", 0);
 
 
 
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
+
+                key = 0;
             }
 
             @Override
@@ -386,17 +391,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onRefresh() {
-        cd2 = new SortDialog(MainActivity.this);
-        String text = search_edit.getText().toString();
-        twPreference.putInt("value", 0);
-        if (text.equals("")) {
-            daylist.clear();
-            itemArrayList.clear();
 
-
+        daylist.clear();
+           itemArrayList.clear();
+//        cd2 = new SortDialog(MainActivity.this);
+//        String text = search_edit.getText().toString();
+//        twPreference.putInt("value", 0);
+//        if (text.equals("")) {
+//            daylist.clear();
+//            itemArrayList.clear();
+//
+//
             try {
 
-
+                twPreference.putInt("value", 0);
+                //search_edit.setText("");
                 new ilbyeolUi_AsyncTask().execute(ilbyeol_url);
 
 
@@ -404,22 +413,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 swipeRefreshLayout.setRefreshing(false);
             }
+//
+//        } else if (!text.equals("")) {
+//
+//            search_edit.setText(null);
+//            twPreference.putInt("value", 0);
+//
+//
+//            DataView();
+//
+//            swipeRefreshLayout.setRefreshing(false);
+//        }
 
-        } else if (!text.equals("")) {
-
-            search_edit.setText(null);
-            twPreference.putInt("value", 0);
-
-            Collections.sort(itemArrayList);
-            DataView();
-
-            swipeRefreshLayout.setRefreshing(false);
-        }
-
+        key= 1;
         cd.show();
-cd.j_price.performClick();
+        cd.j_price.performClick();
 
-
+        swipeRefreshLayout.setRefreshing(false);
 
 
     }
@@ -664,7 +674,7 @@ cd.j_price.performClick();
                     AlerDialog();
 
 
-                    search_edit.setText(null);
+                    //search_edit.setText(null);
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "데이터를 가져올수 없습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
 
@@ -686,7 +696,7 @@ cd.j_price.performClick();
                 //Tongsin();
                 // itemArrayList.clear();
 
-               // Intent intent = new Intent(this, ChartActivity_bup.class);
+                // Intent intent = new Intent(this, ChartActivity_bup.class);
                 Intent intent = new Intent(this, ChartActivity_apartname.class);
                 startActivity(intent);
                 break;
