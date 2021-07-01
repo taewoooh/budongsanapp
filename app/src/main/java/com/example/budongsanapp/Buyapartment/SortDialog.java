@@ -93,7 +93,7 @@ public class SortDialog extends Dialog implements View.OnClickListener {
 
             case R.id.j_price:
 
-
+                this.customDialogClickListener.onChaikClicked();
 
                 j_price.setTextColor(getContext().getColor(R.color.On_Tcolor));
                 j_price_v.setVisibility(View.VISIBLE);

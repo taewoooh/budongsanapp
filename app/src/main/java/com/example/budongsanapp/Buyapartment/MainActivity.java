@@ -138,8 +138,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onPriceClicked() {
 
-
+                search_edit.setText(null);
                 twPreference.putInt("value", 0);
+
+
 
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
@@ -147,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onChaikClicked() {
+                search_edit.setText(null);
                 twPreference.putInt("value", 1);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
@@ -154,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onTermChaikClicked() {
+                search_edit.setText(null);
                 twPreference.putInt("value", 2);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
@@ -161,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onAreaClicked() {
+                search_edit.setText(null);
                 twPreference.putInt("value", 3);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
@@ -168,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onDateClicked() {
+                search_edit.setText(null);
                 twPreference.putInt("value", 4);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
@@ -214,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         list_setup_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Collections.sort(itemArrayList);
+
                 cd.show();
 
             }
