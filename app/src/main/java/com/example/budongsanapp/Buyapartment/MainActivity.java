@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.AsyncTask;
@@ -32,6 +33,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
 import com.example.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
 import com.example.budongsanapp.CustomDialogClickListener;
+import com.example.budongsanapp.MarketVersionChecker;
 import com.example.budongsanapp.R;
 import com.example.budongsanapp.TWPreference;
 import com.example.budongsanapp.Util;
@@ -116,6 +118,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int key=0;
     RelativeLayout bottomsheet;
     SwipeRefreshLayout swipeRefreshLayout;
+    String store_version;
+    String device_version;
 
 
     RvAdapter adapter;
@@ -133,6 +137,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+////////////////////////////////////////////////////////////////////////////////////
+//        store_version = MarketVersionChecker.getMarketVersion(getPackageName());
+//
+//        try {
+//             device_version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//
+//        if (store_version.compareTo(device_version) > 0) {
+//            // 업데이트 필요
+//
+//        } else {
+//            // 업데이트 불필요
+//
+//        }
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
         cd = new SortDialog(MainActivity.this, new CustomDialogClickListener() {
             @Override
