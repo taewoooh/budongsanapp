@@ -3,6 +3,9 @@ package com.example.budongsanapp.Buyapartment;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.budongsanapp.R;
+import com.example.budongsanapp.TWPreference;
 import com.example.budongsanapp.Util;
 
 import java.util.ArrayList;
@@ -61,6 +65,8 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
         CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;
     }
+
+
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
@@ -148,6 +154,9 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
 
 
+
+
+
         holder.Name.setText(items.get(safePosition).getName()); //단지이름
         holder.Area.setText(items.get(safePosition).getArea()); //면적
         holder.Bupjungdong.setText(items.get(safePosition).getBupjungdong()); // 주소
@@ -163,7 +172,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
             holder.high2.setText(items.get(safePosition).getHighhigh()+"층");
 
-     
+
 
 
         holder.chongsedaesu.setText(items.get(safePosition).getChongsedaesu()); // 총세대수
@@ -267,9 +276,18 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
         charText = charText.toLowerCase(Locale.getDefault());
         items.clear();
-        if (charText.length() == 0) {
-            items.addAll(arrayList);
-        } else {
+
+
+         if (charText.length() == 0) {
+             TWPreference twPreference = new TWPreference(context);
+
+             if (twPreference.getInt("refresh",0) ==1){
+
+             }else {
+                 items.addAll(arrayList);
+             }
+
+        } else{
             for (ListViewItem news : arrayList) {
                 if (news.getName().toLowerCase(Locale.getDefault()).contains(charText) //타이틀 or 주소 검색 가능
                         || news.getBupjungdong().toLowerCase(Locale.getDefault()).contains(charText) ||

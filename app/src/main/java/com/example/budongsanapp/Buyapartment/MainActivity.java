@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,9 +33,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
-import com.example.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
 import com.example.budongsanapp.CustomDialogClickListener;
-import com.example.budongsanapp.MarketVersionChecker;
 import com.example.budongsanapp.R;
 import com.example.budongsanapp.TWPreference;
 import com.example.budongsanapp.Util;
@@ -101,7 +101,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView ilbyeoldata_imageview;
     int total_singocount = 0;
     int seoul_singocount = 0;
-
+    int versionCode;
+    String versionName;
+    int m_versioncode;
+    String m_versionname;
+    String m_dialogtext;
+    String m_url;
     int _singocount = 0;
 
     ImageView list_setup_imageview;
@@ -115,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     BottomSheetDialog bottomSheetDialog;
     int i_price = 0;
     int i_highprice = 0;
-    int key=0;
+    int key = 0;
     RelativeLayout bottomsheet;
     SwipeRefreshLayout swipeRefreshLayout;
     String store_version;
@@ -129,54 +134,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Context context;
 
 
-
-
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-////////////////////////////////////////////////////////////////////////////////////
-//        store_version = MarketVersionChecker.getMarketVersion(getPackageName());
-//
-//        try {
-//             device_version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-//        } catch (PackageManager.NameNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//
-//        if (store_version.compareTo(device_version) > 0) {
-//            // 업데이트 필요
-//
-//        } else {
-//            // 업데이트 불필요
-//
-//        }
 
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        Device();
+        Maket("");
 
         cd = new SortDialog(MainActivity.this, new CustomDialogClickListener() {
             @Override
             public void onPriceClicked() {
 
-                if(key != 1) {
-    search_edit.setText(null);
+                if (twPreference.getInt("refresh", 0) == 1) {
+                    search_edit.setText(null);
+                    twPreference.putInt("refresh", 0);
 
-}
-                twPreference.putInt("value", 0);
+                    twPreference.putInt("value", 0);
+
+
+                    Collections.sort(itemArrayList);
+                    DataView(); //데이터 화면에 뿌리기
+
+                }else {
+
+                    search_edit.setText(null);
+                    twPreference.putInt("value", 0);
+
+
+                    Collections.sort(itemArrayList);
+                    DataView(); //데이터 화면에 뿌리기
+
+
+                }
 
 
 
-                Collections.sort(itemArrayList);
-                DataView(); //데이터 화면에 뿌리기
 
-                key = 0;
+
             }
 
             @Override
@@ -419,8 +416,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onRefresh() {
 
+
         daylist.clear();
-           itemArrayList.clear();
+        itemArrayList.clear();
 //        cd2 = new SortDialog(MainActivity.this);
 //        String text = search_edit.getText().toString();
 //        twPreference.putInt("value", 0);
@@ -429,17 +427,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            itemArrayList.clear();
 //
 //
-            try {
+        try {
 
-                twPreference.putInt("value", 0);
-                //search_edit.setText("");
-                new ilbyeolUi_AsyncTask().execute(ilbyeol_url);
+            twPreference.putInt("value", 0);
+            //search_edit.setText("");
+            new ilbyeolUi_AsyncTask().execute(ilbyeol_url);
 
 
-            } catch (Exception e) {
+        } catch (Exception e) {
 
-                swipeRefreshLayout.setRefreshing(false);
-            }
+            swipeRefreshLayout.setRefreshing(false);
+        }
 //
 //        } else if (!text.equals("")) {
 //
@@ -452,7 +450,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            swipeRefreshLayout.setRefreshing(false);
 //        }
 
-        key= 1;
+        twPreference.putInt("refresh", 1);
+
+        key = 1;
         cd.show();
         cd.j_price.performClick();
 
@@ -841,7 +841,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
     public void Tongsin(String tablecode) { // 서버 데이터를 가지고 온다 파라미터는 불러올 테이블 이름
 
 
@@ -1045,6 +1044,101 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         swipeRefreshLayout.setRefreshing(false);
 
+    }
+
+
+    public void Maket(String tablecode) { // 서버 데이터를 가지고 온다 파라미터는 불러올 테이블 이름
+
+
+        init();
+        Version gitHub = retrofit.create(Version.class);
+        Call<List<Versionitem>> call = gitHub.contributors(tablecode);
+        call.enqueue(new Callback<List<Versionitem>>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            // 성공시
+            public void onResponse(Call<List<Versionitem>> call, Response<List<Versionitem>> response) {
+                List<Versionitem> contributors = response.body();
+                // 받아온 리스트를 순회하면서
+                //Log.e("Test8888", response.body().toString());
+
+                for (Versionitem contributor : contributors) {
+
+                    m_versioncode = contributor.versioncode;
+                    m_versionname = contributor.versionname;
+                    m_dialogtext = contributor.dialogtext;
+                    m_url = contributor.url;
+
+
+                    //Log.e("마켓 버전체크", "" + m_versioncode + " / " + m_versionname + " / " + m_dialogtext + " / " + m_url);
+
+
+                }
+
+                if (versionCode != m_versioncode) {
+
+                    ShowDialog();
+                    Log.e("업데이트 필요", "" + "디바이스 버전 : " + versionCode + " / " + "마켓 버전 : " + m_versioncode);
+
+
+                } else {
+
+                    Log.e("업데이트 불필요", "" + "디바이스 버전 : " + versionCode + " / " + "마켓 버전 : " + m_versioncode);
+                }
+
+
+            }
+
+            @Override
+            // 실패시
+            public void onFailure(Call<List<Versionitem>> call, Throwable t) {
+
+                Log.d("deberg", "------->" + t.toString());
+                Toast.makeText(MainActivity.this, "정보받아오기 실패", Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+
+
+    }
+
+
+    public void Device() {
+
+
+        PackageInfo pi = null;
+
+        try {
+            pi = getPackageManager().getPackageInfo(getPackageName(), 0);
+
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+
+        }
+
+
+        versionCode = pi.versionCode;
+        versionName = pi.versionName;
+
+        //Log.e("단말기 버전체크", "" + versionCode + " / " + versionName);
+
+
+    }
+
+    private void ShowDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("알림");
+        alertDialogBuilder.setMessage(m_dialogtext);
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setPositiveButton("업데이트", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(m_url));
+                startActivity(intent);
+                dialog.cancel();
+            }
+        });
+        alertDialogBuilder.show();
     }
 
 }
