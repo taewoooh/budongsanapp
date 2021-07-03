@@ -39,7 +39,6 @@
                 android:background="@android:color/white"
                 android:hint="검색"
                 android:imeOptions="actionSend"
-                android:inputType="text"
                 android:src="@drawable/search"
                 android:textColorHint="#E0E0E0"
                 android:textCursorDrawable="@color/cardview_dark_background"
@@ -245,7 +244,6 @@
                     android:id="@+id/ooo2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/bup"
                     android:text=" > "
                     android:textSize="10dp" />
 
