@@ -781,12 +781,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-                       if (search_edit.getText().length() > 0){
+
 
                            search_edit.setText(null);
 
 
-                       }
+
 
 
 
