@@ -1,4 +1,4 @@
-package com.example.budongsanapp.Chartapartment.Apartname;
+package com.taewoooh.budongsanapp.Chartapartment.Apartname;
 
 import java.util.List;
 

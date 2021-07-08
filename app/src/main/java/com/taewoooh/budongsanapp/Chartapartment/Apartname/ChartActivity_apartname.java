@@ -1,11 +1,4 @@
-package com.example.budongsanapp.Chartapartment.Bupjungdong;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.taewoooh.budongsanapp.Chartapartment.Apartname;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -19,10 +12,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.budongsanapp.R;
-import com.example.budongsanapp.TWPreference;
-import com.example.budongsanapp.Util;
+import com.taewoooh.budongsanapp.R;
+import com.taewoooh.budongsanapp.TWPreference;
+import com.taewoooh.budongsanapp.Util;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
@@ -36,13 +35,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ChartActivity_bup extends AppCompatActivity implements View.OnClickListener {
+public class ChartActivity_apartname extends AppCompatActivity implements View.OnClickListener {
 
     CardView day_cardview;
     CardView day_cardview2;
     TextView cardview_button;
     TextView cardview_button2;
     private Retrofit retrofit;
+    TextView apartname;
 
 
     private final String BASE_URL = "https://taewoooh88.cafe24.com/";
@@ -83,6 +83,9 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
     TextView singogagunsu;
     TextView inflation;
     TextView today;
+    TextView aphartname;
+
+
 
 
     RelativeLayout main_layout;
@@ -93,17 +96,18 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
     RelativeLayout bottomsheet;
 
-    private static ArrayList<ListViewItem2> itemArrayList;
-    RvAdapter2 adapter;
+    private static ArrayList<ListViewItem3> itemArrayList;
+    RvAdapter3 adapter;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chart_bup);
+        setContentView(R.layout.activity_chart_main);
         findview();
         ContentsStory();
+
 
 
         twPreference = new TWPreference(this);
@@ -111,7 +115,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
         twPreference.putInt("value1", 0);
 
 
-        Tongsin("bupjungdong_nonstop");
+        Tongsin("name_nonstop");
         llm = new LinearLayoutManager(this);
 
         delete_textimageview.setOnClickListener(this);
@@ -119,7 +123,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
         day_cardview2.setOnClickListener(this);
         b1.setOnClickListener(this);
 
-        itemArrayList = new ArrayList<>();
+        itemArrayList = new ArrayList<ListViewItem3>();
         search_edit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -197,6 +201,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
                     contents.setText("거래건수");
 
 
+
                 } else {  //홀수
 
                     list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
@@ -214,9 +219,10 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void ContentsStory() {
+    public void ContentsStory(){
         today.setText(new Util().Getday2()); // 이번달 표시
-        bup.setText("법정동");
+        bup.setText("아파트명");
+
 
     }
 
@@ -259,34 +265,36 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
 
         init();
-        GitHub2 gitHub = retrofit.create(GitHub2.class);
-        Call<List<ListViewItem2>> call = gitHub.contributors(tablecode);
-        call.enqueue(new Callback<List<ListViewItem2>>() {
+        GitHub3 gitHub = retrofit.create(GitHub3.class);
+        Call<List<ListViewItem3>> call = gitHub.contributors(tablecode);
+        call.enqueue(new Callback<List<ListViewItem3>>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             // 성공시
-            public void onResponse(Call<List<ListViewItem2>> call, Response<List<ListViewItem2>> response) {
-                List<ListViewItem2> contributors = response.body();
+            public void onResponse(Call<List<ListViewItem3>> call, Response<List<ListViewItem3>> response) {
+                List<ListViewItem3> contributors = response.body();
                 // 받아온 리스트를 순회하면서
                 //Log.e("Test8888", response.body().toString());
 
-                for (ListViewItem2 contributor : contributors) {
+                for (ListViewItem3 contributor : contributors) {
 
-
+                    String name = contributor.name;
                     String bupjungdong = contributor.bupjungdong;
                     int totalgunsu = contributor.totalgunsu;
                     int singogunsu = contributor.singogunsu;
                     int inflation = contributor.inflation;
 
 
-                    Log.e("TW", "" + bupjungdong + " / " + totalgunsu + " / " + singogunsu + " / " + inflation);
 
-                    itemArrayList.add(new ListViewItem2(bupjungdong, totalgunsu, singogunsu, inflation));
+
+                    Log.e("TW", ""+ name+" / "+ bupjungdong + " / " + totalgunsu + " / " + singogunsu+ " / " +inflation);
+
+                    itemArrayList.add(new ListViewItem3(name, bupjungdong, totalgunsu, singogunsu, inflation));
                     Collections.sort(itemArrayList);
                     try {
                         DataView();
                     } catch (Exception e) {
-                        //데이터 화면에 뿌리기
+                       //데이터 화면에 뿌리기
 
 
                     }
@@ -299,10 +307,10 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
             @Override
             // 실패시
-            public void onFailure(Call<List<ListViewItem2>> call, Throwable t) {
+            public void onFailure(Call<List<ListViewItem3>> call, Throwable t) {
 
-                Log.d("deberg", "------->" + t.toString());
-                Toast.makeText(ChartActivity_bup.this, "정보받아오기 실패", Toast.LENGTH_LONG)
+                Log.d("deberg","------->"+t.toString());
+                Toast.makeText(ChartActivity_apartname.this, "정보받아오기 실패", Toast.LENGTH_LONG)
                         .show();
             }
         });
@@ -322,14 +330,13 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void
-    DataView() {  // itemArraylist 에 담김 데이터를 화면에 뿌려준다
+    public void DataView() {  // itemArraylist 에 담김 데이터를 화면에 뿌려준다
 
 
         Collections.sort(itemArrayList);
 
 
-        adapter = new RvAdapter2(itemArrayList, ChartActivity_bup.this);
+        adapter = new RvAdapter3(itemArrayList, ChartActivity_apartname.this);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(llm);
         rv.setItemAnimator(new DefaultItemAnimator());
@@ -348,8 +355,9 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
             cycleimageview.setVisibility(View.INVISIBLE);
 
 
-        }
 
+        }
+        
     }
 
     public void findview() {
@@ -358,24 +366,31 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
         cardview_button = (TextView) findViewById(R.id.cardview_button);
         cardview_button2 = (TextView) findViewById(R.id.cardview_button);
         rv = (RecyclerView) findViewById(R.id.main_rv);//
-       // day_textview = (TextView) findViewById(R.id.day_textview);
+        //day_textview = (TextView) findViewById(R.id.day_textview);
 
         search_edit = (EditText) findViewById(R.id.search_edit);
         delete_textimageview = (ImageView) findViewById(R.id.delete_textImageview);
        // singogun = (TextView) findViewById(R.id.singogun);
-       // jisu = (TextView) findViewById(R.id.jisu);
+        //jisu = (TextView) findViewById(R.id.jisu);
         // cv = (CardView) findViewById(R.id.cv);//
         list_setup_imageview = (ImageView) findViewById(R.id.list_setup);
         //ilbyeoldata_imageview = (ImageView) findViewById(R.id.ilbyeoldata); //
         // main_layout = (RelativeLayout) findViewById(R.id.main_layout); //
         cycleimageview = (ImageView) findViewById(R.id.cycleimageview);
         b1 = (CardView) findViewById(R.id.b1);
-        contents = (TextView) findViewById(R.id.contents);
-        bup = (TextView) findViewById(R.id.bup);
-        singogagunsu = (TextView) findViewById(R.id.singogunsu);
-        inflation = (TextView) findViewById(R.id.inflation);
-        totalgunsu = (TextView) findViewById(R.id.totalgunsu);
-        today = (TextView) findViewById(R.id.today);
+        contents=(TextView)findViewById(R.id.contents);
+        bup=(TextView) findViewById(R.id.bup);
+        singogagunsu=(TextView) findViewById(R.id.singogunsu);
+        inflation=(TextView) findViewById(R.id.inflation);
+        totalgunsu=(TextView) findViewById(R.id.totalgunsu);
+        today =(TextView) findViewById(R.id.today);
+       aphartname = (TextView) findViewById(R.id.aphartname);
+
+
+
+
+
+
 
 
     }
@@ -405,7 +420,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
                 break;
 
-            case R.id.delete_textImageview:
+            case R.id.delete_textImageview :
 
                 search_edit.setText(null);
 

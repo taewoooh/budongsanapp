@@ -1,4 +1,4 @@
-package com.example.budongsanapp.Buyapartment;
+package com.taewoooh.budongsanapp.Buyapartment;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -32,11 +33,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
-import com.example.budongsanapp.CustomDialogClickListener;
-import com.example.budongsanapp.R;
-import com.example.budongsanapp.TWPreference;
-import com.example.budongsanapp.Util;
+import com.taewoooh.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
+import com.taewoooh.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
+import com.taewoooh.budongsanapp.CustomDialogClickListener;
+import com.taewoooh.budongsanapp.R;
+import com.taewoooh.budongsanapp.TWPreference;
+import com.taewoooh.budongsanapp.Util;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.BufferedReader;
@@ -158,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Collections.sort(itemArrayList);
                     DataView(); //데이터 화면에 뿌리기
 
-                }else {
+                } else {
 
                     search_edit.setText(null);
                     twPreference.putInt("value", 0);
@@ -169,9 +171,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 }
-
-
-
 
 
             }
@@ -723,8 +722,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //Tongsin();
                 // itemArrayList.clear();
 
-                // Intent intent = new Intent(this, ChartActivity_bup.class);
-                Intent intent = new Intent(this, ChartActivity_apartname.class);
+                Intent intent = new Intent(this, ChartActivity_bup.class);
+                //Intent intent = new Intent(this, ChartActivity_apartname.class);
                 startActivity(intent);
                 break;
             case R.id.delete_textImageview:
@@ -775,6 +774,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+
+                        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(search_edit.getWindowToken(),0);
+
+
+
+                       if (search_edit.getText().length() > 0){
+
+                           search_edit.setText(null);
+
+
+                       }
+
+
+
+
+
+
+
+                        Log.e("c 테스트1", "" + twPreference.getInt("c", 0));
 
                         rv.getRecycledViewPool().clear();
                         adapter.notifyDataSetChanged();
@@ -843,6 +863,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void Tongsin(String tablecode) { // 서버 데이터를 가지고 온다 파라미터는 불러올 테이블 이름
 
+//        twPreference.putInt("refresh", 1);
+//
+//
+//        int i = twPreference.getInt("refresh", 0);
+//
+//        if (i == 1) {
+//
+//            search_edit.setText(null);
+//
+//            twPreference.putInt("refresh", 0);
+//        }
 
         init();
         GitHub gitHub = retrofit.create(GitHub.class);
@@ -984,6 +1015,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 gyeungi_c.setText(String.valueOf(gyeungi_count));
                 gyeungi_singoga.setText(String.valueOf(gyeungi_singocount));
                 gyeungi_singogayul.setText(String.format("%.0f", gyeungi_v));
+
 
             }
 

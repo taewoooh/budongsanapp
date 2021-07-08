@@ -1,25 +1,18 @@
-package com.example.budongsanapp.Buyapartment;
+package com.taewoooh.budongsanapp.Buyapartment;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import com.example.budongsanapp.CustomDialogClickListener;
-import com.example.budongsanapp.R;
+import com.taewoooh.budongsanapp.CustomDialogClickListener;
+import com.taewoooh.budongsanapp.R;
 
 import static com.google.android.material.color.MaterialColors.getColor;
 

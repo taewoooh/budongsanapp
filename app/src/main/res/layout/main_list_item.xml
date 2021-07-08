@@ -291,7 +291,6 @@
                             android:layout_below="@+id/g2"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/gun"
                             android:textColor="@android:color/black"
                             android:textSize="10dp" />
 
@@ -318,7 +317,6 @@
                             android:layout_below="@+id/g3"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/gun"
                             android:text="6"
                             android:textColor="@android:color/black"
                             android:textSize="10dp" />
@@ -346,7 +344,6 @@
                             android:layout_below="@+id/g4"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/gun"
                             android:text=" - "
                             android:textColor="@android:color/black"
                             android:textSize="10dp" />
@@ -374,7 +371,6 @@
                             android:layout_below="@+id/g5"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/gun"
                             android:text=" - "
                             android:textColor="@android:color/black"
                             android:textSize="10dp" />
@@ -403,7 +399,6 @@
                             android:layout_below="@+id/g6"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/gun"
                             android:gravity="center"
                             android:text=" - "
                             android:textColor="@android:color/black"

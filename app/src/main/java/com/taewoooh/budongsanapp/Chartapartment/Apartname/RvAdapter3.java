@@ -1,4 +1,4 @@
-package com.example.budongsanapp.Chartapartment.Apartname;
+package com.taewoooh.budongsanapp.Chartapartment.Apartname;
 
 
 import android.content.Context;
@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.budongsanapp.R;
-import com.example.budongsanapp.TWPreference;
+import com.taewoooh.budongsanapp.R;
+import com.taewoooh.budongsanapp.TWPreference;
 
 import java.util.ArrayList;
 import java.util.Locale;

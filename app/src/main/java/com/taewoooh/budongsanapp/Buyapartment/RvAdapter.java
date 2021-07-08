@@ -1,11 +1,8 @@
-package com.example.budongsanapp.Buyapartment;
+package com.taewoooh.budongsanapp.Buyapartment;
 
 
 import android.content.Context;
 import android.graphics.Color;
-import android.text.Spannable;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +12,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.budongsanapp.R;
-import com.example.budongsanapp.TWPreference;
-import com.example.budongsanapp.Util;
+import com.taewoooh.budongsanapp.R;
+import com.taewoooh.budongsanapp.TWPreference;
+import com.taewoooh.budongsanapp.Util;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -280,8 +277,10 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
          if (charText.length() == 0) {
              TWPreference twPreference = new TWPreference(context);
-
-             if (twPreference.getInt("refresh",0) ==1){
+//             if (twPreference.getInt("c",0) ==1){
+//
+//             }
+             if(twPreference.getInt("refresh",0) ==1){
 
              }else {
                  items.addAll(arrayList);

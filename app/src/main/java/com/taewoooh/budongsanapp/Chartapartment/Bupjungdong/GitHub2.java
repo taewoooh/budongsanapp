@@ -1,4 +1,4 @@
-package com.example.budongsanapp.Chartapartment.Bupjungdong;
+package com.taewoooh.budongsanapp.Chartapartment.Bupjungdong;
 
 import java.util.List;
 

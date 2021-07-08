@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.budongsanapp">
+    package="com.taewoooh.budongsanapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,11 +10,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Chartapartment.Bupjungdong.ChartActivity_bup"></activity>
-        <activity android:name=".Chartapartment.Apartname.ChartActivity_apartname"></activity>
+        <activity android:name="com.taewoooh.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup"></activity>
+        <activity android:name="com.taewoooh.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname"></activity>
         <activity
 
-            android:name=".Buyapartment.MainActivity"
+            android:name="com.taewoooh.budongsanapp.Buyapartment.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>

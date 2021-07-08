@@ -1,4 +1,4 @@
-package com.example.budongsanapp.Buyapartment;
+package com.taewoooh.budongsanapp.Buyapartment;
 
 
 import com.google.gson.annotations.Expose;

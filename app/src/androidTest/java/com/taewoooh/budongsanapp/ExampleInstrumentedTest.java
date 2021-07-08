@@ -1,4 +1,4 @@
-package com.example.budongsanapp;
+package com.taewoooh.budongsanapp;
 
 import android.content.Context;
 

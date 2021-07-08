@@ -1,6 +1,6 @@
-package com.example.budongsanapp.Chartapartment.Bupjungdong;
+package com.taewoooh.budongsanapp.Chartapartment.Bupjungdong;
 
-import com.example.budongsanapp.TWPreference;
+import com.taewoooh.budongsanapp.TWPreference;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

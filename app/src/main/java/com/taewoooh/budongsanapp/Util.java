@@ -1,16 +1,13 @@
-package com.example.budongsanapp;
+package com.taewoooh.budongsanapp;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
-import android.media.audiofx.LoudnessEnhancer;
 import android.os.Build;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -21,7 +18,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by taewoo on 2020-02-18.

@@ -1,13 +1,8 @@
-package com.example.budongsanapp.Buyapartment;
+package com.taewoooh.budongsanapp.Buyapartment;
 
-import android.util.Log;
-
-import com.example.budongsanapp.R;
-import com.example.budongsanapp.TWPreference;
+import com.taewoooh.budongsanapp.TWPreference;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.Collections;
 
 
 /**
