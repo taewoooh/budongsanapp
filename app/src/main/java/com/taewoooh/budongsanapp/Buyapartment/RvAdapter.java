@@ -277,10 +277,9 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
          if (charText.length() == 0) {
              TWPreference twPreference = new TWPreference(context);
-//             if (twPreference.getInt("c",0) ==1){
-//
-//             }
-             if(twPreference.getInt("refresh",0) ==1){
+             if (twPreference.getInt("c",0) ==1){
+
+             } else if(twPreference.getInt("refresh",0) ==1){
 
              }else {
                  items.addAll(arrayList);

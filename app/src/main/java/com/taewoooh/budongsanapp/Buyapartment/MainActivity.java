@@ -776,19 +776,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onClick(DialogInterface dialog, int which) {
 
 
+                        twPreference.putInt("c",1);
+
+
                         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(search_edit.getWindowToken(),0);
-
-
-
-
-
-                           search_edit.setText(null);
-
-
-
-
-
 
 
 
@@ -798,6 +790,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         rv.getRecycledViewPool().clear();
                         adapter.notifyDataSetChanged();
+
+
 
                         total_singocount = 0;
 
@@ -810,12 +804,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         Tongsin(tablecode);
                         itemArrayList.clear();
+                        if (search_edit.getText().toString().length() > 0 && twPreference.getInt("c",0)==1) {
 
+
+                            search_edit.setText(null);
+                            twPreference.putInt("c",0);
+                        }
 
                     }
                 })
                 .setCancelable(true)
                 .show();
+
 
 
     }
@@ -1037,6 +1037,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         Collections.sort(itemArrayList);
+
+
+
+
 
 
         Log.e("오태우", " / " + twPreference.getInt("value", 0));
