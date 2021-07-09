@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE); //키보드 내리기 초기화
 
         Device();
-        Maket("");
+
 
         cd = new SortDialog(MainActivity.this, new CustomDialogClickListener() {
             @Override
@@ -394,12 +394,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
     }
 
-//    @Override
-//    protected void onStart() {
-//        Toast.makeText(getApplicationContext(),"onStart() Call.",Toast.LENGTH_LONG).show();
-////
-//        super.onStart();
-//    }
+    @Override
+    protected void onStart() {
+
+
+        super.onStart();
+
+        Maket("");
+    }
 
 
     @Override
@@ -718,8 +720,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //Tongsin();
                 // itemArrayList.clear();
 
-                Intent intent = new Intent(this, ChartActivity_bup.class);
-                //Intent intent = new Intent(this, ChartActivity_apartname.class);
+                //Intent intent = new Intent(this, ChartActivity_bup.class);
+                Intent intent = new Intent(this, ChartActivity_apartname.class);
                 startActivity(intent);
                 break;
             case R.id.delete_textImageview:
