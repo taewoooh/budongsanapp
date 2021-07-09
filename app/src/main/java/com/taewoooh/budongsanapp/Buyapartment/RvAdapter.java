@@ -66,12 +66,11 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
     }
 
 
-
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
         int safePosition = holder.getAdapterPosition();
-        int count = safePosition+1;
+        int count = safePosition + 1;
         try {
 
             holder.price.setTextColor(Color.parseColor("#000000")); // 기본색
@@ -81,7 +80,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
             holder.name.setTextColor(Color.parseColor("#000000")); // 검정색
             holder.pyeungsu.setText("");
 
-            holder.number.setText(String.valueOf(count)+"위"); //신고가율
+            holder.number.setText(String.valueOf(count) + "위"); //신고가율
 
 
 //            a = Integer.parseInt(items.get().getPrice().replaceAll(",", "").replaceAll("\\p{Z}", ""));
@@ -110,7 +109,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
                     Log.e("오하늘", "" + items.get(safePosition).getName() + " / " + c);
                     holder.crown.setVisibility(View.VISIBLE);
 
-                }else {
+                } else {
 
 
                     holder.crown.setVisibility(View.INVISIBLE);
@@ -151,44 +150,61 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
         String gun = items.get(safePosition).getGunpaeyul();
 
 
-
-
-
-
-
         holder.Name.setText(items.get(safePosition).getName()); //단지이름
-
-
-
-               String s =  items.get(safePosition).getName();
-
-       String name = s.toLowerCase(Locale.getDefault());
-
-try {
-    if (searchString.length()==0) {
-        Log.e("searchString","");
-
-    }else if (name.contains(searchString)) {
-
-        int startPos = name.indexOf(searchString);
-        int endPos = startPos + searchString.length();
-
-        Spannable spanString = Spannable.Factory.getInstance().newSpannable(holder.Name.getText());
-        spanString.setSpan(new BackgroundColorSpan(0xFFFFFF00), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        holder.Name.setText(spanString);
-
-    }
-
-
-}catch (Exception e){
-
-
-}
-
-
-
         holder.Area.setText(items.get(safePosition).getArea()); //면적
         holder.Bupjungdong.setText(items.get(safePosition).getBupjungdong()); // 주소
+
+
+        String n = items.get(safePosition).getName();
+        String name = n.toLowerCase(Locale.getDefault());
+
+        String a= items.get(safePosition).getArea();
+        String area = a.toLowerCase(Locale.getDefault());
+
+        String b= items.get(safePosition).getBupjungdong();
+        String bup = b.toLowerCase(Locale.getDefault());
+
+        try {
+            if (searchString.length() == 0) {
+                Log.e("searchString", "");
+
+            } else if (name.contains(searchString)) {
+
+                int startPos = name.indexOf(searchString);
+                int endPos = startPos + searchString.length();
+
+                Spannable spanString = Spannable.Factory.getInstance().newSpannable(holder.Name.getText());
+                spanString.setSpan(new BackgroundColorSpan(0xFFFFFF00), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                holder.Name.setText(spanString);
+
+            }else if (area.contains(searchString)) {
+
+                int startPos = area.indexOf(searchString);
+                int endPos = startPos + searchString.length();
+
+                Spannable spanString = Spannable.Factory.getInstance().newSpannable(holder.Area.getText());
+                spanString.setSpan(new BackgroundColorSpan(0xFFFFFF00), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                holder.Area.setText(spanString);
+
+            }else if (bup.contains(searchString)) {
+
+                int startPos = bup.indexOf(searchString);
+                int endPos = startPos + searchString.length();
+
+                Spannable spanString = Spannable.Factory.getInstance().newSpannable(holder.Bupjungdong.getText());
+                spanString.setSpan(new BackgroundColorSpan(0xFFFFFF00), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                holder.Bupjungdong.setText(spanString);
+
+            }
+
+
+        } catch (Exception e) {
+
+
+        }
+
+
+
         holder.ymd.setText(items.get(safePosition).getYmd()); //계약일
         holder.high.setText(String.valueOf(items.get(safePosition).getHigh())); // 층수
         //holder.Areac.setText(items.get(safePosition).getAreac()); // 평형
@@ -198,10 +214,7 @@ try {
         holder.previ_pricenumber.setText(price_o); // 최고가
 
 
-
-        holder.high2.setText(items.get(safePosition).getHighhigh()+"층");
-
-
+        holder.high2.setText(items.get(safePosition).getHighhigh() + "층");
 
 
         holder.chongsedaesu.setText(items.get(safePosition).getChongsedaesu()); // 총세대수
@@ -311,15 +324,15 @@ try {
 
         if (charText.length() == 0) {
             TWPreference twPreference = new TWPreference(context);
-            if (twPreference.getInt("c",0) ==1){
+            if (twPreference.getInt("c", 0) == 1) {
 
-            } else if(twPreference.getInt("refresh",0) ==1){
+            } else if (twPreference.getInt("refresh", 0) == 1) {
 
-            }else {
+            } else {
                 items.addAll(arrayList);
             }
 
-        } else{
+        } else {
             for (ListViewItem news : arrayList) {
                 if (news.getName().toLowerCase(Locale.getDefault()).contains(charText) //타이틀 or 주소 검색 가능
                         || news.getBupjungdong().toLowerCase(Locale.getDefault()).contains(charText) ||
@@ -352,7 +365,6 @@ try {
         TextView high2;
 
 
-
         TextView chongsedaesu;
         TextView pyungeunjucha;
         TextView jihachul;
@@ -372,7 +384,7 @@ try {
 
 
             // title = itemView.findViewById(R.id.item_tv_title);
-            high2=itemView.findViewById(R.id.high2);
+            high2 = itemView.findViewById(R.id.high2);
             yongjeukryul = itemView.findViewById(R.id.yongjeukryul);
             gunpaeyul = itemView.findViewById(R.id.gunpaeyul);
             previ_pricenumber = itemView.findViewById(R.id.Previ_pricenumber);
@@ -391,7 +403,7 @@ try {
             jihachul = itemView.findViewById(R.id.jihachul);
             pyeungsu = itemView.findViewById(R.id.pyeungsu);
             crown = itemView.findViewById(R.id.crown);
-            number=itemView.findViewById(R.id.number);
+            number = itemView.findViewById(R.id.number);
             name = itemView.findViewById(R.id.Name);
 
 
