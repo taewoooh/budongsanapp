@@ -3,6 +3,8 @@ package com.taewoooh.budongsanapp.Buyapartment;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.Spannable;
+import android.text.style.BackgroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +42,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
     private ArrayList<ListViewItem> arrayList;
 
     Context context;
-
+    String searchString;
     int a;
     int b;
     int c;
@@ -155,6 +157,36 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
 
         holder.Name.setText(items.get(safePosition).getName()); //단지이름
+
+
+
+               String s =  items.get(safePosition).getName();
+
+       String name = s.toLowerCase(Locale.getDefault());
+
+try {
+    if (searchString.length()==0) {
+        Log.e("searchString","");
+
+    }else if (name.contains(searchString)) {
+
+        int startPos = name.indexOf(searchString);
+        int endPos = startPos + searchString.length();
+
+        Spannable spanString = Spannable.Factory.getInstance().newSpannable(holder.Name.getText());
+        spanString.setSpan(new BackgroundColorSpan(0xFFFFFF00), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        holder.Name.setText(spanString);
+
+    }
+
+
+}catch (Exception e){
+
+
+}
+
+
+
         holder.Area.setText(items.get(safePosition).getArea()); //면적
         holder.Bupjungdong.setText(items.get(safePosition).getBupjungdong()); // 주소
         holder.ymd.setText(items.get(safePosition).getYmd()); //계약일
@@ -167,7 +199,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
 
 
-            holder.high2.setText(items.get(safePosition).getHighhigh()+"층");
+        holder.high2.setText(items.get(safePosition).getHighhigh()+"층");
 
 
 
@@ -271,19 +303,21 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
     public void filter(String charText) { // 리사이클러뷰 검색
 
+        searchString = charText;
+
         charText = charText.toLowerCase(Locale.getDefault());
         items.clear();
 
 
-         if (charText.length() == 0) {
-             TWPreference twPreference = new TWPreference(context);
-             if (twPreference.getInt("c",0) ==1){
+        if (charText.length() == 0) {
+            TWPreference twPreference = new TWPreference(context);
+            if (twPreference.getInt("c",0) ==1){
 
-             } else if(twPreference.getInt("refresh",0) ==1){
+            } else if(twPreference.getInt("refresh",0) ==1){
 
-             }else {
-                 items.addAll(arrayList);
-             }
+            }else {
+                items.addAll(arrayList);
+            }
 
         } else{
             for (ListViewItem news : arrayList) {
