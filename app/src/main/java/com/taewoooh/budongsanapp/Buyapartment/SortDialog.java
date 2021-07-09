@@ -61,20 +61,20 @@ public class SortDialog extends Dialog implements View.OnClickListener {
 
         j_price = (TextView) findViewById(R.id.j_price);
         j_chaik = (TextView) findViewById(R.id.j_chaik);
-        j_termchaik = (TextView) findViewById(R.id.j_termchaik);
+
         j_area = (TextView) findViewById(R.id.j_area);
         j_date = (TextView) findViewById(R.id.j_date);
 
         j_price.setOnClickListener(this::onClick);
         j_chaik.setOnClickListener(this::onClick);
-        j_termchaik.setOnClickListener(this::onClick);
+
         j_area.setOnClickListener(this::onClick);
         j_date.setOnClickListener(this::onClick);
 
 
         j_price_v = (ImageView) findViewById(R.id.j_price_v);
         j_chaik_v = (ImageView) findViewById(R.id.j_chaik_v);
-        j_termchaik_v = (ImageView) findViewById(R.id.j_termchaik_v);
+
         j_area_v = (ImageView) findViewById(R.id.j_area_v);
         j_date_v = (ImageView) findViewById(R.id.j_date_v);
     }
@@ -95,8 +95,7 @@ public class SortDialog extends Dialog implements View.OnClickListener {
                 j_chaik_v.setVisibility(View.INVISIBLE);
 
 
-                j_termchaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
-                j_termchaik_v.setVisibility(View.INVISIBLE);
+
 
                 j_area.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_area_v.setVisibility(View.INVISIBLE);
@@ -120,30 +119,8 @@ public class SortDialog extends Dialog implements View.OnClickListener {
                 j_price_v.setVisibility(View.INVISIBLE);
 
 
-                j_termchaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
-                j_termchaik_v.setVisibility(View.INVISIBLE);
 
 
-                j_area.setTextColor(getContext().getColor(R.color.Off_Tcolor));
-                j_area_v.setVisibility(View.INVISIBLE);
-
-                j_date.setTextColor(getContext().getColor(R.color.Off_Tcolor));
-                j_date_v.setVisibility(View.INVISIBLE);
-
-                dismiss();
-                break;
-            case R.id.j_termchaik:
-
-                this.customDialogClickListener.onTermChaikClicked();
-
-                j_termchaik.setTextColor(getContext().getColor(R.color.On_Tcolor));
-                j_termchaik_v.setVisibility(View.VISIBLE);
-
-                j_chaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
-                j_chaik_v.setVisibility(View.INVISIBLE);
-
-                j_price.setTextColor(getContext().getColor(R.color.Off_Tcolor));
-                j_price_v.setVisibility(View.INVISIBLE);
 
                 j_area.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_area_v.setVisibility(View.INVISIBLE);
@@ -161,8 +138,7 @@ public class SortDialog extends Dialog implements View.OnClickListener {
                 j_area.setTextColor(getContext().getColor(R.color.On_Tcolor));
                 j_area_v.setVisibility(View.VISIBLE);
 
-                j_termchaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
-                j_termchaik_v.setVisibility(View.INVISIBLE);
+
 
                 j_chaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_chaik_v.setVisibility(View.INVISIBLE);
@@ -187,8 +163,7 @@ public class SortDialog extends Dialog implements View.OnClickListener {
                 j_area.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_area_v.setVisibility(View.INVISIBLE);
 
-                j_termchaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
-                j_termchaik_v.setVisibility(View.INVISIBLE);
+
 
                 j_chaik.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_chaik_v.setVisibility(View.INVISIBLE);

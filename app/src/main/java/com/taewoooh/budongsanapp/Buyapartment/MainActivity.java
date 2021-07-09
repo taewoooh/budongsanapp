@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RvAdapter adapter;
     private static ArrayList<ListViewItem> itemArrayList;
     AlertDialog.Builder oDialog;
-
+    InputMethodManager imm;
     Context context;
 
 
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE); //키보드 내리기 초기화
 
         Device();
         Maket("");
@@ -150,6 +150,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onPriceClicked() {
 
+
+                Log.e("Sortdialog", "" + twPreference.getInt("refresh", 0));
                 if (twPreference.getInt("refresh", 0) == 1) {
                     search_edit.setText(null);
                     twPreference.putInt("refresh", 0);
@@ -183,8 +185,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 DataView(); //데이터 화면에 뿌리기
             }
 
+
             @Override
-            public void onTermChaikClicked() {
+            public void onAreaClicked() {
                 search_edit.setText(null);
                 twPreference.putInt("value", 2);
                 Collections.sort(itemArrayList);
@@ -192,17 +195,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             @Override
-            public void onAreaClicked() {
-                search_edit.setText(null);
-                twPreference.putInt("value", 3);
-                Collections.sort(itemArrayList);
-                DataView(); //데이터 화면에 뿌리기
-            }
-
-            @Override
             public void onDateClicked() {
                 search_edit.setText(null);
-                twPreference.putInt("value", 4);
+                twPreference.putInt("value", 3);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
             }
@@ -283,6 +278,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 } else if (s.length() == 0) {
                     delete_textimageview.setVisibility(View.INVISIBLE);
+                    imm.hideSoftInputFromWindow(search_edit.getWindowToken(), 0);
 
                 }
 
@@ -776,21 +772,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onClick(DialogInterface dialog, int which) {
 
 
-                        twPreference.putInt("c",1);
+                        twPreference.putInt("c", 1);
 
 
-                        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(search_edit.getWindowToken(),0);
-
-
-
+                        imm.hideSoftInputFromWindow(search_edit.getWindowToken(), 0);
 
 
                         Log.e("c 테스트1", "" + twPreference.getInt("c", 0));
 
                         rv.getRecycledViewPool().clear();
                         adapter.notifyDataSetChanged();
-
 
 
                         total_singocount = 0;
@@ -804,18 +795,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         Tongsin(tablecode);
                         itemArrayList.clear();
-                        if (search_edit.getText().toString().length() > 0 && twPreference.getInt("c",0)==1) {
+                        if (search_edit.getText().toString().length() > 0 && twPreference.getInt("c", 0) == 1) {
 
 
                             search_edit.setText(null);
-                            twPreference.putInt("c",0);
+                            twPreference.putInt("c", 0);
                         }
 
                     }
                 })
                 .setCancelable(true)
                 .show();
-
 
 
     }
@@ -968,7 +958,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     areac = new Util().AreaChange(area);   // 평형 바꾸기
                     ymd = new Util().Ymd(year, month, day); // 년월일
                     month = month.replace(",", "");
-                    // Log.d("dhxodn1988", "" + ymd);
+
+
+                    if (!bupjungdong.contains("서울특별시")) {
+                        if (bupjungdong.indexOf("시") > 0) {
+
+
+                            String s = String.valueOf(bupjungdong.charAt(bupjungdong.indexOf("시") + 1));
+                            //bupjungdong.indexOf("시") + 1)
+                            if (!s.equals(" ")) {
+                                Log.d("dhxodn1988", "" + bupjungdong + "/" + s);
+
+                                bupjungdong = bupjungdong.replace(s," "+s);
+
+                            }
+                        }else if(bupjungdong.indexOf("군") > 0){
+                            String s = String.valueOf(bupjungdong.charAt(bupjungdong.indexOf("군") + 1));
+                            //bupjungdong.indexOf("시") + 1)
+                            if (!s.equals(" ")) {
+                                Log.d("dhxodn1988", "" + bupjungdong + "/" + s);
+
+                                bupjungdong = bupjungdong.replace(s," "+s);
+
+                            }
+
+                        }
+
+
+                    }
 
                     itemArrayList.add(new ListViewItem(name, price, area, year, month, day,
                             high, doromyung, jibun, geunmulcode,
@@ -1037,10 +1054,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         Collections.sort(itemArrayList);
-
-
-
-
 
 
         Log.e("오태우", " / " + twPreference.getInt("value", 0));

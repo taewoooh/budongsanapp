@@ -572,15 +572,10 @@ public class ListViewItem implements Comparable<ListViewItem> {
 
             return entry.getChaik() - this.getChaik();
         } else if (prefer == 2) {
-            return entry.getDaychaik() - this.getDaychaik();
-
-        } else if (prefer == 3) {
             int a = (int) Double.parseDouble(entry.getArea());
             int b = (int) Double.parseDouble(this.getArea());
             return a - b;
-
-        } else {
-
+        } else  {
             int a = Integer.parseInt(entry.getYear()+entry.getMonth()+entry.getDay());
             int b =Integer.parseInt(this.getYear()+this.getMonth()+this.getDay());
 

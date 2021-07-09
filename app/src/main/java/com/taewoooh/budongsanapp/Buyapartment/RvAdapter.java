@@ -1,6 +1,5 @@
 package com.taewoooh.budongsanapp.Buyapartment;
 
-
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Spannable;
@@ -13,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.taewoooh.budongsanapp.R;
 import com.taewoooh.budongsanapp.TWPreference;
@@ -42,11 +42,12 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
     private ArrayList<ListViewItem> arrayList;
 
     Context context;
-    String searchString;
+
     int a;
     int b;
     int c;
 
+    String searchString;
 
     public RvAdapter(ArrayList<ListViewItem> items, Context context) {
         this.context = context;
@@ -155,6 +156,8 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
         holder.Bupjungdong.setText(items.get(safePosition).getBupjungdong()); // 주소
 
 
+
+
         String n = items.get(safePosition).getName();
         String name = n.toLowerCase(Locale.getDefault());
 
@@ -202,6 +205,16 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
 
         }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -316,7 +329,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
     public void filter(String charText) { // 리사이클러뷰 검색
 
-        searchString = charText;
+        this.searchString = charText;
 
         charText = charText.toLowerCase(Locale.getDefault());
         items.clear();
@@ -324,9 +337,8 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
         if (charText.length() == 0) {
             TWPreference twPreference = new TWPreference(context);
-            if (twPreference.getInt("c", 0) == 1) {
 
-            } else if (twPreference.getInt("refresh", 0) == 1) {
+            if (twPreference.getInt("refresh", 0) == 1) {
 
             } else {
                 items.addAll(arrayList);
