@@ -28,7 +28,13 @@ public class ListViewItem3 implements Comparable<ListViewItem3> {
     @SerializedName("inflation")
     @Expose
     int inflation;
+    @SerializedName("gunchukyear")
+    @Expose
+    int gunchukyear;
 
+    public int getGunchukyear() {
+        return gunchukyear;
+    }
 
     public String getName() {
         return name;
@@ -70,14 +76,18 @@ public class ListViewItem3 implements Comparable<ListViewItem3> {
         this.name = name;
     }
 
+    public void setGunchukyear(int gunchukyear) {
+        this.gunchukyear = gunchukyear;
+    }
 
     public ListViewItem3(String name, String bupjungdong, int totalgunsu,
-                         int singogunsu, int inflation) {
+                         int singogunsu, int inflation, int gunchukyear) {
         this.name = name;
         this.bupjungdong = bupjungdong;
         this.totalgunsu = totalgunsu;
         this.singogunsu = singogunsu;
         this.inflation = inflation;
+        this.gunchukyear = gunchukyear;
 
     }
 

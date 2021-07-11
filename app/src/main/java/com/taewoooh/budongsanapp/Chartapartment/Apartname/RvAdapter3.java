@@ -2,6 +2,12 @@ package com.taewoooh.budongsanapp.Chartapartment.Apartname;
 
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.style.BackgroundColorSpan;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,9 +42,8 @@ public class RvAdapter3 extends RecyclerView.Adapter<RvAdapter3.CustomViewHolder
     private ArrayList<ListViewItem3> arrayList;
 
     Context context;
-
+    String searchString;
     TWPreference twPreference;
-
 
 
     public RvAdapter3(ArrayList<ListViewItem3> items, Context context) {
@@ -62,28 +67,89 @@ public class RvAdapter3 extends RecyclerView.Adapter<RvAdapter3.CustomViewHolder
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
         int safePosition = holder.getAdapterPosition();
-        int count = safePosition+1;
-
-
-try {
-    holder.name.setText(items.get(safePosition).getName()); //단지이름
-}catch (Exception e){
+        int count = safePosition + 1;
 
 
 
-}
+
+
+    try {
+        holder.name.setText(items.get(safePosition).getName()); //단지이름
+
+    } catch (Exception e) {
+
+
+    }
+
+
+        int v = twPreference.getInt("value", 0);
+
+
+        if (v % 2 == 0) {  //짝수
+            holder.totalgunsu.setText(String.valueOf(items.get(safePosition).getTotalgunsu())); //총건수
+            holder.totalgunsu.setTypeface(holder.totalgunsu.getTypeface(), Typeface.BOLD_ITALIC);
+            holder.totalgunsu.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 23);
+
+            holder.name.setTextColor(Color.parseColor("#000000")); // 검정색
+
+
+        } else {  //홀수
+            holder.totalgunsu.setText(String.valueOf(items.get(safePosition).getTotalgunsu())); //총건수
+
+            holder.inflation.setText(String.valueOf(items.get(safePosition).getInflation() + "")); //신고가율
+            holder.inflation.setTypeface(holder.inflation.getTypeface(), Typeface.BOLD_ITALIC);
+            holder.inflation.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 23);
+
+            holder.name.setTextColor(Color.parseColor("#000000")); // 검정색
+        }
 
         holder.bupjungdong.setText(items.get(safePosition).getBupjungdong()); //주소
         holder.totalgunsu.setText(String.valueOf(items.get(safePosition).getTotalgunsu())); //총건수
         holder.singogunsu.setText(String.valueOf(items.get(safePosition).getSingogunsu())); //신고건수
-        holder.inflation.setText(String.valueOf(items.get(safePosition).getInflation()+"%")); //신고가율
-        holder.number.setText(String.valueOf(count)+"위"); //신고가율
+        holder.inflation.setText(String.valueOf(items.get(safePosition).getInflation() + "%")); //신고가율
+        holder.number.setText(String.valueOf(count) + "위"); //신고가율
+
+
+        String n = items.get(safePosition).getName();
+        String name = n.toLowerCase(Locale.getDefault());
 
 
 
 
+        String b= items.get(safePosition).getBupjungdong();
+        String bup = b.toLowerCase(Locale.getDefault());
+
+        try {
+            if (searchString.length() == 0) {
+                Log.e("searchString", "");
+
+            } else if (name.contains(searchString)) {
+
+                int startPos = name.indexOf(searchString);
+                int endPos = startPos + searchString.length();
+
+                Spannable spanString = Spannable.Factory.getInstance().newSpannable(holder.name.getText());
+                spanString.setSpan(new BackgroundColorSpan(0xFFFFFF00), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                holder.name.setText(spanString);
 
 
+
+            }else if (bup.contains(searchString)) {
+
+                int startPos = bup.indexOf(searchString);
+                int endPos = startPos + searchString.length();
+
+                Spannable spanString = Spannable.Factory.getInstance().newSpannable(holder.bupjungdong.getText());
+                spanString.setSpan(new BackgroundColorSpan(0xFFFFFF00), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                holder.bupjungdong.setText(spanString);
+
+            }
+
+
+        } catch (Exception e) {
+
+
+        }
     }
 
     @Override
@@ -92,7 +158,7 @@ try {
     }
 
     public void filter(String charText) { // 리사이클러뷰 검색
-
+        this.searchString = charText;
         charText = charText.toLowerCase(Locale.getDefault());
         items.clear();
         if (charText.length() == 0) {
@@ -125,12 +191,12 @@ try {
 
 
             // title = itemView.findViewById(R.id.item_tv_title);
-            bupjungdong=itemView.findViewById(R.id.bupjungdong);
+            bupjungdong = itemView.findViewById(R.id.bupjungdong);
             totalgunsu = itemView.findViewById(R.id.totalgunsu);
             singogunsu = itemView.findViewById(R.id.singogunsu);
             name = itemView.findViewById(R.id.name);
             inflation = itemView.findViewById(R.id.inflation);
-            number=itemView.findViewById(R.id.number);
+            number = itemView.findViewById(R.id.number);
             twPreference = new TWPreference(context);
 
         }

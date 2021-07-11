@@ -1,11 +1,13 @@
 package com.taewoooh.budongsanapp.Chartapartment.Apartname;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -19,6 +21,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.taewoooh.budongsanapp.Buyapartment.MainActivity;
+import com.taewoooh.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
 import com.taewoooh.budongsanapp.R;
 import com.taewoooh.budongsanapp.TWPreference;
 import com.taewoooh.budongsanapp.Util;
@@ -85,7 +89,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
     TextView today;
     TextView aphartname;
 
-
+    Chart_name_dialog dialog;
 
 
     RelativeLayout main_layout;
@@ -214,6 +218,26 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
             }
         });
+        dialog = new Chart_name_dialog(ChartActivity_apartname.this, new ChartDialogClickListener() {
+            @Override
+            public void onNameClicked() {
+
+            }
+
+            @Override
+            public void onJiyoekdongClicked() {
+                Intent intent = new Intent(getApplicationContext(), ChartActivity_bup.class);
+                //Intent intent = new Intent(this, ChartActivity_apartname.this);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onJiyeokguClicked() {
+
+            }
+        });
+
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
     }
 
@@ -283,13 +307,14 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                     int totalgunsu = contributor.totalgunsu;
                     int singogunsu = contributor.singogunsu;
                     int inflation = contributor.inflation;
+                    int gunchukyear2 = contributor.gunchukyear;
 
 
 
 
-                    Log.e("TW", ""+ name+" / "+ bupjungdong + " / " + totalgunsu + " / " + singogunsu+ " / " +inflation);
+                    Log.e("TW", ""+ name+" / "+ bupjungdong + " / " + totalgunsu + " / " + singogunsu+ " / " +inflation+" / "+gunchukyear2);
 
-                    itemArrayList.add(new ListViewItem3(name, bupjungdong, totalgunsu, singogunsu, inflation));
+                    itemArrayList.add(new ListViewItem3(name, bupjungdong, totalgunsu, singogunsu, inflation,gunchukyear2));
                     Collections.sort(itemArrayList);
                     try {
                         DataView();
@@ -357,7 +382,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
 
         }
-        
+
     }
 
     public void findview() {
@@ -409,14 +434,20 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                 day_cardview2.setCardBackgroundColor(getColor(R.color.off_Btcolor));
                 cardview_button2.setTextColor(getColor(R.color.Off_Textcolor));
 
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                startActivity(intent);
+
+                dialog.dismiss();
+
                 finish();
 
                 break;
 
             case R.id.day_cardview2:
+                dialog.show();
 
 
-                Toast.makeText(getApplicationContext(), "차트 Call.", Toast.LENGTH_LONG).show();
 
                 break;
 

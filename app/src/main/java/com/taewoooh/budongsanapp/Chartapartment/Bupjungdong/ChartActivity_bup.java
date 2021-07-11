@@ -1,5 +1,22 @@
 package com.taewoooh.budongsanapp.Chartapartment.Bupjungdong;
 
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -7,23 +24,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Build;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-
+import com.taewoooh.budongsanapp.Buyapartment.MainActivity;
+import com.taewoooh.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
+import com.taewoooh.budongsanapp.Chartapartment.Apartname.ChartDialogClickListener;
 import com.taewoooh.budongsanapp.R;
 import com.taewoooh.budongsanapp.TWPreference;
 import com.taewoooh.budongsanapp.Util;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +42,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 public class ChartActivity_bup extends AppCompatActivity implements View.OnClickListener {
 
     CardView day_cardview;
@@ -51,28 +57,16 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
     private RecyclerView rv;
     private LinearLayoutManager llm;
     private static String TAG = "8888888888888";
-    int hour;
+
 
     TextView contents;
-    String areac;
-    String ymd;
-    TextView day_textview;
-    TextView datavalue_textview;
+
     EditText search_edit;
 
     ImageView delete_textimageview;
-    ArrayList<String> daylist;
-    String daynum;
-    ImageView cycle;
+
     TextView bup;
-    TextView rowday;
-    TextView highday;
 
-
-    TextView singogun;
-    TextView jisu;
-    ImageView ilbyeoldata_imageview;
-    int count = 0;
     ImageView list_setup_imageview;
     ImageView cycleimageview;
     String tablecode = "";
@@ -84,14 +78,8 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
     TextView inflation;
     TextView today;
 
+    Chart_bup_dialog dialog;
 
-    RelativeLayout main_layout;
-
-    BottomSheetDialog bottomSheetDialog;
-    int i_price = 0;
-    int i_highprice = 0;
-
-    RelativeLayout bottomsheet;
 
     private static ArrayList<ListViewItem2> itemArrayList;
     RvAdapter2 adapter;
@@ -209,6 +197,29 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
             }
         });
+
+
+        dialog = new Chart_bup_dialog(this, new ChartDialogClickListener() {
+            @Override
+            public void onNameClicked() {
+                Intent intent = new Intent(getApplicationContext(), ChartActivity_apartname.class);
+                //Intent intent = new Intent(this, ChartActivity_apartname.this);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onJiyoekdongClicked() {
+
+            }
+
+            @Override
+            public void onJiyeokguClicked() {
+
+            }
+        });
+
+
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
     }
 
@@ -358,12 +369,12 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
         cardview_button = (TextView) findViewById(R.id.cardview_button);
         cardview_button2 = (TextView) findViewById(R.id.cardview_button);
         rv = (RecyclerView) findViewById(R.id.main_rv);//
-       // day_textview = (TextView) findViewById(R.id.day_textview);
+        // day_textview = (TextView) findViewById(R.id.day_textview);
 
         search_edit = (EditText) findViewById(R.id.search_edit);
         delete_textimageview = (ImageView) findViewById(R.id.delete_textImageview);
-       // singogun = (TextView) findViewById(R.id.singogun);
-       // jisu = (TextView) findViewById(R.id.jisu);
+        // singogun = (TextView) findViewById(R.id.singogun);
+        // jisu = (TextView) findViewById(R.id.jisu);
         // cv = (CardView) findViewById(R.id.cv);//
         list_setup_imageview = (ImageView) findViewById(R.id.list_setup);
         //ilbyeoldata_imageview = (ImageView) findViewById(R.id.ilbyeoldata); //
@@ -394,14 +405,21 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
                 day_cardview2.setCardBackgroundColor(getColor(R.color.off_Btcolor));
                 cardview_button2.setTextColor(getColor(R.color.Off_Textcolor));
 
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                startActivity(intent);
+
+                dialog.dismiss();
+
+
                 finish();
 
                 break;
 
             case R.id.day_cardview2:
 
+                dialog.show();
 
-                Toast.makeText(getApplicationContext(), "차트 Call.", Toast.LENGTH_LONG).show();
 
                 break;
 

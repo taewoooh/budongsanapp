@@ -241,8 +241,10 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
             if (items.get(safePosition).getGunchukyear().equals("0")) {
 
 
-                holder.name.setTextColor(Color.parseColor("#2196F3")); // 검정색
 
+
+
+                holder.name.setTextColor(Color.parseColor("#2196F3"));
             }
         } catch (Exception e) {
 
@@ -404,7 +406,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
             minusprice = itemView.findViewById(R.id.minusprice);
             highicon = itemView.findViewById(R.id.highicon);
             price = itemView.findViewById(R.id.price);
-            Name = itemView.findViewById(R.id.Name);
+             Name = itemView.findViewById(R.id.Name);
             Area = itemView.findViewById(R.id.Area);
             Bupjungdong = itemView.findViewById(R.id.Bupjungdong);
             ymd = itemView.findViewById(R.id.ymd);

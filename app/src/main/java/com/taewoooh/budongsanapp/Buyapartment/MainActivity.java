@@ -1,5 +1,6 @@
 package com.taewoooh.budongsanapp.Buyapartment;
 
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -278,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 } else if (s.length() == 0) {
                     delete_textimageview.setVisibility(View.INVISIBLE);
-                    imm.hideSoftInputFromWindow(search_edit.getWindowToken(), 0);
+
 
                 }
 

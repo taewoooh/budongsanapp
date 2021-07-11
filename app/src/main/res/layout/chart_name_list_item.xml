@@ -42,8 +42,9 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="3dp"
                         android:text="1"
-                        android:textSize="20dp"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
+
 
                     <TextView
                         android:id="@+id/name"
@@ -51,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-
+                        android:layout_marginLeft="10dp"
                         android:singleLine="true"
                         android:text="래미안 블레스티지"
                         android:textColor="@android:color/black"
@@ -66,9 +67,9 @@
                         android:layout_below="@+id/name"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        android:text="테스트"
                         android:layout_marginTop="4dp"
                         android:singleLine="true"
+                        android:text="테스트"
                         android:textColor="@android:color/black"
                         android:textSize="11dp" />
 
