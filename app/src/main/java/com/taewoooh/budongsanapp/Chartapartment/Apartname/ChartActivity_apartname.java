@@ -229,6 +229,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                 Intent intent = new Intent(getApplicationContext(), ChartActivity_bup.class);
                 //Intent intent = new Intent(this, ChartActivity_apartname.this);
                 startActivity(intent);
+                finish();
             }
 
             @Override

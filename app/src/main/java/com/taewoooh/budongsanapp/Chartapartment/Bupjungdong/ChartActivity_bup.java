@@ -205,6 +205,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
                 Intent intent = new Intent(getApplicationContext(), ChartActivity_apartname.class);
                 //Intent intent = new Intent(this, ChartActivity_apartname.this);
                 startActivity(intent);
+                finish();
             }
 
             @Override
@@ -445,6 +446,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
             case R.id.day_cardview2:
 
                 dialog.show();
+
 
 
                 break;
