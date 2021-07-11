@@ -114,6 +114,13 @@ public class SortDialog extends Dialog implements View.OnClickListener {
                 j_date.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_date_v.setVisibility(View.INVISIBLE);
 
+                j_new.setTextColor(getContext().getColor(R.color.Off_Textcolor));
+                j_new_v.setVisibility(View.INVISIBLE);
+
+                j_old.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_old_v.setVisibility(View.INVISIBLE);
+
+
                 dismiss();
 
 
@@ -136,6 +143,13 @@ public class SortDialog extends Dialog implements View.OnClickListener {
                 j_date.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_date_v.setVisibility(View.INVISIBLE);
 
+                j_new.setTextColor(getContext().getColor(R.color.Off_Textcolor));
+                j_new_v.setVisibility(View.INVISIBLE);
+
+                j_old.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_old_v.setVisibility(View.INVISIBLE);
+
+
                 dismiss();
                 break;
 
@@ -155,6 +169,13 @@ public class SortDialog extends Dialog implements View.OnClickListener {
 
                 j_date.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_date_v.setVisibility(View.INVISIBLE);
+
+                j_new.setTextColor(getContext().getColor(R.color.Off_Textcolor));
+                j_new_v.setVisibility(View.INVISIBLE);
+
+                j_old.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_old_v.setVisibility(View.INVISIBLE);
+
 
                 dismiss();
                 break;
@@ -176,6 +197,13 @@ public class SortDialog extends Dialog implements View.OnClickListener {
 
                 j_price.setTextColor(getContext().getColor(R.color.Off_Tcolor));
                 j_price_v.setVisibility(View.INVISIBLE);
+
+                j_new.setTextColor(getContext().getColor(R.color.Off_Textcolor));
+                j_new_v.setVisibility(View.INVISIBLE);
+
+                j_old.setTextColor(getContext().getColor(R.color.Off_Tcolor));
+                j_old_v.setVisibility(View.INVISIBLE);
+
 
                 dismiss();
                 break;
