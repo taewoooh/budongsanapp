@@ -38,7 +38,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@+id/search"
                 android:background="@android:color/white"
-                android:hint="검색"
+                android:hint="법정동,전용면적,아파트명 검색"
                 android:imeOptions="actionSend"
                 android:inputType="text"
                 android:src="@drawable/search"
