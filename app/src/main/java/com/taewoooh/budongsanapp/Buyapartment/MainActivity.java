@@ -202,6 +202,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
             }
+
+            @Override
+            public void onNewaphatClicked() {
+                search_edit.setText(null);
+                twPreference.putInt("value", 4);
+                Collections.sort(itemArrayList);
+                DataView(); //데이터 화면에 뿌리기
+            }
+
+            @Override
+            public void onOldaphatClicked() {
+                search_edit.setText(null);
+                twPreference.putInt("value", 5);
+                Collections.sort(itemArrayList);
+                DataView(); //데이터 화면에 뿌리기
+            }
         });
 
 

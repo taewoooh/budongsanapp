@@ -109,7 +109,49 @@
 
     </ImageView>
 
+    <TextView
+        android:id="@+id/j_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/j_date"
+        android:padding="15dp"
+        android:text="신축(아파트)순"
+
+        android:textSize="15dp"></TextView>
 
 
+    <ImageView
+        android:id="@+id/j_new_v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/check"
+        android:visibility="invisible"
+        android:layout_toRightOf="@+id/j_new"
+        android:padding="15dp"
+        android:layout_below="@+id/j_date">
+
+    </ImageView>
+    <TextView
+        android:id="@+id/j_old"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/j_new"
+        android:padding="15dp"
+        android:text="구축(아파트)순"
+
+        android:textSize="15dp"></TextView>
+
+
+    <ImageView
+        android:id="@+id/j_old_v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/check"
+        android:visibility="invisible"
+        android:layout_toRightOf="@+id/j_new"
+        android:padding="15dp"
+        android:layout_below="@+id/j_new">
+
+    </ImageView>
 
 </RelativeLayout>

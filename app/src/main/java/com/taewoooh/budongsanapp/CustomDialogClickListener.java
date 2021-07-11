@@ -6,4 +6,6 @@ public interface CustomDialogClickListener {
     void onChaikClicked();
     void onAreaClicked();
     void onDateClicked();
+    void onNewaphatClicked();
+    void onOldaphatClicked();
 }

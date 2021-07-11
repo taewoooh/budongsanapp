@@ -1,8 +1,13 @@
 package com.taewoooh.budongsanapp.Buyapartment;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.taewoooh.budongsanapp.TWPreference;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.taewoooh.budongsanapp.Util;
 
 
 /**
@@ -556,6 +561,7 @@ public class ListViewItem implements Comparable<ListViewItem> {
 
 
     // 내림차순
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public int compareTo(ListViewItem entry) { //금액 낮은순
 //        return entry.getChaik() - this.getChaik();
@@ -575,12 +581,21 @@ public class ListViewItem implements Comparable<ListViewItem> {
             int a = (int) Double.parseDouble(entry.getArea());
             int b = (int) Double.parseDouble(this.getArea());
             return a - b;
-        } else  {
+        } else if (prefer ==3){
             int a = Integer.parseInt(entry.getYear()+entry.getMonth()+entry.getDay());
             int b =Integer.parseInt(this.getYear()+this.getMonth()+this.getDay());
 
 
             return a - b;
+
+        }else if (prefer ==4){
+            int a = Integer.parseInt(new Util().Getday3()) - Integer.parseInt(entry.getGunchukyear());
+            int b =Integer.parseInt(new Util().Getday3()) - Integer.parseInt(this.getGunchukyear());
+            return b - a;
+        }else {
+            int a = Integer.parseInt(new Util().Getday3()) - Integer.parseInt(entry.getGunchukyear());
+            int b =Integer.parseInt(new Util().Getday3()) - Integer.parseInt(this.getGunchukyear());
+            return a-b;
 
         }
 
