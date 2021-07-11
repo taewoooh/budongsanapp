@@ -76,7 +76,8 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
 
             holder.price.setTextColor(Color.parseColor("#000000")); // 기본색
             holder.highicon.setVisibility(View.INVISIBLE); // 신고가 아이콘
-            holder.crown.setVisibility(View.INVISIBLE);
+
+
             holder.minusprice.setText("");
             holder.name.setTextColor(Color.parseColor("#000000")); // 검정색
             holder.pyeungsu.setText("");
@@ -105,16 +106,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.CustomViewHolder> 
                 holder.minusprice.setText(new Util().Priceedit(String.valueOf(a)));
 
 
-                if (Integer.parseInt(items.get(safePosition).getMart()) == 3) {
-                    c = Integer.parseInt(items.get(safePosition).getMart());
-                    Log.e("오하늘", "" + items.get(safePosition).getName() + " / " + c);
-                    holder.crown.setVisibility(View.VISIBLE);
 
-                } else {
-
-
-                    holder.crown.setVisibility(View.INVISIBLE);
-                }
 
 
             } else {

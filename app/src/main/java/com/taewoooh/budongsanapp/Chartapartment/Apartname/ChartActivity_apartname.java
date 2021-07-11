@@ -313,6 +313,32 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
 
                     Log.e("TW", ""+ name+" / "+ bupjungdong + " / " + totalgunsu + " / " + singogunsu+ " / " +inflation+" / "+gunchukyear2);
+                    if (!bupjungdong.contains("서울특별시")) {
+                        if (bupjungdong.indexOf("시") > 0) {
+
+
+                            String s = String.valueOf(bupjungdong.charAt(bupjungdong.indexOf("시") + 1));
+                            //bupjungdong.indexOf("시") + 1)
+                            if (!s.equals(" ")) {
+                                Log.d("dhxodn1988", "" + bupjungdong + "/" + s);
+
+                                bupjungdong = bupjungdong.replace(s," "+s);
+
+                            }
+                        }else if(bupjungdong.indexOf("군") > 0){
+                            String s = String.valueOf(bupjungdong.charAt(bupjungdong.indexOf("군") + 1));
+                            //bupjungdong.indexOf("시") + 1)
+                            if (!s.equals(" ")) {
+                                Log.d("dhxodn1988", "" + bupjungdong + "/" + s);
+
+                                bupjungdong = bupjungdong.replace(s," "+s);
+
+                            }
+
+                        }
+
+
+                    }
 
                     itemArrayList.add(new ListViewItem3(name, bupjungdong, totalgunsu, singogunsu, inflation,gunchukyear2));
                     Collections.sort(itemArrayList);

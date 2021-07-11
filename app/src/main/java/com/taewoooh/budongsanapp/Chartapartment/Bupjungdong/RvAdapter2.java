@@ -10,6 +10,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,6 +69,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
         int safePosition = holder.getAdapterPosition();
         int count = safePosition + 1;
 
+        holder.crown.setVisibility(View.VISIBLE);
 
         holder.bupjungdong.setText(items.get(safePosition).getBupjungdong()); //단지이름
         int v = twPreference.getInt("value", 0);
@@ -89,7 +91,9 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
         }
         holder.singogunsu.setText(String.valueOf(items.get(safePosition).getSingogunsu())); //신고건수
         holder.inflation.setText(String.valueOf(items.get(safePosition).getInflation() + "%")); //신고가율
-        holder.number.setText(String.valueOf(count) + "위"); //신고가율
+
+        holder.number.setText(String.valueOf(count) ); //신고가율
+
 
 
 
@@ -117,7 +121,19 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
 
         }
 
+        if (count ==1 ){
+            holder.crown.setVisibility(View.VISIBLE);
+            holder.crown.setImageResource(R.drawable.crown2) ;
+        }else if (count ==2){
+            holder.crown.setVisibility(View.VISIBLE);
+            holder.crown.setImageResource(R.drawable.crown3) ;
 
+        }else if (count ==3){
+            holder.crown.setVisibility(View.VISIBLE);
+            holder.crown.setImageResource(R.drawable.crown4) ;
+        }else {
+            holder.crown.setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -151,6 +167,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
         TextView singogunsu;
         TextView inflation;
         TextView number;
+        ImageView crown;
 
 
         public CustomViewHolder(View itemView) {
@@ -164,7 +181,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
             inflation = itemView.findViewById(R.id.inflation);
             number = itemView.findViewById(R.id.number);
             twPreference = new TWPreference(context);
-
+            crown = itemView.findViewById(R.id.crown);
         }
 
 

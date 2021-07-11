@@ -44,7 +44,26 @@
                         android:text="1"
                         android:textSize="15dp"
                         android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/number2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_toRightOf="@+id/number"
+                        android:text="위"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
+                    <ImageView
+                        android:id="@+id/crown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_toRightOf="@+id/number2"
+                        android:src="@drawable/crown2">
+
+                    </ImageView>
 
                     <TextView
                         android:id="@+id/name"

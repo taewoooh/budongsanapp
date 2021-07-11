@@ -370,7 +370,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/up"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:cardCornerRadius="2000dp">
 
 
