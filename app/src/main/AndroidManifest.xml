@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.taewoooh.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup"></activity>
         <activity android:name="com.taewoooh.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname"></activity>
+        <activity android:name="com.taewoooh.budongsanapp.Chartapartment.jiyeokgu.ChartActivity_jiyeokgu"></activity>
         <activity
 
             android:name="com.taewoooh.budongsanapp.Buyapartment.MainActivity"

@@ -36,6 +36,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.taewoooh.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
 import com.taewoooh.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
+import com.taewoooh.budongsanapp.Chartapartment.jiyeokgu.ChartActivity_jiyeokgu;
 import com.taewoooh.budongsanapp.CustomDialogClickListener;
 import com.taewoooh.budongsanapp.R;
 import com.taewoooh.budongsanapp.TWPreference;
@@ -431,8 +432,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onRefresh() {
 
 
-        daylist.clear();
-        itemArrayList.clear();
 //        cd2 = new SortDialog(MainActivity.this);
 //        String text = search_edit.getText().toString();
 //        twPreference.putInt("value", 0);
@@ -440,7 +439,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            daylist.clear();
 //            itemArrayList.clear();
 //
-//
+
+
+
+        daylist.clear();
+        itemArrayList.clear();
+
         try {
 
             twPreference.putInt("value", 0);
@@ -463,6 +467,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //            swipeRefreshLayout.setRefreshing(false);
 //        }
+
 
         twPreference.putInt("refresh", 1);
 
@@ -738,7 +743,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // itemArrayList.clear();
 
                 //Intent intent = new Intent(this, ChartActivity_bup.class);
-                Intent intent = new Intent(this, ChartActivity_apartname.class);
+                Intent intent = new Intent(this, ChartActivity_jiyeokgu.class);
                 startActivity(intent);
                 break;
             case R.id.delete_textImageview:

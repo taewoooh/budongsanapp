@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.taewoooh.budongsanapp.Buyapartment.MainActivity;
 import com.taewoooh.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
 import com.taewoooh.budongsanapp.Chartapartment.Apartname.ChartDialogClickListener;
+import com.taewoooh.budongsanapp.Chartapartment.jiyeokgu.ChartActivity_jiyeokgu;
 import com.taewoooh.budongsanapp.R;
 import com.taewoooh.budongsanapp.TWPreference;
 import com.taewoooh.budongsanapp.Util;
@@ -215,7 +216,10 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
             @Override
             public void onJiyeokguClicked() {
+                Intent intent = new Intent(getApplicationContext(), ChartActivity_jiyeokgu.class);
 
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -228,7 +232,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void ContentsStory() {
         today.setText(new Util().Getday2()); // 이번달 표시
-        bup.setText("법정동");
+        bup.setText("지역구");
 
     }
 
