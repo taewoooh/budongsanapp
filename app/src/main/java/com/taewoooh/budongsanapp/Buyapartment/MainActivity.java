@@ -34,7 +34,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.taewoooh.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
+
 import com.taewoooh.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
 import com.taewoooh.budongsanapp.Chartapartment.jiyeokgu.ChartActivity_jiyeokgu;
 import com.taewoooh.budongsanapp.CustomDialogClickListener;

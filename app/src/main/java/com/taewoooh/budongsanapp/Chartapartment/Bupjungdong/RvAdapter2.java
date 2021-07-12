@@ -3,9 +3,6 @@ package com.taewoooh.budongsanapp.Chartapartment.Bupjungdong;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.text.Spannable;
-import android.text.style.BackgroundColorSpan;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.taewoooh.budongsanapp.R;
 import com.taewoooh.budongsanapp.TWPreference;
@@ -42,8 +40,9 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
     private ArrayList<ListViewItem2> arrayList;
 
     Context context;
-    String searchString;
+
     TWPreference twPreference;
+
 
 
     public RvAdapter2(ArrayList<ListViewItem2> items, Context context) {
@@ -67,9 +66,10 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
         int safePosition = holder.getAdapterPosition();
-        int count = safePosition + 1;
+        int count = safePosition+1;
 
-        holder.crown.setVisibility(View.VISIBLE);
+
+
 
         holder.bupjungdong.setText(items.get(safePosition).getBupjungdong()); //단지이름
         int v = twPreference.getInt("value", 0);
@@ -90,36 +90,9 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
 
         }
         holder.singogunsu.setText(String.valueOf(items.get(safePosition).getSingogunsu())); //신고건수
-        holder.inflation.setText(String.valueOf(items.get(safePosition).getInflation() + "%")); //신고가율
+        holder.inflation.setText(String.valueOf(items.get(safePosition).getInflation()+"%")); //신고가율
+        holder.number.setText(String.valueOf(count)); //신고가율
 
-        holder.number.setText(String.valueOf(count) ); //신고가율
-
-
-
-
-
-
-        String b= items.get(safePosition).getBupjungdong();
-        String bup = b.toLowerCase(Locale.getDefault());
-
-        try {
-
-             if (bup.contains(searchString)) {
-
-                int startPos = bup.indexOf(searchString);
-                int endPos = startPos + searchString.length();
-
-                Spannable spanString = Spannable.Factory.getInstance().newSpannable(holder.bupjungdong.getText());
-                spanString.setSpan(new BackgroundColorSpan(0xFFFFFF00), startPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                holder.bupjungdong.setText(spanString);
-
-            }
-
-
-        } catch (Exception e) {
-
-
-        }
 
         if (count ==1 ){
             holder.crown.setVisibility(View.VISIBLE);
@@ -135,6 +108,8 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
             holder.crown.setVisibility(View.INVISIBLE);
         }
 
+
+
     }
 
     @Override
@@ -143,7 +118,7 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
     }
 
     public void filter(String charText) { // 리사이클러뷰 검색
-        this.searchString = charText;
+
         charText = charText.toLowerCase(Locale.getDefault());
         items.clear();
         if (charText.length() == 0) {
@@ -175,13 +150,14 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
 
 
             // title = itemView.findViewById(R.id.item_tv_title);
-            bupjungdong = itemView.findViewById(R.id.bupjungdong);
+            bupjungdong=itemView.findViewById(R.id.bupjungdong);
             totalgunsu = itemView.findViewById(R.id.totalgunsu);
             singogunsu = itemView.findViewById(R.id.singogunsu);
             inflation = itemView.findViewById(R.id.inflation);
-            number = itemView.findViewById(R.id.number);
-            twPreference = new TWPreference(context);
+            number=itemView.findViewById(R.id.number);
             crown = itemView.findViewById(R.id.crown);
+            twPreference = new TWPreference(context);
+
         }
 
 

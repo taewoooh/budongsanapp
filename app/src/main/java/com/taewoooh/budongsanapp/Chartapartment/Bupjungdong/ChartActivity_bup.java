@@ -1,9 +1,6 @@
 package com.taewoooh.budongsanapp.Chartapartment.Bupjungdong;
 
-
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,7 +10,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +19,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.taewoooh.budongsanapp.Buyapartment.MainActivity;
 import com.taewoooh.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
@@ -43,7 +39,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-public class ChartActivity_bup extends AppCompatActivity implements View.OnClickListener {
+
+public class ChartActivity_bup extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     CardView day_cardview;
     CardView day_cardview2;
@@ -58,7 +55,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
     private RecyclerView rv;
     private LinearLayoutManager llm;
     private static String TAG = "8888888888888";
-
+    SwipeRefreshLayout swipeRefreshLayout;
 
     TextView contents;
 
@@ -102,7 +99,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
         Tongsin("bupjungdong_nonstop");
         llm = new LinearLayoutManager(this);
-
+        swipeRefreshLayout.setOnRefreshListener(this);
         delete_textimageview.setOnClickListener(this);
         day_cardview.setOnClickListener(this);
         day_cardview2.setOnClickListener(this);
@@ -217,7 +214,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
             @Override
             public void onJiyeokguClicked() {
                 Intent intent = new Intent(getApplicationContext(), ChartActivity_jiyeokgu.class);
-
+                //Intent intent = new Intent(this, ChartActivity_apartname.this);
                 startActivity(intent);
                 finish();
             }
@@ -232,7 +229,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void ContentsStory() {
         today.setText(new Util().Getday2()); // 이번달 표시
-        bup.setText("지역구");
+        bup.setText("법정동");
 
     }
 
@@ -296,32 +293,6 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
 
                     Log.e("TW", "" + bupjungdong + " / " + totalgunsu + " / " + singogunsu + " / " + inflation);
-                    if (!bupjungdong.contains("서울특별시")) {
-                        if (bupjungdong.indexOf("시") > 0) {
-
-
-                            String s = String.valueOf(bupjungdong.charAt(bupjungdong.indexOf("시") + 1));
-                            //bupjungdong.indexOf("시") + 1)
-                            if (!s.equals(" ")) {
-                                Log.d("dhxodn1988", "" + bupjungdong + "/" + s);
-
-                                bupjungdong = bupjungdong.replace(s," "+s);
-
-                            }
-                        }else if(bupjungdong.indexOf("군") > 0){
-                            String s = String.valueOf(bupjungdong.charAt(bupjungdong.indexOf("군") + 1));
-                            //bupjungdong.indexOf("시") + 1)
-                            if (!s.equals(" ")) {
-                                Log.d("dhxodn1988", "" + bupjungdong + "/" + s);
-
-                                bupjungdong = bupjungdong.replace(s," "+s);
-
-                            }
-
-                        }
-
-
-                    }
 
                     itemArrayList.add(new ListViewItem2(bupjungdong, totalgunsu, singogunsu, inflation));
                     Collections.sort(itemArrayList);
@@ -401,6 +372,8 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
         cardview_button2 = (TextView) findViewById(R.id.cardview_button);
         rv = (RecyclerView) findViewById(R.id.main_rv);//
         // day_textview = (TextView) findViewById(R.id.day_textview);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
+
 
         search_edit = (EditText) findViewById(R.id.search_edit);
         delete_textimageview = (ImageView) findViewById(R.id.delete_textImageview);
@@ -452,7 +425,6 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
                 dialog.show();
 
 
-
                 break;
 
             case R.id.delete_textImageview:
@@ -471,6 +443,14 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
                 break;
 
         }
+
+    }
+
+    @Override
+    public void onRefresh() {
+        itemArrayList.clear();
+        Tongsin("bupjungdong_nonstop");
+        swipeRefreshLayout.setRefreshing(false);
 
     }
 }

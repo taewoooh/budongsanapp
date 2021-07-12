@@ -1,8 +1,8 @@
 package com.taewoooh.budongsanapp.Chartapartment.Bupjungdong;
 
-import com.taewoooh.budongsanapp.TWPreference;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.taewoooh.budongsanapp.TWPreference;
 
 
 /**
@@ -89,7 +89,8 @@ public class ListViewItem2 implements Comparable<ListViewItem2> {
             return entry.getTotalgunsu() - this.getTotalgunsu();
         } else {  //홀수
             return entry.getInflation() - this.getInflation();
-            //return entry.getChaik() - this.getChaik();
+
+            //return entry.getSingogunsu() - this.getSingogunsu();
         }
 
     }

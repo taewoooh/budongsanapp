@@ -42,7 +42,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.OnClickListener {
+public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     CardView day_cardview;
     CardView day_cardview2;
@@ -64,7 +64,7 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
     EditText search_edit;
 
     ImageView delete_textimageview;
-
+    SwipeRefreshLayout swipeRefreshLayout;
     TextView bup;
 
     ImageView list_setup_imageview;
@@ -77,7 +77,7 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
     TextView singogagunsu;
     TextView inflation;
     TextView today;
-    SwipeRefreshLayout swipeRefreshLayout;
+
     Chart_jiyeokgu_dialog dialog;
 
 
@@ -101,7 +101,7 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
 
         Tongsin("jiyeokgu_nonstop");
         llm = new LinearLayoutManager(this);
-
+        swipeRefreshLayout.setOnRefreshListener(this);
         delete_textimageview.setOnClickListener(this);
         day_cardview.setOnClickListener(this);
         day_cardview2.setOnClickListener(this);
@@ -392,6 +392,7 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
         inflation = (TextView) findViewById(R.id.inflation);
         totalgunsu = (TextView) findViewById(R.id.totalgunsu);
         today = (TextView) findViewById(R.id.today);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
 
 
     }
@@ -445,6 +446,14 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
                 break;
 
         }
+
+    }
+
+    @Override
+    public void onRefresh() {
+        itemArrayList.clear();
+        Tongsin("jiyeokgu_nonstop");
+        swipeRefreshLayout.setRefreshing(false);
 
     }
 }

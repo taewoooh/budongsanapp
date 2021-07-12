@@ -20,6 +20,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.taewoooh.budongsanapp.Buyapartment.MainActivity;
 import com.taewoooh.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
@@ -40,7 +41,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ChartActivity_apartname extends AppCompatActivity implements View.OnClickListener {
+public class ChartActivity_apartname extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     CardView day_cardview;
     CardView day_cardview2;
@@ -89,7 +90,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
     TextView inflation;
     TextView today;
     TextView aphartname;
-
+    SwipeRefreshLayout swipeRefreshLayout;
     Chart_name_dialog dialog;
 
 
@@ -114,7 +115,6 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
         ContentsStory();
 
 
-
         twPreference = new TWPreference(this);
         twPreference.putInt("value", prefer);
         twPreference.putInt("value1", 0);
@@ -122,7 +122,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
         Tongsin("name_nonstop");
         llm = new LinearLayoutManager(this);
-
+        swipeRefreshLayout.setOnRefreshListener(this);
         delete_textimageview.setOnClickListener(this);
         day_cardview.setOnClickListener(this);
         day_cardview2.setOnClickListener(this);
@@ -206,7 +206,6 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                     contents.setText("거래건수");
 
 
-
                 } else {  //홀수
 
                     list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
@@ -248,7 +247,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void ContentsStory(){
+    public void ContentsStory() {
         today.setText(new Util().Getday2()); // 이번달 표시
         bup.setText("아파트명");
 
@@ -315,9 +314,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                     int gunchukyear2 = contributor.gunchukyear;
 
 
-
-
-                    Log.e("TW", ""+ name+" / "+ bupjungdong + " / " + totalgunsu + " / " + singogunsu+ " / " +inflation+" / "+gunchukyear2);
+                    Log.e("TW", "" + name + " / " + bupjungdong + " / " + totalgunsu + " / " + singogunsu + " / " + inflation + " / " + gunchukyear2);
                     if (!bupjungdong.contains("서울특별시")) {
                         if (bupjungdong.indexOf("시") > 0) {
 
@@ -327,16 +324,16 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                             if (!s.equals(" ")) {
                                 Log.d("dhxodn1988", "" + bupjungdong + "/" + s);
 
-                                bupjungdong = bupjungdong.replace(s," "+s);
+                                bupjungdong = bupjungdong.replace(s, " " + s);
 
                             }
-                        }else if(bupjungdong.indexOf("군") > 0){
+                        } else if (bupjungdong.indexOf("군") > 0) {
                             String s = String.valueOf(bupjungdong.charAt(bupjungdong.indexOf("군") + 1));
                             //bupjungdong.indexOf("시") + 1)
                             if (!s.equals(" ")) {
                                 Log.d("dhxodn1988", "" + bupjungdong + "/" + s);
 
-                                bupjungdong = bupjungdong.replace(s," "+s);
+                                bupjungdong = bupjungdong.replace(s, " " + s);
 
                             }
 
@@ -345,12 +342,12 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
                     }
 
-                    itemArrayList.add(new ListViewItem3(name, bupjungdong, totalgunsu, singogunsu, inflation,gunchukyear2));
+                    itemArrayList.add(new ListViewItem3(name, bupjungdong, totalgunsu, singogunsu, inflation, gunchukyear2));
                     Collections.sort(itemArrayList);
                     try {
                         DataView();
                     } catch (Exception e) {
-                       //데이터 화면에 뿌리기
+                        //데이터 화면에 뿌리기
 
 
                     }
@@ -365,7 +362,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
             // 실패시
             public void onFailure(Call<List<ListViewItem3>> call, Throwable t) {
 
-                Log.d("deberg","------->"+t.toString());
+                Log.d("deberg", "------->" + t.toString());
                 Toast.makeText(ChartActivity_apartname.this, "정보받아오기 실패", Toast.LENGTH_LONG)
                         .show();
             }
@@ -411,7 +408,6 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
             cycleimageview.setVisibility(View.INVISIBLE);
 
 
-
         }
 
     }
@@ -426,7 +422,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
         search_edit = (EditText) findViewById(R.id.search_edit);
         delete_textimageview = (ImageView) findViewById(R.id.delete_textImageview);
-       // singogun = (TextView) findViewById(R.id.singogun);
+        // singogun = (TextView) findViewById(R.id.singogun);
         //jisu = (TextView) findViewById(R.id.jisu);
         // cv = (CardView) findViewById(R.id.cv);//
         list_setup_imageview = (ImageView) findViewById(R.id.list_setup);
@@ -434,19 +430,14 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
         // main_layout = (RelativeLayout) findViewById(R.id.main_layout); //
         cycleimageview = (ImageView) findViewById(R.id.cycleimageview);
         b1 = (CardView) findViewById(R.id.b1);
-        contents=(TextView)findViewById(R.id.contents);
-        bup=(TextView) findViewById(R.id.bup);
-        singogagunsu=(TextView) findViewById(R.id.singogunsu);
-        inflation=(TextView) findViewById(R.id.inflation);
-        totalgunsu=(TextView) findViewById(R.id.totalgunsu);
-        today =(TextView) findViewById(R.id.today);
-       aphartname = (TextView) findViewById(R.id.aphartname);
-
-
-
-
-
-
+        contents = (TextView) findViewById(R.id.contents);
+        bup = (TextView) findViewById(R.id.bup);
+        singogagunsu = (TextView) findViewById(R.id.singogunsu);
+        inflation = (TextView) findViewById(R.id.inflation);
+        totalgunsu = (TextView) findViewById(R.id.totalgunsu);
+        today = (TextView) findViewById(R.id.today);
+        aphartname = (TextView) findViewById(R.id.aphartname);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
 
 
     }
@@ -479,10 +470,9 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                 dialog.show();
 
 
-
                 break;
 
-            case R.id.delete_textImageview :
+            case R.id.delete_textImageview:
 
                 search_edit.setText(null);
 
@@ -498,6 +488,14 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                 break;
 
         }
+
+    }
+
+    @Override
+    public void onRefresh() {
+        itemArrayList.clear();
+        Tongsin("name_nonstop");
+        swipeRefreshLayout.setRefreshing(false);
 
     }
 }
