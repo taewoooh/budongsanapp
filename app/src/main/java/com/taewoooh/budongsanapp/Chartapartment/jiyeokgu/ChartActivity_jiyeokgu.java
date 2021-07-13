@@ -42,7 +42,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.OnClickListener {
 
     CardView day_cardview;
     CardView day_cardview2;
@@ -64,7 +64,7 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
     EditText search_edit;
 
     ImageView delete_textimageview;
-    SwipeRefreshLayout swipeRefreshLayout;
+
     TextView bup;
 
     ImageView list_setup_imageview;
@@ -101,7 +101,7 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
 
         Tongsin("jiyeokgu_nonstop");
         llm = new LinearLayoutManager(this);
-        swipeRefreshLayout.setOnRefreshListener(this);
+
         delete_textimageview.setOnClickListener(this);
         day_cardview.setOnClickListener(this);
         day_cardview2.setOnClickListener(this);
@@ -231,7 +231,7 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void ContentsStory() {
         today.setText(new Util().Getday2()); // 이번달 표시
-        bup.setText("법정동");
+        bup.setText("지역구");
 
     }
 
@@ -375,7 +375,7 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
         cardview_button2 = (TextView) findViewById(R.id.cardview_button);
         rv = (RecyclerView) findViewById(R.id.main_rv);//
         // day_textview = (TextView) findViewById(R.id.day_textview);
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
+
         search_edit = (EditText) findViewById(R.id.search_edit);
         delete_textimageview = (ImageView) findViewById(R.id.delete_textImageview);
         // singogun = (TextView) findViewById(R.id.singogun);
@@ -392,7 +392,7 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
         inflation = (TextView) findViewById(R.id.inflation);
         totalgunsu = (TextView) findViewById(R.id.totalgunsu);
         today = (TextView) findViewById(R.id.today);
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
+
 
 
     }
@@ -449,11 +449,4 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
 
     }
 
-    @Override
-    public void onRefresh() {
-        itemArrayList.clear();
-        Tongsin("jiyeokgu_nonstop");
-        swipeRefreshLayout.setRefreshing(false);
-
-    }
 }

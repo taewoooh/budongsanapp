@@ -218,6 +218,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 twPreference.putInt("value", 5);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
+
+               
             }
         });
 
@@ -1010,6 +1012,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                     }
+
+
 
                     itemArrayList.add(new ListViewItem(name, price, area, year, month, day,
                             high, doromyung, jibun, geunmulcode,

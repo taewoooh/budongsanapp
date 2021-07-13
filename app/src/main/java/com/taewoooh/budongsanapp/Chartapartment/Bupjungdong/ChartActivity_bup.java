@@ -40,7 +40,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ChartActivity_bup extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class ChartActivity_bup extends AppCompatActivity implements View.OnClickListener {
 
     CardView day_cardview;
     CardView day_cardview2;
@@ -55,7 +55,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
     private RecyclerView rv;
     private LinearLayoutManager llm;
     private static String TAG = "8888888888888";
-    SwipeRefreshLayout swipeRefreshLayout;
+
 
     TextView contents;
 
@@ -99,7 +99,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
         Tongsin("bupjungdong_nonstop");
         llm = new LinearLayoutManager(this);
-        swipeRefreshLayout.setOnRefreshListener(this);
+
         delete_textimageview.setOnClickListener(this);
         day_cardview.setOnClickListener(this);
         day_cardview2.setOnClickListener(this);
@@ -372,7 +372,7 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
         cardview_button2 = (TextView) findViewById(R.id.cardview_button);
         rv = (RecyclerView) findViewById(R.id.main_rv);//
         // day_textview = (TextView) findViewById(R.id.day_textview);
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
+
 
 
         search_edit = (EditText) findViewById(R.id.search_edit);
@@ -446,11 +446,5 @@ public class ChartActivity_bup extends AppCompatActivity implements View.OnClick
 
     }
 
-    @Override
-    public void onRefresh() {
-        itemArrayList.clear();
-        Tongsin("bupjungdong_nonstop");
-        swipeRefreshLayout.setRefreshing(false);
 
-    }
 }

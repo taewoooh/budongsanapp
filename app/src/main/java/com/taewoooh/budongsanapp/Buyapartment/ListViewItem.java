@@ -593,9 +593,10 @@ public class ListViewItem implements Comparable<ListViewItem> {
             int b =Integer.parseInt(new Util().Getday3()) - Integer.parseInt(this.getGunchukyear());
             return b - a;
         }else {
-            int a = Integer.parseInt(new Util().Getday3()) - Integer.parseInt(entry.getGunchukyear());
-            int b =Integer.parseInt(new Util().Getday3()) - Integer.parseInt(this.getGunchukyear());
-            return a-b;
+
+                int a = Integer.parseInt(new Util().Getday3()) - Integer.parseInt(entry.getGunchukyear());
+                int b = Integer.parseInt(new Util().Getday3()) - Integer.parseInt(this.getGunchukyear());
+                return a - b;
 
         }
 

@@ -95,7 +95,7 @@ public class ListViewItem3 implements Comparable<ListViewItem3> {
     // 내림차순
     @Override
     public int compareTo(ListViewItem3 entry) { //금액 낮은순
-        //return entry.getTotalgunsu() - this.getTotalgunsu();
+
         //return entry.getPrice() - this.getPrice();
 
 

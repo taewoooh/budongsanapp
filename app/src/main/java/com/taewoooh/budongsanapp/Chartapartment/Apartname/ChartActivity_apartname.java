@@ -41,7 +41,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ChartActivity_apartname extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class ChartActivity_apartname extends AppCompatActivity implements View.OnClickListener {
 
     CardView day_cardview;
     CardView day_cardview2;
@@ -103,6 +103,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
     RelativeLayout bottomsheet;
 
     private static ArrayList<ListViewItem3> itemArrayList;
+    private static ArrayList<ListViewItem3> itemArrayList2;
     RvAdapter3 adapter;
 
 
@@ -122,13 +123,14 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
         Tongsin("name_nonstop");
         llm = new LinearLayoutManager(this);
-        swipeRefreshLayout.setOnRefreshListener(this);
+
         delete_textimageview.setOnClickListener(this);
         day_cardview.setOnClickListener(this);
         day_cardview2.setOnClickListener(this);
         b1.setOnClickListener(this);
 
         itemArrayList = new ArrayList<ListViewItem3>();
+        itemArrayList2 = new ArrayList<ListViewItem3>();
         search_edit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -145,9 +147,12 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
             @Override
             public void afterTextChanged(Editable s) {
 
-                String text = search_edit.getText().toString()
-                        .toLowerCase(Locale.getDefault());
-                adapter.filter(text);
+
+                    String text = search_edit.getText().toString()
+                            .toLowerCase(Locale.getDefault());
+                    adapter.filter(text);
+
+
 
 
                 if (s.length() > 0) {
@@ -200,7 +205,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
 
                 if (prefer % 2 == 0) {  //짝수
-                    Collections.sort(itemArrayList);
+                    //Collections.sort(itemArrayList);
                     DataView(); //데이터 화면에 뿌리기
                     list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
                     contents.setText("거래건수");
@@ -211,7 +216,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                     list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
 
 
-                    Collections.sort(itemArrayList);
+                    //Collections.sort(itemArrayList);
                     DataView(); //데이터 화면에 뿌리기
                     contents.setText("신고가율순");
                 }
@@ -344,6 +349,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
                     itemArrayList.add(new ListViewItem3(name, bupjungdong, totalgunsu, singogunsu, inflation, gunchukyear2));
                     Collections.sort(itemArrayList);
+                    itemArrayList2 = itemArrayList;
                     try {
                         DataView();
                     } catch (Exception e) {
@@ -412,6 +418,22 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void DataView2() {  // itemArraylist 에 담김 데이터를 화면에 뿌려준다
+
+
+        Collections.sort(itemArrayList2);
+
+
+        adapter = new RvAdapter3(itemArrayList, ChartActivity_apartname.this);
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(llm);
+        rv.setItemAnimator(new DefaultItemAnimator());
+        rv.setAdapter(adapter);
+
+
+    }
+
     public void findview() {
         day_cardview = (CardView) findViewById(R.id.day_cardview);
         day_cardview2 = (CardView) findViewById(R.id.day_cardview2);
@@ -437,7 +459,6 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
         totalgunsu = (TextView) findViewById(R.id.totalgunsu);
         today = (TextView) findViewById(R.id.today);
         aphartname = (TextView) findViewById(R.id.aphartname);
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
 
 
     }
@@ -477,6 +498,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                 search_edit.setText(null);
 
 
+
                 break;
             case R.id.b1:
 
@@ -491,11 +513,5 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
     }
 
-    @Override
-    public void onRefresh() {
-        itemArrayList.clear();
-        Tongsin("name_nonstop");
-        swipeRefreshLayout.setRefreshing(false);
 
-    }
 }

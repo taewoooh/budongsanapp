@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.taewoooh.budongsanapp.Chartapartment.Apartname.ListViewItem3;
 import com.taewoooh.budongsanapp.R;
 import com.taewoooh.budongsanapp.TWPreference;
 
@@ -140,6 +141,7 @@ public class RvAdapter4 extends RecyclerView.Adapter<RvAdapter4.CustomViewHolder
     public int getItemCount() {
         return items.size();
     }
+
 
     public void filter(String charText) { // 리사이클러뷰 검색
         this.searchString = charText;

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.taewoooh.budongsanapp.Buyapartment.ListViewItem;
 import com.taewoooh.budongsanapp.R;
 import com.taewoooh.budongsanapp.TWPreference;
 
