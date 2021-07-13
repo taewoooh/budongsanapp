@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 }
-
+                list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
 
             }
 
@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 twPreference.putInt("value", 1);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
+                list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
             }
 
 
@@ -194,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 twPreference.putInt("value", 2);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
+                list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
             }
 
             @Override
@@ -202,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 twPreference.putInt("value", 3);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
+                list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
             }
 
             @Override
@@ -210,6 +213,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 twPreference.putInt("value", 4);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
+                list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
             }
 
             @Override
@@ -218,6 +222,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 twPreference.putInt("value", 5);
                 Collections.sort(itemArrayList);
                 DataView(); //데이터 화면에 뿌리기
+                list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
 
                
             }

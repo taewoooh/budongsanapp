@@ -179,8 +179,12 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
 
 
                 if (prefer % 2 == 0) {  //짝수
+                    search_edit.setText(null);
                     Collections.sort(itemArrayList);
-                    DataView(); //데이터 화면에 뿌리기
+                    DataView(); //데이터 화면에
+
+//                    Collections.sort(itemArrayList);
+//                    DataView(); //데이터 화면에 뿌리기
                     list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
                     contents.setText("거래건수");
 
@@ -188,11 +192,13 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
                 } else {  //홀수
 
                     list_setup_imageview.setColorFilter(getColor(R.color.On_Btcolor));
-
-
+                    search_edit.setText(null);
                     Collections.sort(itemArrayList);
-                    DataView(); //데이터 화면에 뿌리기
-                    contents.setText("신고가율순");
+                    DataView(); //데이터 화면에
+
+//                    Collections.sort(itemArrayList);
+//                    DataView(); //데이터 화면에 뿌리기
+                    contents.setText("신고가율");
                 }
 
             }
