@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView rv;
     private LinearLayoutManager llm;
     SortDialog cd;
-    SortDialog cd2;
+
     private static String TAG = "8888888888d888";
     int hour;
     String areac;

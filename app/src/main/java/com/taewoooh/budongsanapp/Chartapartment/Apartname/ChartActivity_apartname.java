@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.taewoooh.budongsanapp.Buyapartment.MainActivity;
+import com.taewoooh.budongsanapp.Buyapartment.SortDialog;
 import com.taewoooh.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
 import com.taewoooh.budongsanapp.Chartapartment.jiyeokgu.ChartActivity_jiyeokgu;
 import com.taewoooh.budongsanapp.R;
@@ -93,7 +94,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
     SwipeRefreshLayout swipeRefreshLayout;
     Chart_name_dialog dialog;
 
-
+    SortDialog cd;
     RelativeLayout main_layout;
 
     BottomSheetDialog bottomSheetDialog;
@@ -199,6 +200,19 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
+
+
+
+
+
+
+
+
+
+
+
+
+
                 // Collections.sort(itemArrayList);
                 prefer++;
                 twPreference.putInt("value", prefer);
