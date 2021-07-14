@@ -329,10 +329,10 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                     int totalgunsu = contributor.totalgunsu;
                     int singogunsu = contributor.singogunsu;
                     int inflation = contributor.inflation;
-                    int gunchukyear2 = contributor.gunchukyear;
+                    int gunchukyear = contributor.gunchukyear;
 
 
-                    Log.e("TW", "" + name + " / " + bupjungdong + " / " + totalgunsu + " / " + singogunsu + " / " + inflation + " / " + gunchukyear2);
+                    Log.e("TWWW", "" + name + " / " + bupjungdong + " / " + totalgunsu + " / " + singogunsu + " / " + inflation + " / " + gunchukyear);
                     if (!bupjungdong.contains("서울특별시")) {
                         if (bupjungdong.indexOf("시") > 0) {
 
@@ -360,7 +360,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
                     }
 
-                    itemArrayList.add(new ListViewItem3(name, bupjungdong, totalgunsu, singogunsu, inflation, gunchukyear2));
+                    itemArrayList.add(new ListViewItem3(name, bupjungdong, totalgunsu, singogunsu, inflation, gunchukyear));
                     Collections.sort(itemArrayList);
                     itemArrayList2 = itemArrayList;
                     try {

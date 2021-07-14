@@ -153,6 +153,15 @@ public class RvAdapter3 extends RecyclerView.Adapter<RvAdapter3.CustomViewHolder
 
         }
 
+        if (items.get(safePosition).getGunchukyear()==0) {
+
+
+
+
+
+            holder.name.setTextColor(Color.parseColor("#2196F3"));
+        }
+
 
         if (count ==1 ){
             holder.crown.setVisibility(View.VISIBLE);
