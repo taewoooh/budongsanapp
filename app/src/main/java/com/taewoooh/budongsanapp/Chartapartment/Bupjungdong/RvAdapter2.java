@@ -147,7 +147,13 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.CustomViewHolder
         charText = charText.toLowerCase(Locale.getDefault());
         items.clear();
         if (charText.length() == 0) {
-            items.addAll(arrayList);
+            TWPreference twPreference = new TWPreference(context);
+
+            if (twPreference.getInt("refresh", 0) == 1) {
+
+            } else {
+                items.addAll(arrayList);
+            }
         } else {
             for (ListViewItem2 news : arrayList) {
                 if (news.getBupjungdong().toLowerCase(Locale.getDefault()).contains(charText)) {

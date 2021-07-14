@@ -312,14 +312,23 @@
 
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_rv"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/day_layout"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/day_layout">
 
 
-<!--    <androidx.cardview.widget.CardView-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+    <!--    <androidx.cardview.widget.CardView-->
 <!--        android:id="@+id/cv"-->
 <!--        android:layout_width="240dp"-->
 <!--        android:layout_height="57dp"-->

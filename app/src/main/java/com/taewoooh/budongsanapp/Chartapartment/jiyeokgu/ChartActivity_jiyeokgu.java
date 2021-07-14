@@ -42,13 +42,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.OnClickListener {
+public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     CardView day_cardview;
     CardView day_cardview2;
     TextView cardview_button;
     TextView cardview_button2;
     private Retrofit retrofit;
+
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
     private final String BASE_URL = "https://taewoooh88.cafe24.com/";
@@ -101,7 +103,7 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
 
         Tongsin("jiyeokgu_nonstop");
         llm = new LinearLayoutManager(this);
-
+        swipeRefreshLayout.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) this);
         delete_textimageview.setOnClickListener(this);
         day_cardview.setOnClickListener(this);
         day_cardview2.setOnClickListener(this);
@@ -398,7 +400,7 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
         inflation = (TextView) findViewById(R.id.inflation);
         totalgunsu = (TextView) findViewById(R.id.totalgunsu);
         today = (TextView) findViewById(R.id.today);
-
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
 
 
     }
@@ -433,7 +435,6 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
                 dialog.show();
 
 
-
                 break;
 
             case R.id.delete_textImageview:
@@ -455,4 +456,16 @@ public class ChartActivity_jiyeokgu extends AppCompatActivity implements View.On
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onRefresh() {
+        twPreference.putInt("value", 0);
+        list_setup_imageview.setColorFilter(getColor(R.color.Off_Textcolor));
+        twPreference.putInt("refresh", 1);
+        itemArrayList.clear();
+        search_edit.setText(null);
+        Tongsin("jiyeokgu_nonstop"); //데이터 화면에 뿌리기
+        swipeRefreshLayout.setRefreshing(false);
+        twPreference.putInt("refresh", 0);
+    }
 }
