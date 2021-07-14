@@ -35,7 +35,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
-import com.taewoooh.budongsanapp.Chartapartment.Apartname.ChartActivity_apartname;
 import com.taewoooh.budongsanapp.Chartapartment.Bupjungdong.ChartActivity_bup;
 import com.taewoooh.budongsanapp.Chartapartment.jiyeokgu.ChartActivity_jiyeokgu;
 import com.taewoooh.budongsanapp.CustomDialogClickListener;
@@ -751,7 +750,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // itemArrayList.clear();
 
                 //Intent intent = new Intent(this, ChartActivity_bup.class);
-                Intent intent = new Intent(this, ChartActivity_apartname.class);
+                Intent intent = new Intent(this, ChartActivity_jiyeokgu.class);
                 startActivity(intent);
                 break;
             case R.id.delete_textImageview:

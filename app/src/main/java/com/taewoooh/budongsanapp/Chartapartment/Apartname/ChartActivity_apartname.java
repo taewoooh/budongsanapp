@@ -123,15 +123,11 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
         twPreference.putInt("value1", 0);
 
 
-        Tongsin("name_nonstop");
+        Tongsin("name_nonstop2");
         llm = new LinearLayoutManager(this);
-        try {
-            swipeRefreshLayout.setOnRefreshListener(this);
-        }catch (Exception e){
 
+        swipeRefreshLayout.setOnRefreshListener(this);
 
-
-        }
 
         delete_textimageview.setOnClickListener(this);
         day_cardview.setOnClickListener(this);
@@ -157,11 +153,9 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
             public void afterTextChanged(Editable s) {
 
 
-                    String text = search_edit.getText().toString()
-                            .toLowerCase(Locale.getDefault());
-                    adapter.filter(text);
-
-
+                String text = search_edit.getText().toString()
+                        .toLowerCase(Locale.getDefault());
+                adapter.filter(text);
 
 
                 if (s.length() > 0) {
@@ -208,17 +202,6 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-
-
-
-
-
-
-
-
-
-
-
 
 
                 // Collections.sort(itemArrayList);
@@ -462,7 +445,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
         cardview_button2 = (TextView) findViewById(R.id.cardview_button);
         rv = (RecyclerView) findViewById(R.id.main_rv);//
         //day_textview = (TextView) findViewById(R.id.day_textview);
-
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
         search_edit = (EditText) findViewById(R.id.search_edit);
         delete_textimageview = (ImageView) findViewById(R.id.delete_textImageview);
         // singogun = (TextView) findViewById(R.id.singogun);
@@ -519,7 +502,6 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
                 search_edit.setText(null);
 
 
-
                 break;
             case R.id.b1:
 
@@ -543,7 +525,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
         twPreference.putInt("refresh", 1);
         itemArrayList.clear();
         search_edit.setText(null);
-        Tongsin("name_nonstop"); //데이터 화면에 뿌리기
+        Tongsin("name_nonstop2"); //데이터 화면에 뿌리기
         swipeRefreshLayout.setRefreshing(false);
         twPreference.putInt("refresh", 0);
     }
