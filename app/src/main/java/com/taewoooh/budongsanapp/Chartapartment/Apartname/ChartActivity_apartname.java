@@ -123,7 +123,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
         twPreference.putInt("value1", 0);
 
 
-        Tongsin("name_nonstop2");
+        Tongsin("name_nonstop");
         llm = new LinearLayoutManager(this);
 
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -324,32 +324,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
 
 
                     Log.e("TWWW", "" + name + " / " + bupjungdong + " / " + totalgunsu + " / " + singogunsu + " / " + inflation + " / " + gunchukyear);
-                    if (!bupjungdong.contains("서울특별시")) {
-                        if (bupjungdong.indexOf("시") > 0) {
 
-
-                            String s = String.valueOf(bupjungdong.charAt(bupjungdong.indexOf("시") + 1));
-                            //bupjungdong.indexOf("시") + 1)
-                            if (!s.equals(" ")) {
-                                Log.d("dhxodn1988", "" + bupjungdong + "/" + s);
-
-                                bupjungdong = bupjungdong.replace(s, " " + s);
-
-                            }
-                        } else if (bupjungdong.indexOf("군") > 0) {
-                            String s = String.valueOf(bupjungdong.charAt(bupjungdong.indexOf("군") + 1));
-                            //bupjungdong.indexOf("시") + 1)
-                            if (!s.equals(" ")) {
-                                Log.d("dhxodn1988", "" + bupjungdong + "/" + s);
-
-                                bupjungdong = bupjungdong.replace(s, " " + s);
-
-                            }
-
-                        }
-
-
-                    }
 
                     itemArrayList.add(new ListViewItem3(name, bupjungdong, totalgunsu, singogunsu, inflation, gunchukyear));
                     Collections.sort(itemArrayList);
@@ -525,7 +500,7 @@ public class ChartActivity_apartname extends AppCompatActivity implements View.O
         twPreference.putInt("refresh", 1);
         itemArrayList.clear();
         search_edit.setText(null);
-        Tongsin("name_nonstop2"); //데이터 화면에 뿌리기
+        Tongsin("name_nonstop"); //데이터 화면에 뿌리기
         swipeRefreshLayout.setRefreshing(false);
         twPreference.putInt("refresh", 0);
     }
